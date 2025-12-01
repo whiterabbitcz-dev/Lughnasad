@@ -126,9 +126,9 @@
     <!-- STICKY HEADER - Solid Dark Brown (No Logo) -->
     <header class="sticky top-0 z-40 bg-[#1A1512]">
         <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <!-- Navigation - Desktop (Centered) -->
-                <nav class="hidden md:flex items-center space-x-8 flex-grow justify-center">
+            <div class="relative flex items-center justify-center">
+                <!-- Navigation - Desktop (Centered in Viewport) -->
+                <nav class="hidden md:flex items-center space-x-8">
                     <a href="#o-festivalu" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
                         O Festivalu
                     </a>
@@ -140,8 +140,8 @@
                     </a>
                 </nav>
                 
-                <!-- CTA Button (Right) -->
-                <div class="hidden md:flex">
+                <!-- CTA Button (Right - Absolute Position) -->
+                <div class="hidden md:flex absolute right-0">
                     <a href="#vstupenky" class="bg-blood-red text-white px-6 py-2 font-heading text-sm comic-border comic-shadow comic-shadow-hover">
                         VSTUPENKY
                     </a>
