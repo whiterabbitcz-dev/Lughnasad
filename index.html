@@ -33,11 +33,13 @@
     </script>
     
     <style>
-        /* Global Paper Background */
+        /* Global Paper Background - Fixed seamless */
         body {
             background-color: #F2EFE9;
             background-image: url('images/bg-paper.jpg');
-            background-repeat: repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
             font-family: 'Lato', sans-serif;
         }
         
@@ -88,17 +90,22 @@
         .tarot-card:hover {
             transform: rotate(0deg) scale(1.05);
         }
+        
+        /* Hero Overlay for Text Readability */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);
+        }
     </style>
 </head>
 <body>
 
-    <!-- STICKY HEADER with head_bg.png background -->
-    <header class="sticky top-0 z-50" style="background-image: url('images/head.png'); background-size: cover; background-position: center;">
+    <!-- STICKY HEADER - Solid Dark Brown -->
+    <header class="sticky top-0 z-50 bg-[#1A1512]">
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
-                <!-- Logo -->
+                <!-- Logo - Much Bigger -->
                 <div class="flex-1">
-                    <img src="images/logo.jpg" alt="Lughnasad Logo" class="h-12 md:h-16">
+                    <img src="images/logo.jpg" alt="Lughnasad Logo" class="h-20 md:h-24">
                 </div>
                 
                 <!-- Navigation - Desktop -->
@@ -138,25 +145,42 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION - Redesigned -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Hero Image -->
-        <div class="absolute inset-0 flex items-center justify-center">
-            <img src="images/hero_main.jpg" alt="Hero" class="max-h-screen object-contain">
+        <!-- Hero Image with object-cover -->
+        <div class="absolute inset-0">
+            <img src="images/hero_main.jpg" alt="Hero" class="w-full h-full object-cover">
         </div>
+        
+        <!-- Dark Overlay for Text Readability -->
+        <div class="absolute inset-0 hero-overlay"></div>
         
         <!-- Overlay Content -->
         <div class="relative z-10 text-center px-4">
-            <!-- Massive Red Title -->
-            <h1 class="text-7xl md:text-9xl lg:text-[12rem] font-heading text-blood-red mb-8" 
-                style="text-shadow: 4px 4px 0px #1A1512, 8px 8px 0px rgba(139, 0, 0, 0.5);">
-                VAE VICTIS
+            <!-- H1: LUGHNASAD (Huge, Gold) -->
+            <h1 class="text-7xl md:text-9xl lg:text-[12rem] font-heading text-gold mb-4" 
+                style="text-shadow: 4px 4px 0px #1A1512, 8px 8px 0px rgba(0, 0, 0, 0.5);">
+                LUGHNASAD
             </h1>
             
+            <!-- H2: VAE VICTIS (Smaller, Red) -->
+            <h2 class="text-4xl md:text-6xl lg:text-7xl font-heading text-blood-red mb-8"
+                style="text-shadow: 3px 3px 0px #1A1512;">
+                VAE VICTIS
+            </h2>
+            
             <!-- Subtitle -->
-            <div class="inline-block">
-                <p class="text-2xl md:text-4xl font-heading text-ink-black px-8 py-4">
+            <div class="inline-block mb-8">
+                <p class="text-xl md:text-3xl font-heading text-white px-8 py-4"
+                   style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
                     MEZINÁRODNÍ FESTIVAL KELTSKÉ KULTURY
+                </p>
+            </div>
+            
+            <!-- Date & Location Block -->
+            <div class="inline-block bg-paper/90 px-8 md:px-12 py-6 comic-border comic-shadow">
+                <p class="text-2xl md:text-4xl font-heading text-ink-black">
+                    31. 7. – 2. 8. 2026 | NASAVRKY
                 </p>
             </div>
         </div>
@@ -369,48 +393,50 @@
             <!-- Team Grid -->
             <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
                 <!-- Character 1: BIATEC -->
-                <div class="comic-panel p-6 md:p-8">
-                    <div class="flex flex-col items-center text-center mb-6">
-                        <!-- Photo Placeholder -->
-                        <div class="w-48 h-48 mb-6 comic-border comic-shadow overflow-hidden bg-gray-300">
-                        </div>
-                        
-                        <!-- Name with Gold Marker -->
-                        <h3 class="text-3xl md:text-4xl font-heading text-ink-black mb-3">
-                            <span class="gold-marker">BIATEC</span>
-                        </h3>
+                <div class="comic-panel p-0 overflow-hidden">
+                    <!-- Header Image -->
+                    <div class="w-full h-48 overflow-hidden">
+                        <img src="images/head.png" alt="Biatec Header" class="w-full h-full object-cover">
                     </div>
                     
-                    <div class="text-ink-black font-body leading-relaxed space-y-3">
-                        <p class="text-blood-red italic font-bold">
-                            Bojovník a náčelník kmene Bójů
-                        </p>
-                        <p class="text-sm md:text-base">
-                            Jméno Biatec známe z nápisů na bójských mincích. Jeho autorita a sláva náčelníka dosáhla pozice vergobretos – nejvyššího voleného vůdce kmene.
-                        </p>
+                    <div class="p-6 md:p-8">
+                        <!-- Name with Gold Marker -->
+                        <h3 class="text-3xl md:text-4xl font-heading text-ink-black mb-4 text-center">
+                            <span class="gold-marker">BIATEC</span>
+                        </h3>
+                        
+                        <div class="text-ink-black font-body leading-relaxed space-y-3">
+                            <p class="text-blood-red italic font-bold">
+                                Bojovník a náčelník kmene Bójů
+                            </p>
+                            <p class="text-sm md:text-base">
+                                Jméno Biatec známe z nápisů na bójských mincích. Jeho autorita a sláva náčelníka dosáhla pozice vergobretos – nejvyššího voleného vůdce kmene.
+                            </p>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Character 2: GAIUS -->
-                <div class="comic-panel p-6 md:p-8">
-                    <div class="flex flex-col items-center text-center mb-6">
-                        <!-- Photo Placeholder -->
-                        <div class="w-48 h-48 mb-6 comic-border comic-shadow overflow-hidden bg-gray-300">
-                        </div>
-                        
-                        <!-- Name with Gold Marker -->
-                        <h3 class="text-3xl md:text-4xl font-heading text-ink-black mb-3">
-                            <span class="gold-marker">GAIUS QUINTUS CAEPIO</span>
-                        </h3>
+                <div class="comic-panel p-0 overflow-hidden">
+                    <!-- Header Image -->
+                    <div class="w-full h-48 overflow-hidden">
+                        <img src="images/head.png" alt="Gaius Header" class="w-full h-full object-cover">
                     </div>
                     
-                    <div class="text-ink-black font-body leading-relaxed space-y-3">
-                        <p class="text-blood-red italic font-bold">
-                            Římský vojevůdce
-                        </p>
-                        <p class="text-sm md:text-base">
-                            Důstojník předválené římské republiky. Velitel legie rozmístěné v římském městě Noricum. Keltští Bójové pro něj představovali hrozbu expandující z севeru.
-                        </p>
+                    <div class="p-6 md:p-8">
+                        <!-- Name with Gold Marker -->
+                        <h3 class="text-3xl md:text-4xl font-heading text-ink-black mb-4 text-center">
+                            <span class="gold-marker">GAIUS QUINTUS CAEPIO</span>
+                        </h3>
+                        
+                        <div class="text-ink-black font-body leading-relaxed space-y-3">
+                            <p class="text-blood-red italic font-bold">
+                                Římský vojevůdce
+                            </p>
+                            <p class="text-sm md:text-base">
+                                Důstojník předválené římské republiky. Velitel legie rozmístěné v římském městě Noricum. Keltští Bójové pro něj představovali hrozbu expandující z севeru.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
