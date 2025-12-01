@@ -196,8 +196,7 @@
             </h1>
             
             <!-- H2: VAE VICTIS (Smaller, Red) -->
-            <h2 class="parallax-item text-4xl md:text-6xl lg:text-7xl font-heading text-blood-red mb-8"
-                data-speed="0.4"
+            <h2 class="text-4xl md:text-6xl lg:text-7xl font-heading text-blood-red mb-8"
                 style="text-shadow: 3px 3px 0px #1A1512;">
                 VAE VICTIS
             </h2>
@@ -221,7 +220,7 @@
 
     <!-- ORNAMENT DIVIDER -->
     <div class="flex justify-center py-8">
-        <img src="images/ornament.png" alt="Ornament" class="parallax-item h-16" data-speed="-0.2">
+        <img src="images/ornament.png" alt="Ornament" class="h-16">
     </div>
 
     <!-- ABOUT PANEL -->
@@ -263,7 +262,7 @@
 
     <!-- ORNAMENT DIVIDER -->
     <div class="flex justify-center py-8">
-        <img src="images/ornament.png" alt="Ornament" class="parallax-item h-16" data-speed="-0.2">
+        <img src="images/ornament.png" alt="Ornament" class="h-16">
     </div>
 
     <!-- STATS GRID (Tarot Cards) -->
@@ -319,7 +318,7 @@
 
     <!-- ORNAMENT DIVIDER -->
     <div class="flex justify-center py-8">
-        <img src="images/ornament.png" alt="Ornament" class="parallax-item h-16" data-speed="-0.2">
+        <img src="images/ornament.png" alt="Ornament" class="h-16">
     </div>
 
     <!-- PROGRAM SECTION -->
@@ -410,7 +409,7 @@
 
     <!-- ORNAMENT DIVIDER -->
     <div class="flex justify-center py-8 bg-paper">
-        <img src="images/ornament.png" alt="Ornament" class="parallax-item h-16" data-speed="-0.2">
+        <img src="images/ornament.png" alt="Ornament" class="h-16">
     </div>
 
     <!-- TEAM SECTION -->
@@ -429,7 +428,7 @@
                 <div>
                     <!-- Sketch Image - Blends with Paper Background -->
                     <div class="w-full mb-6 flex justify-center">
-                        <img src="images/head.png" alt="Biatec Sketch" class="parallax-item h-48 mx-auto object-contain mix-blend-multiply border-none shadow-none outline-none" data-speed="0.1">
+                        <img src="images/head.png" alt="Biatec Sketch" class="h-48 mx-auto object-contain mix-blend-multiply border-none shadow-none outline-none">
                     </div>
                     
                     <!-- Content Panel -->
@@ -454,7 +453,7 @@
                 <div>
                     <!-- Sketch Image - Blends with Paper Background -->
                     <div class="w-full mb-6 flex justify-center">
-                        <img src="images/head.png" alt="Gaius Sketch" class="parallax-item h-48 mx-auto object-contain mix-blend-multiply border-none shadow-none outline-none" data-speed="0.1">
+                        <img src="images/head.png" alt="Gaius Sketch" class="h-48 mx-auto object-contain mix-blend-multiply border-none shadow-none outline-none">
                     </div>
                     
                     <!-- Content Panel -->
@@ -574,78 +573,6 @@
                 }
             });
         });
-    </script>
-
-    <!-- Parallax Floating Effect Script -->
-    <script>
-        (function() {
-            // Check if device is mobile/small screen (disable heavy parallax on very small screens)
-            const isMobile = window.innerWidth < 768;
-            const parallaxMultiplier = isMobile ? 0.3 : 1; // Reduce effect on mobile
-            
-            // Get all parallax items
-            const parallaxItems = document.querySelectorAll('.parallax-item');
-            
-            // Store original positions
-            const itemData = Array.from(parallaxItems).map(item => {
-                const speed = parseFloat(item.getAttribute('data-speed')) || 0;
-                return {
-                    element: item,
-                    speed: speed * parallaxMultiplier,
-                    initialOffset: item.getBoundingClientRect().top + window.pageYOffset
-                };
-            });
-            
-            let ticking = false;
-            
-            function updateParallax() {
-                const scrollY = window.pageYOffset;
-                
-                itemData.forEach(item => {
-                    // Calculate the distance scrolled from the element's initial position
-                    const distance = scrollY - item.initialOffset;
-                    
-                    // Only apply parallax when element is near viewport (performance optimization)
-                    const elementTop = item.element.getBoundingClientRect().top;
-                    if (elementTop < window.innerHeight + 200 && elementTop > -200) {
-                        // Calculate parallax offset
-                        const yPos = distance * item.speed;
-                        
-                        // Apply transform
-                        item.element.style.transform = `translateY(${yPos}px)`;
-                        item.element.style.willChange = 'transform'; // GPU acceleration hint
-                    }
-                });
-                
-                ticking = false;
-            }
-            
-            function onScroll() {
-                if (!ticking) {
-                    window.requestAnimationFrame(updateParallax);
-                    ticking = true;
-                }
-            }
-            
-            // Initialize on load
-            window.addEventListener('load', updateParallax);
-            
-            // Listen to scroll events
-            window.addEventListener('scroll', onScroll, { passive: true });
-            
-            // Recalculate on resize (debounced)
-            let resizeTimeout;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(function() {
-                    // Recalculate initial positions
-                    itemData.forEach(item => {
-                        item.initialOffset = item.element.getBoundingClientRect().top + window.pageYOffset;
-                    });
-                    updateParallax();
-                }, 250);
-            });
-        })();
     </script>
 
 </body>
