@@ -116,7 +116,7 @@
         }
         
         .flag-animation {
-            animation: flutter 3s infinite ease-in-out;
+            animation: flutter 4.2s infinite ease-in-out;
             transform-origin: top center;
         }
     </style>
@@ -170,7 +170,7 @@
     </header>
     
     <!-- BIG FLUTTERING FLAG (Overlays Header & Hero) -->
-    <img src="images/flag.png" alt="Celtic Flag" class="flag-animation fixed top-0 left-4 md:left-10 h-48 md:h-64 w-auto z-50 pointer-events-none">
+    <img src="images/flag.png" alt="Celtic Flag" class="flag-animation fixed -top-8 md:-top-12 left-4 md:left-10 h-48 md:h-64 w-auto z-50 pointer-events-none">
 
     <!-- HERO SECTION - Redesigned -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -182,8 +182,8 @@
         <!-- Dark Overlay for Text Readability -->
         <div class="absolute inset-0 hero-overlay"></div>
         
-        <!-- Overlay Content -->
-        <div class="relative z-10 text-center px-4">
+        <!-- Overlay Content - Shifted Higher -->
+        <div class="relative z-10 text-center px-4 -translate-y-16 md:-translate-y-24 lg:-translate-y-32">
             <!-- LOGO - Centered Above Title -->
             <div class="mb-8 flex justify-center">
                 <img src="images/logo.svg" alt="Lughnasad Logo" class="h-32 md:h-40 lg:h-48 w-auto">
