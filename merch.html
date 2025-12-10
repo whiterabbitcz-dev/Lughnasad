@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merch | LUGHNASAD 2026</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Oficiální merch festivalu Lughnasad 2026. Trička, mikiny, samolepky a další festivalové zboží.">
+    <meta name="keywords" content="Lughnasad, merch, trička, mikiny, festival, keltský">
+    <meta name="author" content="Lughnasad">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lughnasad.cz/merch">
+    <meta property="og:title" content="Merch | LUGHNASAD 2026">
+    <meta property="og:description" content="Oficiální festivalové zboží Lughnasad 2026.">
+    <meta property="og:image" content="https://lughnasad.cz/images/hero_main.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+    <link rel="apple-touch-icon" href="images/logo.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': '#F2EFE9',
+                        'ink-black': '#1A1512',
+                        'blood-red': '#8B0000',
+                        'gold': '#EBC86E',
+                    },
+                    fontFamily: {
+                        'heading': ['"Crimson Pro"', 'serif'],
+                        'body': ['Lato', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #F2EFE9;
+            background-image: url('images/bg-paper.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'Lato', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        
+        .comic-border {
+            border: 2px solid #1A1512;
+        }
+        
+        .comic-shadow {
+            box-shadow: 5px 5px 0px #1A1512;
+        }
+        
+        .comic-shadow-hover:hover {
+            box-shadow: 3px 3px 0px #1A1512;
+            transform: translate(2px, 2px);
+            transition: all 0.1s ease;
+        }
+        
+        .comic-panel {
+            background: white;
+            border: 2px solid #1A1512;
+            box-shadow: 5px 5px 0px #1A1512;
+        }
+        
+        .gold-marker {
+            background: linear-gradient(180deg, transparent 50%, #EBC86E 50%);
+            padding: 0 4px;
+        }
+        
+        .product-card {
+            background: white;
+            border: 2px solid #1A1512;
+            box-shadow: 5px 5px 0px #1A1512;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .product-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px #1A1512;
+        }
+        
+        /* Flag Flutter Animation */
+        @keyframes flutter {
+            0% { transform: rotate(0deg) skewX(0deg); }
+            25% { transform: rotate(5deg) skewX(5deg); }
+            50% { transform: rotate(-5deg) skewX(-5deg); }
+            75% { transform: rotate(5deg) skewX(5deg); }
+            100% { transform: rotate(0deg) skewX(0deg); }
+        }
+        
+        .flag-animation {
+            animation: flutter 6.3s infinite ease-in-out;
+            transform-origin: top center;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #EBC86E;
+            color: #1A1512;
+            padding: 8px 16px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        .size-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .size-btn:hover, .size-btn.active {
+            background-color: #8B0000;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link font-heading">Přeskočit na obsah</a>
+
+    <!-- STICKY HEADER -->
+    <header class="sticky top-0 z-40 bg-[#1A1512]">
+        <div class="container mx-auto px-4 py-4">
+            <div class="relative flex items-center justify-between">
+                <!-- Logo/Home Link -->
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="images/logo.svg" alt="Lughnasad" class="h-10 w-auto">
+                    <span class="hidden md:block text-gold font-heading text-lg">LUGHNASAD</span>
+                </a>
+                
+                <!-- Navigation - Desktop -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        O Festivalu
+                    </a>
+                    <a href="index.html#program" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Program
+                    </a>
+                    <a href="info.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Info
+                    </a>
+                    <a href="merch.html" class="text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Merch
+                    </a>
+                    <a href="index.html#faq" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        FAQ
+                    </a>
+                    <a href="index.html#kontakt" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Kontakt
+                    </a>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:flex">
+                    <a href="index.html#vstupenky" class="bg-blood-red text-white px-6 py-2 font-heading text-sm comic-border comic-shadow comic-shadow-hover">
+                        VSTUPENKY
+                    </a>
+                </div>
+                
+                <!-- Mobile: Menu Toggle -->
+                <div class="md:hidden flex items-center space-x-4">
+                    <a href="index.html#vstupenky" class="bg-blood-red text-white px-4 py-2 font-heading text-xs comic-border comic-shadow">
+                        VSTUPENKY
+                    </a>
+                    <button class="text-white text-2xl" onclick="toggleMobileMenu()" aria-label="Otevřít menu" aria-expanded="false" id="menu-toggle">
+                        ☰
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 bg-ink-black/90 comic-border p-4" role="navigation">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body text-sm uppercase">O Festivalu</a>
+                    <a href="index.html#program" class="text-white hover:text-gold font-body text-sm uppercase">Program</a>
+                    <a href="info.html" class="text-white hover:text-gold font-body text-sm uppercase">Info</a>
+                    <a href="merch.html" class="text-gold font-body text-sm uppercase">Merch</a>
+                    <a href="index.html#faq" class="text-white hover:text-gold font-body text-sm uppercase">FAQ</a>
+                    <a href="index.html#kontakt" class="text-white hover:text-gold font-body text-sm uppercase">Kontakt</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Flag -->
+    <img src="images/flag.png" alt="Celtic Flag" class="flag-animation fixed -top-8 md:-top-12 left-4 md:left-10 h-48 md:h-64 w-auto z-50 pointer-events-none">
+
+    <!-- PAGE HEADER -->
+    <section class="bg-ink-black py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-7xl font-heading text-gold mb-4" style="text-shadow: 3px 3px 0px rgba(0,0,0,0.5);">
+                MERCH
+            </h1>
+            <p class="text-white/80 font-body text-lg md:text-xl max-w-2xl mx-auto">
+                Oficiální festivalové zboží Lughnasad 2026
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content" class="py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            
+            <!-- Úvodní info -->
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="comic-panel p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-heading text-blood-red mb-4">OBECNÝ KONCEPT</h2>
+                    <p class="font-body text-ink-black leading-relaxed">
+                        Náš merch je inspirovaný keltskou kulturou a komiksem BIATEC. Všechny produkty jsou 
+                        vyrobeny s důrazem na kvalitu a originální design. Výtěžek z prodeje podporuje 
+                        organizaci festivalu, který je realizován výhradně dobrovolníky.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Objednávky info -->
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="bg-gold/20 comic-border p-6">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div>
+                            <h3 class="font-heading text-xl text-blood-red mb-2">📦 PŘEDOBJEDNÁVKY 2026</h3>
+                            <p class="font-body text-ink-black text-sm">
+                                Předobjednávky nové kolekce budou spuštěny v <span class="font-bold">květnu 2026</span>. 
+                                Sledujte naše sociální sítě!
+                            </p>
+                        </div>
+                        <a href="index.html#kontakt" class="bg-blood-red text-white px-6 py-3 font-heading text-sm comic-border comic-shadow comic-shadow-hover whitespace-nowrap">
+                            CHCI VĚDĚT PRVNÍ
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUKTY -->
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-heading text-ink-black mb-8 text-center">
+                    NAŠE PRODUKTY
+                </h2>
+                
+                <!-- Trička -->
+                <section class="mb-16">
+                    <h3 class="text-2xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                        <span>👕</span> TRIČKA
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Produkt 1 -->
+                        <div class="product-card">
+                            <div class="aspect-square bg-ink-black/10 flex items-center justify-center">
+                                <span class="text-ink-black/30 font-heading text-lg">FOTO PRODUKTU</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading text-lg text-ink-black mb-1">TRIČKO LUGHNASAD 2026</h4>
+                                <p class="text-ink-black/60 text-sm mb-3">Oficiální festivalové tričko</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-heading text-2xl text-blood-red">350 Kč</span>
+                                    <div class="flex gap-1">
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">S</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">M</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">L</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">XL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Produkt 2 -->
+                        <div class="product-card">
+                            <div class="aspect-square bg-ink-black/10 flex items-center justify-center">
+                                <span class="text-ink-black/30 font-heading text-lg">FOTO PRODUKTU</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading text-lg text-ink-black mb-1">TRIČKO BIATEC</h4>
+                                <p class="text-ink-black/60 text-sm mb-3">Komiksová edice</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-heading text-2xl text-blood-red">400 Kč</span>
+                                    <div class="flex gap-1">
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">S</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">M</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">L</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">XL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Produkt 3 -->
+                        <div class="product-card">
+                            <div class="aspect-square bg-ink-black/10 flex items-center justify-center">
+                                <span class="text-ink-black/30 font-heading text-lg">FOTO PRODUKTU</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading text-lg text-ink-black mb-1">TRIČKO KELTSKÝ VÁLEČNÍK</h4>
+                                <p class="text-ink-black/60 text-sm mb-3">Limitovaná edice</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-heading text-2xl text-blood-red">450 Kč</span>
+                                    <div class="flex gap-1">
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">S</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">M</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">L</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">XL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Mikiny -->
+                <section class="mb-16">
+                    <h3 class="text-2xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                        <span>🧥</span> MIKINY
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Produkt -->
+                        <div class="product-card">
+                            <div class="aspect-square bg-ink-black/10 flex items-center justify-center">
+                                <span class="text-ink-black/30 font-heading text-lg">FOTO PRODUKTU</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading text-lg text-ink-black mb-1">MIKINA LUGHNASAD</h4>
+                                <p class="text-ink-black/60 text-sm mb-3">Zip hoodie s kapucí</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-heading text-2xl text-blood-red">850 Kč</span>
+                                    <div class="flex gap-1">
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">S</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">M</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">L</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">XL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Produkt -->
+                        <div class="product-card">
+                            <div class="aspect-square bg-ink-black/10 flex items-center justify-center">
+                                <span class="text-ink-black/30 font-heading text-lg">FOTO PRODUKTU</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading text-lg text-ink-black mb-1">MIKINA BÓJOVÉ</h4>
+                                <p class="text-ink-black/60 text-sm mb-3">Pullover bez zipu</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-heading text-2xl text-blood-red">750 Kč</span>
+                                    <div class="flex gap-1">
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">S</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">M</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">L</button>
+                                        <button class="size-btn w-8 h-8 text-xs font-bold comic-border bg-paper">XL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Doplňky -->
+                <section class="mb-16">
+                    <h3 class="text-2xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                        <span>🎁</span> DOPLŇKY
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Produkt -->
+                        <div class="product-card">
+                            <div class="aspect-square bg-ink-black/10 flex items-center justify-center">
+                                <span class="text-ink-black/30 font-heading text-sm">FOTO</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading text-base text-ink-black mb-1">SAMOLEPKY (SET)</h4>
+                                <p class="text-ink-black/60 text-xs mb-2">5 ks v balení</p>
+                                <span class="font-heading text-xl text-blood-red">50 Kč</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Produkt -->
+                        <div class="product-card">
+                            <div class="aspect-square bg-ink-black/10 flex items-center justify-center">
+                                <span class="text-ink-black/30 font-heading text-sm">FOTO</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading text-base text-ink-black mb-1">PLACKA</h4>
+                                <p class="text-ink-black/60 text-xs mb-2">Ø 58 mm</p>
+                                <span class="font-heading text-xl text-blood-red">30 Kč</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Produkt -->
+                        <div class="product-card">
+                            <div class="aspect-square bg-ink-black/10 flex items-center justify-center">
+                                <span class="text-ink-black/30 font-heading text-sm">FOTO</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading text-base text-ink-black mb-1">HRNEK</h4>
+                                <p class="text-ink-black/60 text-xs mb-2">Keramický, 350 ml</p>
+                                <span class="font-heading text-xl text-blood-red">200 Kč</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Produkt -->
+                        <div class="product-card">
+                            <div class="aspect-square bg-ink-black/10 flex items-center justify-center">
+                                <span class="text-ink-black/30 font-heading text-sm">FOTO</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading text-base text-ink-black mb-1">PLAKÁT BIATEC</h4>
+                                <p class="text-ink-black/60 text-xs mb-2">A2 formát</p>
+                                <span class="font-heading text-xl text-blood-red">150 Kč</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Velikosti -->
+                <section class="mb-16">
+                    <div class="comic-panel p-6 md:p-8">
+                        <h3 class="text-2xl font-heading text-blood-red mb-6">📏 TABULKA VELIKOSTÍ</h3>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full font-body text-sm">
+                                <thead>
+                                    <tr class="bg-ink-black text-gold">
+                                        <th class="p-3 text-left">Velikost</th>
+                                        <th class="p-3 text-center">Prsa (cm)</th>
+                                        <th class="p-3 text-center">Délka (cm)</th>
+                                        <th class="p-3 text-center">Rukáv (cm)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-ink-black">
+                                    <tr class="border-b border-ink-black/20">
+                                        <td class="p-3 font-bold">S</td>
+                                        <td class="p-3 text-center">96</td>
+                                        <td class="p-3 text-center">70</td>
+                                        <td class="p-3 text-center">20</td>
+                                    </tr>
+                                    <tr class="border-b border-ink-black/20 bg-gold/10">
+                                        <td class="p-3 font-bold">M</td>
+                                        <td class="p-3 text-center">102</td>
+                                        <td class="p-3 text-center">72</td>
+                                        <td class="p-3 text-center">21</td>
+                                    </tr>
+                                    <tr class="border-b border-ink-black/20">
+                                        <td class="p-3 font-bold">L</td>
+                                        <td class="p-3 text-center">108</td>
+                                        <td class="p-3 text-center">74</td>
+                                        <td class="p-3 text-center">22</td>
+                                    </tr>
+                                    <tr class="border-b border-ink-black/20 bg-gold/10">
+                                        <td class="p-3 font-bold">XL</td>
+                                        <td class="p-3 text-center">114</td>
+                                        <td class="p-3 text-center">76</td>
+                                        <td class="p-3 text-center">23</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-bold">XXL</td>
+                                        <td class="p-3 text-center">120</td>
+                                        <td class="p-3 text-center">78</td>
+                                        <td class="p-3 text-center">24</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <p class="text-xs text-ink-black/60 mt-4">
+                            * Rozměry jsou orientační a mohou se lišit o ±2 cm. Při nejistotě doporučujeme zvolit větší velikost.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Doprava a platba -->
+                <section class="mb-16">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="comic-panel p-6">
+                            <h3 class="text-xl font-heading text-blood-red mb-4">🚚 DOPRAVA</h3>
+                            <ul class="font-body text-ink-black space-y-3 text-sm">
+                                <li class="flex justify-between items-center border-b border-ink-black/10 pb-2">
+                                    <span>Osobní odběr na festivalu</span>
+                                    <span class="font-bold text-green-600">ZDARMA</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-ink-black/10 pb-2">
+                                    <span>Zásilkovna</span>
+                                    <span class="font-bold">69 Kč</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-ink-black/10 pb-2">
+                                    <span>PPL</span>
+                                    <span class="font-bold">99 Kč</span>
+                                </li>
+                                <li class="flex justify-between items-center">
+                                    <span>Česká pošta</span>
+                                    <span class="font-bold">89 Kč</span>
+                                </li>
+                            </ul>
+                            <p class="text-xs text-ink-black/60 mt-4">
+                                Při objednávce nad 1000 Kč doprava ZDARMA!
+                            </p>
+                        </div>
+                        
+                        <div class="comic-panel p-6">
+                            <h3 class="text-xl font-heading text-blood-red mb-4">💳 PLATBA</h3>
+                            <ul class="font-body text-ink-black space-y-3 text-sm">
+                                <li class="flex items-center gap-2">
+                                    <span class="text-green-600">✓</span>
+                                    Platební karta online
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-green-600">✓</span>
+                                    Bankovní převod
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-green-600">✓</span>
+                                    Dobírka (+30 Kč)
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-green-600">✓</span>
+                                    Hotově na festivalu
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pro skupiny -->
+                <section class="mb-16">
+                    <div class="comic-panel p-6 md:p-8 bg-gold/10">
+                        <h3 class="text-2xl font-heading text-blood-red mb-4">👥 JEDNOTNÉ OBLEČENÍ PRO SKUPINY</h3>
+                        <p class="font-body text-ink-black mb-4">
+                            Pořádáte výlet na Lughnasad s partou přátel nebo jako firma? Nabízíme speciální ceny 
+                            pro skupinové objednávky jednotného oblečení.
+                        </p>
+                        <div class="bg-white p-4 comic-border mb-4">
+                            <p class="font-body text-sm">
+                                <span class="font-bold">Skupinová sleva:</span><br>
+                                • 10+ kusů: <span class="text-blood-red font-bold">10% sleva</span><br>
+                                • 25+ kusů: <span class="text-blood-red font-bold">15% sleva</span><br>
+                                • 50+ kusů: <span class="text-blood-red font-bold">20% sleva + potisk ZDARMA</span>
+                            </p>
+                        </div>
+                        <a href="index.html#kontakt" class="inline-block bg-blood-red text-white px-6 py-3 font-heading text-sm comic-border comic-shadow comic-shadow-hover">
+                            POPTAT SKUPINOVOU OBJEDNÁVKU
+                        </a>
+                    </div>
+                </section>
+
+                <!-- E-shop info -->
+                <section>
+                    <div class="comic-panel p-6 md:p-8 text-center">
+                        <h3 class="text-2xl font-heading text-ink-black mb-4">🛒 E-SHOP</h3>
+                        <p class="font-body text-ink-black mb-6">
+                            Náš e-shop bude spuštěn v <span class="gold-marker font-bold">březnu 2026</span>. 
+                            Do té doby můžete zboží zakoupit přímo na festivalu nebo nás kontaktovat 
+                            pro individuální objednávku.
+                        </p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="index.html#kontakt" class="bg-ink-black text-gold px-8 py-3 font-heading comic-border comic-shadow comic-shadow-hover">
+                                KONTAKTOVAT
+                            </a>
+                            <a href="#" class="bg-paper text-ink-black px-8 py-3 font-heading comic-border comic-shadow comic-shadow-hover opacity-50 cursor-not-allowed">
+                                E-SHOP (BRZY)
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-ink-black text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">O FESTIVALU</h4>
+                    <p class="font-body text-sm text-white/80 leading-relaxed">
+                        Lughnasad je mezinárodní festival keltské kultury organizovaný výhradně dobrovolníky. 
+                        Koná se každoročně v Nasavrkách.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">RYCHLÉ ODKAZY</h4>
+                    <ul class="font-body text-sm text-white/80 space-y-2">
+                        <li><a href="index.html" class="hover:text-gold transition">Domů</a></li>
+                        <li><a href="index.html#program" class="hover:text-gold transition">Program</a></li>
+                        <li><a href="info.html" class="hover:text-gold transition">Praktické info</a></li>
+                        <li><a href="merch.html" class="hover:text-gold transition">Merch</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">KONTAKT</h4>
+                    <ul class="font-body text-sm text-white/80 space-y-2">
+                        <li class="flex items-center gap-2">
+                            <span>📧</span>
+                            <a href="mailto:info@lughnasad.cz" class="hover:text-gold transition">info@lughnasad.cz</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span>📍</span>
+                            <span>Nasavrky, Česká republika</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">SLEDUJTE NÁS</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <span class="text-xl font-bold">f</span>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <span class="text-xl">📷</span>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <span class="text-xl">▶</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gold/30 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="font-body text-sm text-white/60">
+                        © 2026 Lughnasad. Všechna práva vyhrazena.
+                    </p>
+                    <div class="flex gap-6 font-body text-sm text-white/60">
+                        <a href="#" class="hover:text-gold transition">GDPR</a>
+                        <a href="#" class="hover:text-gold transition">Cookies</a>
+                        <a href="info.html#pravidla" class="hover:text-gold transition">Návštěvní řád</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const toggle = document.getElementById('menu-toggle');
+            const isHidden = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        }
+        
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktické informace | LUGHNASAD 2026</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Praktické informace pro návštěvníky festivalu Lughnasad 2026. Termíny, adresa, parkování, doprava, ubytování a vše co potřebujete vědět.">
+    <meta name="keywords" content="Lughnasad, informace, parkování, doprava, ubytování, Nasavrky">
+    <meta name="author" content="Lughnasad">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lughnasad.cz/info">
+    <meta property="og:title" content="Praktické informace | LUGHNASAD 2026">
+    <meta property="og:description" content="Vše co potřebujete vědět před návštěvou festivalu Lughnasad 2026.">
+    <meta property="og:image" content="https://lughnasad.cz/images/hero_main.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+    <link rel="apple-touch-icon" href="images/logo.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': '#F2EFE9',
+                        'ink-black': '#1A1512',
+                        'blood-red': '#8B0000',
+                        'gold': '#EBC86E',
+                    },
+                    fontFamily: {
+                        'heading': ['"Crimson Pro"', 'serif'],
+                        'body': ['Lato', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #F2EFE9;
+            background-image: url('images/bg-paper.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'Lato', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        
+        .comic-border {
+            border: 2px solid #1A1512;
+        }
+        
+        .comic-shadow {
+            box-shadow: 5px 5px 0px #1A1512;
+        }
+        
+        .comic-shadow-hover:hover {
+            box-shadow: 3px 3px 0px #1A1512;
+            transform: translate(2px, 2px);
+            transition: all 0.1s ease;
+        }
+        
+        .comic-panel {
+            background: white;
+            border: 2px solid #1A1512;
+            box-shadow: 5px 5px 0px #1A1512;
+        }
+        
+        .gold-marker {
+            background: linear-gradient(180deg, transparent 50%, #EBC86E 50%);
+            padding: 0 4px;
+        }
+        
+        .info-section {
+            scroll-margin-top: 100px;
+        }
+        
+        /* Flag Flutter Animation */
+        @keyframes flutter {
+            0% { transform: rotate(0deg) skewX(0deg); }
+            25% { transform: rotate(5deg) skewX(5deg); }
+            50% { transform: rotate(-5deg) skewX(-5deg); }
+            75% { transform: rotate(5deg) skewX(5deg); }
+            100% { transform: rotate(0deg) skewX(0deg); }
+        }
+        
+        .flag-animation {
+            animation: flutter 6.3s infinite ease-in-out;
+            transform-origin: top center;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #EBC86E;
+            color: #1A1512;
+            padding: 8px 16px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link font-heading">Přeskočit na obsah</a>
+
+    <!-- STICKY HEADER -->
+    <header class="sticky top-0 z-40 bg-[#1A1512]">
+        <div class="container mx-auto px-4 py-4">
+            <div class="relative flex items-center justify-between">
+                <!-- Logo/Home Link -->
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="images/logo.svg" alt="Lughnasad" class="h-10 w-auto">
+                    <span class="hidden md:block text-gold font-heading text-lg">LUGHNASAD</span>
+                </a>
+                
+                <!-- Navigation - Desktop -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        O Festivalu
+                    </a>
+                    <a href="index.html#program" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Program
+                    </a>
+                    <a href="info.html" class="text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Info
+                    </a>
+                    <a href="merch.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Merch
+                    </a>
+                    <a href="index.html#faq" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        FAQ
+                    </a>
+                    <a href="index.html#kontakt" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Kontakt
+                    </a>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:flex">
+                    <a href="index.html#vstupenky" class="bg-blood-red text-white px-6 py-2 font-heading text-sm comic-border comic-shadow comic-shadow-hover">
+                        VSTUPENKY
+                    </a>
+                </div>
+                
+                <!-- Mobile: Menu Toggle -->
+                <div class="md:hidden flex items-center space-x-4">
+                    <a href="index.html#vstupenky" class="bg-blood-red text-white px-4 py-2 font-heading text-xs comic-border comic-shadow">
+                        VSTUPENKY
+                    </a>
+                    <button class="text-white text-2xl" onclick="toggleMobileMenu()" aria-label="Otevřít menu" aria-expanded="false" id="menu-toggle">
+                        ☰
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 bg-ink-black/90 comic-border p-4" role="navigation">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body text-sm uppercase">O Festivalu</a>
+                    <a href="index.html#program" class="text-white hover:text-gold font-body text-sm uppercase">Program</a>
+                    <a href="info.html" class="text-gold font-body text-sm uppercase">Info</a>
+                    <a href="merch.html" class="text-white hover:text-gold font-body text-sm uppercase">Merch</a>
+                    <a href="index.html#faq" class="text-white hover:text-gold font-body text-sm uppercase">FAQ</a>
+                    <a href="index.html#kontakt" class="text-white hover:text-gold font-body text-sm uppercase">Kontakt</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Flag -->
+    <img src="images/flag.png" alt="Celtic Flag" class="flag-animation fixed -top-8 md:-top-12 left-4 md:left-10 h-48 md:h-64 w-auto z-50 pointer-events-none">
+
+    <!-- PAGE HEADER -->
+    <section class="bg-ink-black py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-7xl font-heading text-gold mb-4" style="text-shadow: 3px 3px 0px rgba(0,0,0,0.5);">
+                PRAKTICKÉ INFORMACE
+            </h1>
+            <p class="text-white/80 font-body text-lg md:text-xl max-w-2xl mx-auto">
+                Vše, co potřebujete vědět před návštěvou festivalu Lughnasad 2026
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content" class="py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            
+            <!-- Quick Navigation -->
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="comic-panel p-6">
+                    <h2 class="font-heading text-xl text-ink-black mb-4">RYCHLÁ NAVIGACE</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#terminy" class="bg-gold/20 hover:bg-gold/40 px-4 py-2 text-ink-black font-body text-sm comic-border transition">Termíny</a>
+                        <a href="#adresa" class="bg-gold/20 hover:bg-gold/40 px-4 py-2 text-ink-black font-body text-sm comic-border transition">Adresa</a>
+                        <a href="#parkovani" class="bg-gold/20 hover:bg-gold/40 px-4 py-2 text-ink-black font-body text-sm comic-border transition">Parkování</a>
+                        <a href="#doprava" class="bg-gold/20 hover:bg-gold/40 px-4 py-2 text-ink-black font-body text-sm comic-border transition">Doprava</a>
+                        <a href="#ubytovani" class="bg-gold/20 hover:bg-gold/40 px-4 py-2 text-ink-black font-body text-sm comic-border transition">Ubytování</a>
+                        <a href="#sluzby" class="bg-gold/20 hover:bg-gold/40 px-4 py-2 text-ink-black font-body text-sm comic-border transition">Služby</a>
+                        <a href="#pravidla" class="bg-gold/20 hover:bg-gold/40 px-4 py-2 text-ink-black font-body text-sm comic-border transition">Pravidla</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-12">
+                
+                <!-- TERMÍNY -->
+                <section id="terminy" class="info-section">
+                    <div class="comic-panel p-6 md:p-8">
+                        <h2 class="text-3xl md:text-4xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                            <span class="text-4xl">📅</span> TERMÍNY
+                        </h2>
+                        
+                        <div class="space-y-4 font-body text-ink-black">
+                            <div class="bg-gold/10 p-4 comic-border">
+                                <p class="font-heading text-2xl text-blood-red mb-2">31. 7. – 2. 8. 2026</p>
+                                <p class="text-ink-black/70">Pátek – Neděle</p>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-3 gap-4 mt-6">
+                                <div class="text-center p-4 border-2 border-ink-black/20">
+                                    <p class="font-heading text-lg text-blood-red">PÁTEK 31. 7.</p>
+                                    <p class="text-sm">Brány: <span class="font-bold">14:00 – 02:00</span></p>
+                                    <p class="text-sm">Pro kempující: <span class="font-bold">10:00</span></p>
+                                </div>
+                                <div class="text-center p-4 border-2 border-ink-black/20">
+                                    <p class="font-heading text-lg text-blood-red">SOBOTA 1. 8.</p>
+                                    <p class="text-sm">Brány: <span class="font-bold">10:00 – 02:00</span></p>
+                                    <p class="text-sm">Hlavní program: <span class="font-bold">celý den</span></p>
+                                </div>
+                                <div class="text-center p-4 border-2 border-ink-black/20">
+                                    <p class="font-heading text-lg text-blood-red">NEDĚLE 2. 8.</p>
+                                    <p class="text-sm">Brány: <span class="font-bold">10:00 – 20:00</span></p>
+                                    <p class="text-sm">Ukončení: <span class="font-bold">18:00</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ADRESA -->
+                <section id="adresa" class="info-section">
+                    <div class="comic-panel p-6 md:p-8">
+                        <h2 class="text-3xl md:text-4xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                            <span class="text-4xl">📍</span> ADRESA
+                        </h2>
+                        
+                        <div class="space-y-4 font-body text-ink-black">
+                            <div class="bg-gold/10 p-4 comic-border">
+                                <p class="font-heading text-xl">Areál festivalu Lughnasad</p>
+                                <p class="text-lg">Nasavrky, Pardubický kraj</p>
+                                <p class="text-ink-black/70 mt-2">GPS: <span class="font-mono font-bold">49.8456°N, 15.8012°E</span></p>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <h3 class="font-heading text-xl text-ink-black mb-4">MAPA OKOLÍ AREÁLU</h3>
+                                <div class="aspect-video bg-ink-black/10 comic-border flex items-center justify-center">
+                                    <p class="text-ink-black/50 font-heading">Mapa bude doplněna</p>
+                                </div>
+                                <p class="text-sm text-ink-black/60 mt-2">
+                                    Podrobná mapa areálu včetně vyznačení parkovišť, vstupů a důležitých míst bude zveřejněna před festivalem.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PARKOVÁNÍ -->
+                <section id="parkovani" class="info-section">
+                    <div class="comic-panel p-6 md:p-8">
+                        <h2 class="text-3xl md:text-4xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                            <span class="text-4xl">🚗</span> PARKOVÁNÍ
+                        </h2>
+                        
+                        <div class="space-y-4 font-body text-ink-black">
+                            <p>
+                                Pro návštěvníky je k dispozici <span class="gold-marker font-bold">bezplatné parkoviště</span> 
+                                v blízkosti areálu. Kapacita je omezená, doporučujeme přijet včas nebo využít hromadnou dopravu.
+                            </p>
+                            
+                            <div class="bg-blood-red/10 p-4 comic-border mt-4">
+                                <h3 class="font-heading text-lg text-blood-red mb-2">⚠️ DŮLEŽITÉ INFORMACE</h3>
+                                <ul class="list-disc list-inside space-y-1 text-sm">
+                                    <li>Parkování je na vlastní nebezpečí</li>
+                                    <li>Dodržujte pokyny pořadatelů při parkování</li>
+                                    <li>Neparkujte mimo vyznačená místa</li>
+                                    <li>Karavany a obytné vozy mají vyhrazený prostor</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <h3 class="font-heading text-xl text-ink-black mb-3">PRAVIDLA PRO VJEZD VOZIDEL</h3>
+                                
+                                <div class="space-y-3">
+                                    <div class="p-4 border-l-4 border-blood-red bg-white">
+                                        <p class="font-bold">VIP vstupenky</p>
+                                        <p class="text-sm text-ink-black/70">Držitelé VIP vstupenek mají nárok na parkování v blízkosti vstupu. Prokažte se platnou vstupenkou u vjezdu.</p>
+                                    </div>
+                                    <div class="p-4 border-l-4 border-gold bg-white">
+                                        <p class="font-bold">Účinkující a organizátoři</p>
+                                        <p class="text-sm text-ink-black/70">Vjezd povolen pouze s platnou akreditací. Kontaktujte organizátory předem pro zajištění vjezdového povolení.</p>
+                                    </div>
+                                    <div class="p-4 border-l-4 border-ink-black bg-white">
+                                        <p class="font-bold">Stánkaři a dodavatelé</p>
+                                        <p class="text-sm text-ink-black/70">Vjezd pro zásobování pouze ve vyhrazených časech. Bližší informace obdržíte po registraci.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DOPRAVA -->
+                <section id="doprava" class="info-section">
+                    <div class="comic-panel p-6 md:p-8">
+                        <h2 class="text-3xl md:text-4xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                            <span class="text-4xl">🚌</span> DOPRAVA
+                        </h2>
+                        
+                        <div class="space-y-4 font-body text-ink-black">
+                            <h3 class="font-heading text-xl">HROMADNÁ DOPRAVA</h3>
+                            
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="p-4 bg-white comic-border">
+                                    <p class="font-bold text-blood-red mb-2">🚂 Vlakem</p>
+                                    <p class="text-sm">Nejbližší vlaková stanice: <span class="font-bold">Chrast u Chrudimi</span></p>
+                                    <p class="text-sm text-ink-black/70">Vzdálenost od areálu: cca 8 km</p>
+                                </div>
+                                <div class="p-4 bg-white comic-border">
+                                    <p class="font-bold text-blood-red mb-2">🚌 Autobusem</p>
+                                    <p class="text-sm">Autobusová zastávka: <span class="font-bold">Nasavrky, náměstí</span></p>
+                                    <p class="text-sm text-ink-black/70">Vzdálenost od areálu: cca 1 km</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gold/10 p-4 comic-border mt-4">
+                                <p class="font-bold mb-2">💡 TIP</p>
+                                <p class="text-sm">Sledujte naše sociální sítě – v případě zájmu zajistíme speciální festivalový autobus z Chrudimi!</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- UBYTOVÁNÍ -->
+                <section id="ubytovani" class="info-section">
+                    <div class="comic-panel p-6 md:p-8">
+                        <h2 class="text-3xl md:text-4xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                            <span class="text-4xl">🏕️</span> UBYTOVÁNÍ
+                        </h2>
+                        
+                        <div class="space-y-4 font-body text-ink-black">
+                            <p>
+                                Preferujeme <span class="gold-marker font-bold">kempování přímo v areálu</span> – 
+                                zažijete tak pravou atmosféru festivalu od rána do noci!
+                            </p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mt-6">
+                                <div class="p-4 bg-white comic-border">
+                                    <h4 class="font-heading text-lg text-blood-red mb-2">⛺ KEMPOVÁNÍ</h4>
+                                    <ul class="text-sm space-y-1">
+                                        <li>✓ Vlastní stan zdarma (ve vstupném)</li>
+                                        <li>✓ Vyhrazené klidové zóny</li>
+                                        <li>✓ Přístup k sociálním zařízením</li>
+                                        <li>✓ Příjezd možný od pátku 10:00</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 bg-white comic-border">
+                                    <h4 class="font-heading text-lg text-blood-red mb-2">🏠 PENZIONY V OKOLÍ</h4>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Penzion Nasavrky</li>
+                                        <li>• Ubytování Chrast</li>
+                                        <li>• Hotel Chrudim (15 km)</li>
+                                    </ul>
+                                    <p class="text-xs text-ink-black/60 mt-2">Doporučujeme rezervovat s předstihem!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLUŽBY NA FESTIVALU -->
+                <section id="sluzby" class="info-section">
+                    <div class="comic-panel p-6 md:p-8">
+                        <h2 class="text-3xl md:text-4xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                            <span class="text-4xl">🛠️</span> SLUŽBY NA FESTIVALU
+                        </h2>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 font-body text-ink-black">
+                            
+                            <div class="space-y-4">
+                                <div class="p-4 border-2 border-ink-black/20">
+                                    <h4 class="font-heading text-lg mb-2">🚻 TOALETY</h4>
+                                    <p class="text-sm">Mobilní toalety jsou rozmístěny po celém areálu. K dispozici jsou i toalety pro osoby se sníženou pohyblivostí.</p>
+                                </div>
+                                
+                                <div class="p-4 border-2 border-ink-black/20">
+                                    <h4 class="font-heading text-lg mb-2">💳 PLATBY</h4>
+                                    <p class="text-sm">Na většině stánků je možné platit <span class="font-bold">kartou i hotovostí</span>. Doporučujeme mít připravenou hotovost pro menší stánky.</p>
+                                </div>
+                                
+                                <div class="p-4 border-2 border-ink-black/20">
+                                    <h4 class="font-heading text-lg mb-2">🔒 ÚSCHOVNA / SKŘÍŇKY</h4>
+                                    <p class="text-sm">K dispozici je pronájem uzamykatelných skříněk. Cena: <span class="font-bold">50 Kč/den</span> + vratná záloha.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="p-4 border-2 border-ink-black/20">
+                                    <h4 class="font-heading text-lg mb-2">🔌 POWERBANKY</h4>
+                                    <p class="text-sm">Možnost zapůjčení powerbanky na info stánku. Záloha <span class="font-bold">200 Kč</span>, která se vrací při vrácení powerbanky.</p>
+                                </div>
+                                
+                                <div class="p-4 border-2 border-ink-black/20">
+                                    <h4 class="font-heading text-lg mb-2">🍺 ZÁLOHY ZA KELÍMKY</h4>
+                                    <p class="text-sm">Festival používá <span class="font-bold">zálohové kelímky</span>. Záloha činí 30-50 Kč dle velikosti. Kelímky lze vracet na kterémkoliv baru.</p>
+                                </div>
+                                
+                                <div class="p-4 border-2 border-ink-black/20">
+                                    <h4 class="font-heading text-lg mb-2">💧 PITNÁ VODA</h4>
+                                    <p class="text-sm">V areálu jsou k dispozici <span class="font-bold">pítka s pitnou vodou zdarma</span>. Doporučujeme přinést si vlastní láhev na doplňování.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-gold/10 p-4 comic-border">
+                            <h4 class="font-heading text-lg text-blood-red mb-2">🏥 ZDRAVOTNICKÁ SLUŽBA</h4>
+                            <p class="text-sm font-body">Po celou dobu festivalu je na místě přítomna zdravotnická služba. V případě potřeby se obraťte na nejbližšího pořadatele nebo navštivte zdravotnický stan u hlavního vstupu.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PRAVIDLA -->
+                <section id="pravidla" class="info-section">
+                    <div class="comic-panel p-6 md:p-8">
+                        <h2 class="text-3xl md:text-4xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                            <span class="text-4xl">📋</span> PRAVIDLA A ZÁKAZY
+                        </h2>
+                        
+                        <div class="space-y-6 font-body text-ink-black">
+                            
+                            <div>
+                                <h3 class="font-heading text-xl text-ink-black mb-3">✅ POVOLENO</h3>
+                                <ul class="grid md:grid-cols-2 gap-2">
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-green-600">✓</span> Vlastní jídlo a nealkoholické nápoje
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-green-600">✓</span> Psi na vodítku
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-green-600">✓</span> Fotoaparáty a kamery (nekomerční)
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-green-600">✓</span> Deky a skládací židle
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-green-600">✓</span> Dobová kostýmy a převleky
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-green-600">✓</span> Dětské kočárky
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-blood-red/10 p-4 comic-border">
+                                <h3 class="font-heading text-xl text-blood-red mb-3">❌ ZAKÁZÁNO</h3>
+                                <ul class="grid md:grid-cols-2 gap-2">
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-blood-red">✗</span> Vnášení skleněných nádob
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-blood-red">✗</span> Vnášení alkoholických nápojů
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-blood-red">✗</span> Drogy a omamné látky
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-blood-red">✗</span> Zbraně (i repliky mimo kostým)
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-blood-red">✗</span> Pyrotechnika
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-blood-red">✗</span> Drony bez povolení
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-blood-red">✗</span> Rozlévání nápojů mimo zálohové kelímky
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm">
+                                        <span class="text-blood-red">✗</span> Nepovolený prodej
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="text-center mt-6">
+                                <a href="#" class="inline-block bg-ink-black text-gold px-8 py-3 font-heading comic-border comic-shadow comic-shadow-hover">
+                                    STÁHNOUT KOMPLETNÍ NÁVŠTĚVNÍ ŘÁD (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- HLAVNÍ VSTUP -->
+                <section class="info-section">
+                    <div class="comic-panel p-6 md:p-8">
+                        <h2 class="text-3xl md:text-4xl font-heading text-blood-red mb-6 flex items-center gap-3">
+                            <span class="text-4xl">🚪</span> HLAVNÍ VSTUP
+                        </h2>
+                        
+                        <div class="font-body text-ink-black">
+                            <p class="mb-4">
+                                Hlavní vstup do areálu se nachází na severní straně. Zde probíhá kontrola vstupenek 
+                                a bezpečnostní prohlídka. Prosíme o trpělivost při větším počtu návštěvníků.
+                            </p>
+                            
+                            <div class="bg-gold/10 p-4 comic-border">
+                                <p class="font-bold mb-2">📱 VSTUPENKY</p>
+                                <p class="text-sm">Vstupenky lze předložit v <span class="font-bold">tištěné i elektronické podobě</span> (QR kód na telefonu). Po kontrole obdržíte festivalový náramek.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA SECTION -->
+    <section class="py-16 bg-blood-red">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-6">
+                MÁTE DALŠÍ OTÁZKY?
+            </h2>
+            <p class="text-white/80 font-body text-lg mb-8 max-w-2xl mx-auto">
+                Podívejte se na naše FAQ nebo nás kontaktujte přímo.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="index.html#faq" class="bg-gold text-ink-black px-8 py-3 font-heading comic-border comic-shadow comic-shadow-hover">
+                    ČASTÉ DOTAZY
+                </a>
+                <a href="index.html#kontakt" class="bg-white text-ink-black px-8 py-3 font-heading comic-border comic-shadow comic-shadow-hover">
+                    KONTAKTOVAT
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-ink-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">O FESTIVALU</h4>
+                    <p class="font-body text-sm text-white/80 leading-relaxed">
+                        Lughnasad je mezinárodní festival keltské kultury organizovaný výhradně dobrovolníky. 
+                        Koná se každoročně v Nasavrkách.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">RYCHLÉ ODKAZY</h4>
+                    <ul class="font-body text-sm text-white/80 space-y-2">
+                        <li><a href="index.html" class="hover:text-gold transition">Domů</a></li>
+                        <li><a href="index.html#program" class="hover:text-gold transition">Program</a></li>
+                        <li><a href="info.html" class="hover:text-gold transition">Praktické info</a></li>
+                        <li><a href="merch.html" class="hover:text-gold transition">Merch</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">KONTAKT</h4>
+                    <ul class="font-body text-sm text-white/80 space-y-2">
+                        <li class="flex items-center gap-2">
+                            <span>📧</span>
+                            <a href="mailto:info@lughnasad.cz" class="hover:text-gold transition">info@lughnasad.cz</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span>📍</span>
+                            <span>Nasavrky, Česká republika</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">SLEDUJTE NÁS</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <span class="text-xl font-bold">f</span>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <span class="text-xl">📷</span>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <span class="text-xl">▶</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gold/30 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="font-body text-sm text-white/60">
+                        © 2026 Lughnasad. Všechna práva vyhrazena.
+                    </p>
+                    <div class="flex gap-6 font-body text-sm text-white/60">
+                        <a href="#" class="hover:text-gold transition">GDPR</a>
+                        <a href="#" class="hover:text-gold transition">Cookies</a>
+                        <a href="#pravidla" class="hover:text-gold transition">Návštěvní řád</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const toggle = document.getElementById('menu-toggle');
+            const isHidden = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        }
+        
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
