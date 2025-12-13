@@ -278,6 +278,43 @@
             max-height: 200px;
         }
         
+        /* Favorite Heart Button */
+        .favorite-btn {
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+            user-select: none;
+        }
+        
+        .favorite-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        .favorite-btn.active {
+            color: #8B0000;
+            animation: heartbeat 0.3s ease;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        /* My Program Panel */
+        .my-program-empty {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .my-program-item {
+            transition: background-color 0.2s ease;
+        }
+        
+        .my-program-item:hover {
+            background-color: rgba(235, 200, 110, 0.1);
+        }
+        
         /* Cookie Banner */
         .cookie-banner {
             position: fixed;
@@ -329,14 +366,14 @@
                     <a href="info.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
                         Info
                     </a>
+                    <a href="mapa.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Mapa
+                    </a>
                     <a href="merch.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
                         Merch
                     </a>
                     <a href="#faq" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
                         FAQ
-                    </a>
-                    <a href="#kontakt" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
-                        Kontakt
                     </a>
                 </nav>
                 
@@ -364,9 +401,9 @@
                     <a href="#o-festivalu" class="text-white hover:text-gold font-body text-sm uppercase">O Festivalu</a>
                     <a href="#program" class="text-white hover:text-gold font-body text-sm uppercase">Program</a>
                     <a href="info.html" class="text-white hover:text-gold font-body text-sm uppercase">Info</a>
+                    <a href="mapa.html" class="text-white hover:text-gold font-body text-sm uppercase">Mapa</a>
                     <a href="merch.html" class="text-white hover:text-gold font-body text-sm uppercase">Merch</a>
                     <a href="#faq" class="text-white hover:text-gold font-body text-sm uppercase">FAQ</a>
-                    <a href="#kontakt" class="text-white hover:text-gold font-body text-sm uppercase">Kontakt</a>
                 </nav>
             </div>
         </div>
@@ -558,9 +595,21 @@
             <h2 class="text-4xl md:text-6xl font-heading text-gold mb-4 text-center">
                 PROGRAM FESTIVALU
             </h2>
-            <p class="text-center text-white/70 font-body mb-8 text-lg">
-                Klikněte na aktivitu pro více informací
+            <p class="text-center text-white/70 font-body mb-4 text-lg">
+                Klikněte na aktivitu pro více informací • Srdíčkem si přidejte do svého programu
             </p>
+            
+            <!-- My Program Toggle -->
+            <div class="max-w-4xl mx-auto mb-6">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button id="show-all-program" class="px-6 py-2 font-heading text-sm comic-border bg-gold text-ink-black" onclick="showAllProgram()">
+                        📅 CELÝ PROGRAM
+                    </button>
+                    <button id="show-my-program" class="px-6 py-2 font-heading text-sm comic-border bg-paper text-ink-black" onclick="showMyProgram()">
+                        ❤️ MŮJ PROGRAM <span id="favorites-count" class="ml-1 bg-blood-red text-white px-2 py-0.5 rounded-full text-xs">0</span>
+                    </button>
+                </div>
+            </div>
             
             <!-- Day Tabs -->
             <div class="max-w-4xl mx-auto mb-8">
@@ -592,61 +641,65 @@
                         
                         <div class="divide-y-2 divide-ink-black/20">
                             <!-- Program Item 1 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="pa-1400" data-day="patek" data-time="14:00" data-title="Otevření brány" data-subtitle="Registrace příchozích">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-1400')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">14:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">OTEVŘENÍ BRÁNY</h4>
                                         <p class="text-ink-black/60 text-sm">Registrace příchozích</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Vítejte na Lughnasadu! U brány obdržíte festivalový náramek a mapu areálu. Doporučujeme přijet včas, abyste si mohli v klidu prohlédnout všechny stánky a vybrat si místo pro kempování.</p>
                                 </div>
                             </div>
                             
                             <!-- Program Item 2 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="pa-1600" data-day="patek" data-time="16:00" data-title="Slavnostní zahájení" data-subtitle="Rituál k Lughu">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-1600')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">16:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">SLAVNOSTNÍ ZAHÁJENÍ</h4>
                                         <p class="text-ink-black/60 text-sm">Rituál k Lughu</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Tradiční keltský rituál k uctění boha Lugha, patrona řemesel a umění. Součástí ceremonie je zapálení posvátného ohně, který bude hořet po celou dobu festivalu.</p>
                                 </div>
                             </div>
                             
                             <!-- Program Item 3 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="pa-1800" data-day="patek" data-time="18:00" data-title="Bojové ukázky" data-subtitle="Kmen Bójů">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-1800')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">18:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">BOJOVÉ UKÁZKY</h4>
                                         <p class="text-ink-black/60 text-sm">Kmen Bójů</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Autentické rekonstrukce keltského boje s komentářem historika. Uvidíte výstroj, výzbroj a bojové techniky našich předků. Vhodné pro celou rodinu.</p>
                                 </div>
                             </div>
                             
                             <!-- Program Item 4 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="pa-2100" data-day="patek" data-time="21:00" data-title="Ohňová show" data-subtitle="Druidova Družina">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-2100')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">21:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">OHŇOVÁ SHOW</h4>
                                         <p class="text-ink-black/60 text-sm">Druidova Družina</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Mystická ohňová performance pod nočním nebem. Druidova Družina představí fascinující kombinaci ohně, hudby a příběhů. Nezapomenutelný zážitek!</p>
                                 </div>
                             </div>
@@ -665,61 +718,65 @@
                         
                         <div class="divide-y-2 divide-ink-black/20">
                             <!-- Program Item 1 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="so-1000" data-day="sobota" data-time="10:00" data-title="Workshopy řemesel" data-subtitle="Kovářství, hrnčířství, tkaní">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-1000')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">10:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">WORKSHOPY ŘEMESEL</h4>
                                         <p class="text-ink-black/60 text-sm">Kovářství, hrnčířství, tkaní</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Vyzkoušejte si tradiční keltská řemesla pod vedením zkušených mistrů. Kovářství, hrnčířství, tkaní na stavu a mnoho dalšího. Vytvořte si vlastní suvenýr!</p>
                                 </div>
                             </div>
                             
                             <!-- Program Item 2 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="so-1400" data-day="sobota" data-time="14:00" data-title="Turnaj Brothers at Arms" data-subtitle="Soutěž bojovníků">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-1400')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">14:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">TURNAJ BROTHERS AT ARMS</h4>
                                         <p class="text-ink-black/60 text-sm">Soutěž bojovníků</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Mezinárodní turnaj v historickém šermu. Bojovníci z celé Evropy změří své síly v jednotlivých disciplínách. Přijďte fandit!</p>
                                 </div>
                             </div>
                             
                             <!-- Program Item 3 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="so-1600" data-day="sobota" data-time="16:00" data-title="Keltská hudba" data-subtitle="Daoine Ceilte">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-1600')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">16:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">KELTSKÁ HUDBA</h4>
                                         <p class="text-ink-black/60 text-sm">Daoine Ceilte</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Tradiční keltské melodie v podání skupiny Daoine Ceilte. Dudy, harfa, flétny a bubny vás přenesou do dávných časů. Tanec povolen!</p>
                                 </div>
                             </div>
                             
                             <!-- Program Item 4 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="so-2000" data-day="sobota" data-time="20:00" data-title="Projekce komiksu BIATEC" data-subtitle="První prezentace">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-2000')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">20:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">PROJEKCE KOMIKSU BIATEC</h4>
                                         <p class="text-ink-black/60 text-sm">První prezentace</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Exkluzivní první veřejná prezentace komiksu BIATEC. Autoři představí příběh legendárního keltského náčelníka. Po projekci autogramiáda.</p>
                                 </div>
                             </div>
@@ -738,63 +795,84 @@
                         
                         <div class="divide-y-2 divide-ink-black/20">
                             <!-- Program Item 1 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="ne-1100" data-day="nedele" data-time="11:00" data-title="Ranní rituál" data-subtitle="Poděkování Matce Zemi">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'ne-1100')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">11:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">RANNÍ RITUÁL</h4>
                                         <p class="text-ink-black/60 text-sm">Poděkování Matce Zemi</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Klidný ranní rituál vděčnosti za úrodu a dary přírody. Ideální způsob, jak začít poslední festivalový den.</p>
                                 </div>
                             </div>
                             
                             <!-- Program Item 2 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="ne-1300" data-day="nedele" data-time="13:00" data-title="Dětský program" data-subtitle="Legendy o Biatecovi">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'ne-1300')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">13:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">DĚTSKÝ PROGRAM</h4>
                                         <p class="text-ink-black/60 text-sm">Legendy o Biatecovi</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Interaktivní program pro nejmenší návštěvníky. Příběhy o keltských hrdinech, hry a soutěže. Každé dítě odchází s malým dárkem.</p>
                                 </div>
                             </div>
                             
                             <!-- Program Item 3 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="ne-1500" data-day="nedele" data-time="15:00" data-title="Závěrečná bitva" data-subtitle="Germáni vs. Keltové">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'ne-1500')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">15:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">ZÁVĚREČNÁ BITVA</h4>
                                         <p class="text-ink-black/60 text-sm">Germáni vs. Keltové</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Velkolepá rekonstrukce historické bitvy s desítkami bojovníků. Vyvrcholení celého festivalu, které nesmíte propásnout!</p>
                                 </div>
                             </div>
                             
                             <!-- Program Item 4 -->
-                            <div class="program-item p-4 md:p-6" onclick="toggleProgramDetail(this)">
+                            <div class="program-item p-4 md:p-6" data-event-id="ne-1800" data-day="nedele" data-time="18:00" data-title="Slavnostní ukončení" data-subtitle="Rozloučení s festivalem">
                                 <div class="flex items-start gap-4">
+                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'ne-1800')" aria-label="Přidat do oblíbených">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">18:00</span>
-                                    <div class="flex-1">
+                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">SLAVNOSTNÍ UKONČENÍ</h4>
                                         <p class="text-ink-black/60 text-sm">Rozloučení s festivalem</p>
                                     </div>
-                                    <span class="text-gold text-xl">▼</span>
+                                    <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
                                     <p>Závěrečný ceremoniál s poděkováním všem účastníkům a dobrovolníkům. Společné rozloučení a pozvání na příští ročník Lughnasadu.</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MŮJ PROGRAM (Hidden by default) -->
+                <div id="my-program-panel" class="hidden">
+                    <div class="comic-panel overflow-hidden">
+                        <div class="bg-gold p-4">
+                            <h3 class="text-2xl md:text-3xl font-heading text-ink-black text-center">
+                                ❤️ MŮJ PROGRAM
+                            </h3>
+                        </div>
+                        <div id="my-program-list" class="divide-y-2 divide-ink-black/20">
+                            <div class="my-program-empty">
+                                <p class="text-ink-black/50 font-body">Zatím nemáte žádné oblíbené akce.</p>
+                                <p class="text-ink-black/40 font-body text-sm mt-2">Klikněte na srdíčko ♡ u akce pro přidání do programu.</p>
                             </div>
                         </div>
                     </div>
@@ -1524,7 +1602,14 @@
         // =====================
         // PROGRAM TABS
         // =====================
+        let isShowingMyProgram = false;
+        
         function switchProgramDay(day) {
+            // If showing my program, switch back to full program first
+            if (isShowingMyProgram) {
+                showAllProgram();
+            }
+            
             // Remove active from all tabs and days
             document.querySelectorAll('.program-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.program-day').forEach(d => d.classList.remove('active'));
@@ -1541,9 +1626,220 @@
             const detail = element.querySelector('.program-detail');
             const arrow = element.querySelector('.text-gold');
             
-            detail.classList.toggle('open');
-            arrow.style.transform = detail.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            if (detail && arrow) {
+                detail.classList.toggle('open');
+                arrow.style.transform = detail.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
         }
+        
+        // =====================
+        // FAVORITES / MY PROGRAM
+        // =====================
+        let favorites = JSON.parse(localStorage.getItem('lughnasad-favorites') || '[]');
+        
+        function updateFavoritesUI() {
+            // Update count
+            document.getElementById('favorites-count').textContent = favorites.length;
+            
+            // Update heart buttons
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                const eventId = btn.closest('.program-item')?.dataset.eventId;
+                if (eventId && favorites.includes(eventId)) {
+                    btn.classList.add('active');
+                    btn.textContent = '♥';
+                } else {
+                    btn.classList.remove('active');
+                    btn.textContent = '♡';
+                }
+            });
+            
+            // Update my program list
+            updateMyProgramList();
+        }
+        
+        function toggleFavorite(event, eventId) {
+            event.stopPropagation();
+            
+            const btn = event.target;
+            
+            if (favorites.includes(eventId)) {
+                // Remove from favorites
+                favorites = favorites.filter(id => id !== eventId);
+                btn.classList.remove('active');
+                btn.textContent = '♡';
+            } else {
+                // Add to favorites
+                favorites.push(eventId);
+                btn.classList.add('active');
+                btn.textContent = '♥';
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('lughnasad-favorites', JSON.stringify(favorites));
+            
+            // Update count
+            document.getElementById('favorites-count').textContent = favorites.length;
+            
+            // Update my program list if visible
+            if (isShowingMyProgram) {
+                updateMyProgramList();
+            }
+        }
+        
+        function showAllProgram() {
+            isShowingMyProgram = false;
+            
+            // Update toggle buttons
+            document.getElementById('show-all-program').classList.remove('bg-paper');
+            document.getElementById('show-all-program').classList.add('bg-gold');
+            document.getElementById('show-my-program').classList.remove('bg-gold');
+            document.getElementById('show-my-program').classList.add('bg-paper');
+            
+            // Show day tabs
+            document.querySelectorAll('.program-tab').forEach(tab => tab.style.display = 'block');
+            
+            // Show full program, hide my program
+            document.querySelectorAll('.program-day').forEach(day => day.classList.remove('hidden'));
+            document.getElementById('my-program-panel').classList.add('hidden');
+            
+            // Show first day
+            document.querySelectorAll('.program-day').forEach(d => d.classList.remove('active'));
+            document.getElementById('program-patek').classList.add('active');
+            document.querySelectorAll('.program-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector('.program-tab').classList.add('active');
+        }
+        
+        function showMyProgram() {
+            isShowingMyProgram = true;
+            
+            // Update toggle buttons
+            document.getElementById('show-my-program').classList.remove('bg-paper');
+            document.getElementById('show-my-program').classList.add('bg-gold');
+            document.getElementById('show-all-program').classList.remove('bg-gold');
+            document.getElementById('show-all-program').classList.add('bg-paper');
+            
+            // Hide day tabs
+            document.querySelectorAll('.program-tab').forEach(tab => tab.style.display = 'none');
+            
+            // Hide all days, show my program
+            document.querySelectorAll('.program-day').forEach(day => day.classList.add('hidden'));
+            document.getElementById('my-program-panel').classList.remove('hidden');
+            
+            updateMyProgramList();
+        }
+        
+        function updateMyProgramList() {
+            const listEl = document.getElementById('my-program-list');
+            
+            if (favorites.length === 0) {
+                listEl.innerHTML = `
+                    <div class="my-program-empty p-8">
+                        <p class="text-ink-black/50 font-body text-lg">Zatím nemáte žádné oblíbené akce.</p>
+                        <p class="text-ink-black/40 font-body text-sm mt-2">Klikněte na srdíčko ♡ u akce pro přidání do programu.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Get favorite items sorted by day and time
+            const dayOrder = { 'patek': 1, 'sobota': 2, 'nedele': 3 };
+            const dayNames = { 'patek': 'Pátek', 'sobota': 'Sobota', 'nedele': 'Neděle' };
+            
+            const items = [];
+            favorites.forEach(eventId => {
+                const item = document.querySelector(`.program-item[data-event-id="${eventId}"]`);
+                if (item) {
+                    items.push({
+                        id: eventId,
+                        day: item.dataset.day,
+                        time: item.dataset.time,
+                        title: item.dataset.title,
+                        subtitle: item.dataset.subtitle
+                    });
+                }
+            });
+            
+            // Sort by day then time
+            items.sort((a, b) => {
+                if (dayOrder[a.day] !== dayOrder[b.day]) {
+                    return dayOrder[a.day] - dayOrder[b.day];
+                }
+                return a.time.localeCompare(b.time);
+            });
+            
+            // Group by day
+            let html = '';
+            let currentDay = '';
+            
+            items.forEach(item => {
+                if (item.day !== currentDay) {
+                    currentDay = item.day;
+                    html += `
+                        <div class="bg-blood-red/10 p-3">
+                            <h4 class="font-heading text-blood-red text-sm uppercase">${dayNames[item.day]}</h4>
+                        </div>
+                    `;
+                }
+                
+                html += `
+                    <div class="my-program-item p-4 flex items-center gap-4 cursor-pointer" onclick="scrollToEvent('${item.id}')">
+                        <button class="favorite-btn active text-2xl text-blood-red" onclick="removeFavorite(event, '${item.id}')" aria-label="Odebrat z oblíbených">♥</button>
+                        <span class="text-blood-red font-heading text-lg min-w-[60px]">${item.time}</span>
+                        <div class="flex-1">
+                            <h4 class="font-heading text-base text-ink-black">${item.title.toUpperCase()}</h4>
+                            <p class="text-ink-black/60 text-xs">${item.subtitle}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            listEl.innerHTML = html;
+        }
+        
+        function removeFavorite(event, eventId) {
+            event.stopPropagation();
+            
+            favorites = favorites.filter(id => id !== eventId);
+            localStorage.setItem('lughnasad-favorites', JSON.stringify(favorites));
+            
+            document.getElementById('favorites-count').textContent = favorites.length;
+            updateFavoritesUI();
+        }
+        
+        function scrollToEvent(eventId) {
+            // Switch to all program view
+            showAllProgram();
+            
+            // Find which day this event is on
+            const item = document.querySelector(`.program-item[data-event-id="${eventId}"]`);
+            if (item) {
+                const day = item.dataset.day;
+                
+                // Switch to that day
+                document.querySelectorAll('.program-tab').forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('.program-day').forEach(d => d.classList.remove('active'));
+                document.getElementById('program-' + day).classList.add('active');
+                
+                // Update tab
+                const tabs = document.querySelectorAll('.program-tab');
+                if (day === 'patek') tabs[0].classList.add('active');
+                if (day === 'sobota') tabs[1].classList.add('active');
+                if (day === 'nedele') tabs[2].classList.add('active');
+                
+                // Scroll to item
+                setTimeout(() => {
+                    item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Highlight briefly
+                    item.style.backgroundColor = 'rgba(235, 200, 110, 0.3)';
+                    setTimeout(() => {
+                        item.style.backgroundColor = '';
+                    }, 2000);
+                }, 100);
+            }
+        }
+        
+        // Initialize favorites UI on page load
+        updateFavoritesUI();
         
         // =====================
         // COOKIE BANNER

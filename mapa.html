@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa areálu | LUGHNASAD 2026</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Interaktivní mapa areálu festivalu Lughnasad 2026. Najděte stanoviště, služby a zajímavá místa.">
+    <meta name="keywords" content="Lughnasad, mapa, areál, festival, stanoviště">
+    <meta name="author" content="Lughnasad">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+    <link rel="apple-touch-icon" href="images/logo.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': '#F2EFE9',
+                        'ink-black': '#1A1512',
+                        'blood-red': '#8B0000',
+                        'gold': '#EBC86E',
+                    },
+                    fontFamily: {
+                        'heading': ['"Crimson Pro"', 'serif'],
+                        'body': ['Lato', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #F2EFE9;
+            background-image: url('images/bg-paper.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'Lato', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        
+        .comic-border {
+            border: 2px solid #1A1512;
+        }
+        
+        .comic-shadow {
+            box-shadow: 5px 5px 0px #1A1512;
+        }
+        
+        .comic-shadow-hover:hover {
+            box-shadow: 3px 3px 0px #1A1512;
+            transform: translate(2px, 2px);
+            transition: all 0.1s ease;
+        }
+        
+        .comic-panel {
+            background: white;
+            border: 2px solid #1A1512;
+            box-shadow: 5px 5px 0px #1A1512;
+        }
+        
+        /* Flag Flutter Animation */
+        @keyframes flutter {
+            0% { transform: rotate(0deg) skewX(0deg); }
+            25% { transform: rotate(5deg) skewX(5deg); }
+            50% { transform: rotate(-5deg) skewX(-5deg); }
+            75% { transform: rotate(5deg) skewX(5deg); }
+            100% { transform: rotate(0deg) skewX(0deg); }
+        }
+        
+        .flag-animation {
+            animation: flutter 6.3s infinite ease-in-out;
+            transform-origin: top center;
+        }
+        
+        /* Map Container */
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            cursor: grab;
+        }
+        
+        .map-container:active {
+            cursor: grabbing;
+        }
+        
+        .map-container img {
+            max-width: none;
+            transform-origin: 0 0;
+        }
+        
+        /* POI Marker */
+        .poi-marker {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Crimson Pro', serif;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            z-index: 10;
+            border: 2px solid #1A1512;
+        }
+        
+        .poi-marker:hover {
+            transform: scale(1.2);
+            z-index: 20;
+        }
+        
+        .poi-marker.active {
+            transform: scale(1.3);
+            z-index: 30;
+        }
+        
+        /* POI Types */
+        .poi-station {
+            background-color: #4A7C59;
+            color: white;
+        }
+        
+        .poi-booth {
+            background-color: #D4644A;
+            color: white;
+        }
+        
+        .poi-service {
+            background-color: #5B7BB8;
+            color: white;
+        }
+        
+        /* POI Tooltip */
+        .poi-tooltip {
+            position: absolute;
+            background: white;
+            border: 2px solid #1A1512;
+            box-shadow: 5px 5px 0px #1A1512;
+            padding: 12px 16px;
+            min-width: 200px;
+            max-width: 280px;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            pointer-events: none;
+        }
+        
+        .poi-tooltip.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        
+        .poi-tooltip::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #1A1512 transparent transparent;
+        }
+        
+        .poi-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 22px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+        }
+        
+        /* List Item */
+        .poi-list-item {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .poi-list-item:hover {
+            background-color: rgba(235, 200, 110, 0.2);
+        }
+        
+        .poi-list-item.active {
+            background-color: rgba(235, 200, 110, 0.4);
+        }
+        
+        /* Zoom Controls */
+        .zoom-controls {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            z-index: 50;
+        }
+        
+        .zoom-btn {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: 2px solid #1A1512;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .zoom-btn:hover {
+            background: #EBC86E;
+        }
+        
+        /* Category Filter */
+        .filter-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .filter-btn.active {
+            transform: scale(1.05);
+        }
+        
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #EBC86E;
+            color: #1A1512;
+            padding: 8px 16px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link font-heading">Přeskočit na obsah</a>
+
+    <!-- STICKY HEADER -->
+    <header class="sticky top-0 z-40 bg-[#1A1512]">
+        <div class="container mx-auto px-4 py-4">
+            <div class="relative flex items-center justify-between">
+                <!-- Logo/Home Link -->
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="images/logo.svg" alt="Lughnasad" class="h-10 w-auto">
+                    <span class="hidden md:block text-gold font-heading text-lg">LUGHNASAD</span>
+                </a>
+                
+                <!-- Navigation - Desktop -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        O Festivalu
+                    </a>
+                    <a href="index.html#program" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Program
+                    </a>
+                    <a href="info.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Info
+                    </a>
+                    <a href="mapa.html" class="text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Mapa
+                    </a>
+                    <a href="merch.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Merch
+                    </a>
+                    <a href="index.html#kontakt" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        Kontakt
+                    </a>
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:flex">
+                    <a href="index.html#vstupenky" class="bg-blood-red text-white px-6 py-2 font-heading text-sm comic-border comic-shadow comic-shadow-hover">
+                        VSTUPENKY
+                    </a>
+                </div>
+                
+                <!-- Mobile: Menu Toggle -->
+                <div class="md:hidden flex items-center space-x-4">
+                    <a href="index.html#vstupenky" class="bg-blood-red text-white px-4 py-2 font-heading text-xs comic-border comic-shadow">
+                        VSTUPENKY
+                    </a>
+                    <button class="text-white text-2xl" onclick="toggleMobileMenu()" aria-label="Otevřít menu" aria-expanded="false" id="menu-toggle">
+                        ☰
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 bg-ink-black/90 comic-border p-4" role="navigation">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body text-sm uppercase">O Festivalu</a>
+                    <a href="index.html#program" class="text-white hover:text-gold font-body text-sm uppercase">Program</a>
+                    <a href="info.html" class="text-white hover:text-gold font-body text-sm uppercase">Info</a>
+                    <a href="mapa.html" class="text-gold font-body text-sm uppercase">Mapa</a>
+                    <a href="merch.html" class="text-white hover:text-gold font-body text-sm uppercase">Merch</a>
+                    <a href="index.html#kontakt" class="text-white hover:text-gold font-body text-sm uppercase">Kontakt</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Flag -->
+    <img src="images/flag.png" alt="Celtic Flag" class="flag-animation fixed -top-8 md:-top-12 left-4 md:left-10 h-48 md:h-64 w-auto z-50 pointer-events-none">
+
+    <!-- PAGE HEADER -->
+    <section class="bg-ink-black py-12 md:py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-heading text-gold mb-4" style="text-shadow: 3px 3px 0px rgba(0,0,0,0.5);">
+                MAPA AREÁLU
+            </h1>
+            <p class="text-white/80 font-body text-lg max-w-2xl mx-auto">
+                Klikněte na bod na mapě nebo vyberte místo ze seznamu níže
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content" class="py-8 md:py-12">
+        <div class="container mx-auto px-4">
+            
+            <!-- Category Filters -->
+            <div class="mb-6 flex flex-wrap justify-center gap-3">
+                <button class="filter-btn active px-4 py-2 font-heading text-sm comic-border bg-ink-black text-gold" onclick="filterPOI('all')" data-filter="all">
+                    VŠE
+                </button>
+                <button class="filter-btn px-4 py-2 font-heading text-sm comic-border bg-[#4A7C59] text-white" onclick="filterPOI('station')" data-filter="station">
+                    📍 STANOVIŠTĚ
+                </button>
+                <button class="filter-btn px-4 py-2 font-heading text-sm comic-border bg-[#D4644A] text-white" onclick="filterPOI('booth')" data-filter="booth">
+                    🏪 STÁNKY
+                </button>
+                <button class="filter-btn px-4 py-2 font-heading text-sm comic-border bg-[#5B7BB8] text-white" onclick="filterPOI('service')" data-filter="service">
+                    🔧 SLUŽBY
+                </button>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                
+                <!-- Map Section -->
+                <div class="lg:col-span-2">
+                    <div class="comic-panel overflow-hidden">
+                        <div class="map-container relative" id="map-container" style="height: 500px;">
+                            <!-- Map Image -->
+                            <img src="images/mapa-arealu.png" alt="Mapa areálu festivalu Lughnasad" id="map-image" class="w-full h-full object-contain">
+                            
+                            <!-- POI Markers - positions will be set via JS based on image -->
+                            <!-- Stations (green) -->
+                            <div class="poi-marker poi-station" data-id="1" data-type="station" style="left: 38%; top: 75%;">1</div>
+                            <div class="poi-marker poi-station" data-id="2" data-type="station" style="left: 28%; top: 15%;">2</div>
+                            <div class="poi-marker poi-station" data-id="3" data-type="station" style="left: 25%; top: 28%;">3</div>
+                            <div class="poi-marker poi-station" data-id="4" data-type="station" style="left: 68%; top: 22%;">4</div>
+                            <div class="poi-marker poi-station" data-id="5" data-type="station" style="left: 82%; top: 30%;">5</div>
+                            <div class="poi-marker poi-station" data-id="6" data-type="station" style="left: 45%; top: 18%;">6</div>
+                            <div class="poi-marker poi-station" data-id="7" data-type="station" style="left: 30%; top: 82%;">7</div>
+                            <div class="poi-marker poi-station" data-id="8" data-type="station" style="left: 22%; top: 50%;">8</div>
+                            <div class="poi-marker poi-station" data-id="9" data-type="station" style="left: 58%; top: 42%;">9</div>
+                            <div class="poi-marker poi-station" data-id="10" data-type="station" style="left: 18%; top: 32%;">10</div>
+                            <div class="poi-marker poi-station" data-id="11" data-type="station" style="left: 42%; top: 35%;">11</div>
+                            <div class="poi-marker poi-station" data-id="12" data-type="station" style="left: 48%; top: 55%;">12</div>
+                            <div class="poi-marker poi-station" data-id="13" data-type="station" style="left: 75%; top: 45%;">13</div>
+                            <div class="poi-marker poi-station" data-id="14" data-type="station" style="left: 48%; top: 22%;">14</div>
+                            <div class="poi-marker poi-station" data-id="15" data-type="station" style="left: 52%; top: 28%;">15</div>
+                            <div class="poi-marker poi-station" data-id="16" data-type="station" style="left: 55%; top: 35%;">16</div>
+                            <div class="poi-marker poi-station" data-id="17" data-type="station" style="left: 35%; top: 20%;">17</div>
+                            <div class="poi-marker poi-station" data-id="22" data-type="station" style="left: 28%; top: 68%;">22</div>
+                            <div class="poi-marker poi-station" data-id="27" data-type="station" style="left: 32%; top: 55%;">27</div>
+                            
+                            <!-- Booths (red/orange) -->
+                            <div class="poi-marker poi-booth" data-id="18" data-type="booth" style="left: 25%; top: 35%;">18</div>
+                            <div class="poi-marker poi-booth" data-id="19" data-type="booth" style="left: 8%; top: 65%;">19</div>
+                            <div class="poi-marker poi-booth" data-id="23" data-type="booth" style="left: 35%; top: 18%;">23</div>
+                            <div class="poi-marker poi-booth" data-id="24" data-type="booth" style="left: 85%; top: 32%;">24</div>
+                            
+                            <!-- Services (blue) -->
+                            <div class="poi-marker poi-service" data-id="20" data-type="service" style="left: 12%; top: 78%;">20</div>
+                            <div class="poi-marker poi-service" data-id="21" data-type="service" style="left: 15%; top: 85%;">21</div>
+                            <div class="poi-marker poi-service" data-id="25" data-type="service" style="left: 22%; top: 78%;">25</div>
+                            <div class="poi-marker poi-service" data-id="26" data-type="service" style="left: 88%; top: 85%;">26</div>
+                            <div class="poi-marker poi-service" data-id="wc" data-type="service" style="left: 35%; top: 88%;">WC</div>
+                            <div class="poi-marker poi-service" data-id="water" data-type="service" style="left: 52%; top: 25%;">💧</div>
+                            <div class="poi-marker poi-booth" data-id="food" data-type="booth" style="left: 8%; top: 22%;">🍴</div>
+                            <div class="poi-marker poi-booth" data-id="merch" data-type="booth" style="left: 10%; top: 55%;">🏠</div>
+                            
+                            <!-- Tooltip -->
+                            <div class="poi-tooltip" id="poi-tooltip">
+                                <button class="absolute top-2 right-2 text-ink-black/50 hover:text-ink-black text-xl leading-none" onclick="hideTooltip()">×</button>
+                                <div class="pr-6">
+                                    <h3 class="font-heading text-lg text-blood-red" id="tooltip-title">Název místa</h3>
+                                    <p class="font-body text-sm text-ink-black/80 mt-1" id="tooltip-desc">Popis místa</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Zoom Controls -->
+                            <div class="zoom-controls flex flex-col gap-1">
+                                <button class="zoom-btn" onclick="zoomMap(1.2)" aria-label="Přiblížit">+</button>
+                                <button class="zoom-btn" onclick="zoomMap(0.8)" aria-label="Oddálit">−</button>
+                                <button class="zoom-btn text-sm" onclick="resetZoom()" aria-label="Reset">↺</button>
+                            </div>
+                        </div>
+                        
+                        <div class="p-3 bg-ink-black/5 border-t-2 border-ink-black/20 text-center">
+                            <p class="text-sm text-ink-black/60 font-body">
+                                👆 Klikněte na značku pro zobrazení informací • Přetáhněte pro posun mapy
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- POI List -->
+                <div class="lg:col-span-1">
+                    <div class="comic-panel p-4 max-h-[600px] overflow-y-auto">
+                        <h2 class="font-heading text-xl text-ink-black mb-4 sticky top-0 bg-white py-2 border-b-2 border-ink-black/20">
+                            MÍSTA V AREÁLU
+                        </h2>
+                        
+                        <!-- Stations -->
+                        <div class="mb-6" id="list-stations">
+                            <h3 class="font-heading text-sm text-[#4A7C59] mb-2 flex items-center gap-2">
+                                <span class="w-5 h-5 bg-[#4A7C59] rounded text-white text-xs flex items-center justify-center">📍</span>
+                                STANOVIŠTĚ
+                            </h3>
+                            <ul class="space-y-1 text-sm font-body">
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="1" onclick="showPOI('1')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">1</span>
+                                    Amfiteátr
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="2" onclick="showPOI('2')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">2</span>
+                                    Dobová kuchyně
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="3" onclick="showPOI('3')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">3</span>
+                                    Druidova družina
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="4" onclick="showPOI('4')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">4</span>
+                                    Dětský koutek
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="5" onclick="showPOI('5')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">5</span>
+                                    Náčelníkova rezidence
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="6" onclick="showPOI('6')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">6</span>
+                                    Fotokoutek
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="7" onclick="showPOI('7')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">7</span>
+                                    Hlavní pódium
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="8" onclick="showPOI('8')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">8</span>
+                                    Hry
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="9" onclick="showPOI('9')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">9</span>
+                                    Keltský vojenský tábor
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="10" onclick="showPOI('10')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">10</span>
+                                    Kovárna
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="11" onclick="showPOI('11')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">11</span>
+                                    Malování na obličej
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="12" onclick="showPOI('12')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">12</span>
+                                    Obřadní místo
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="13" onclick="showPOI('13')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">13</span>
+                                    Stan přednášek
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="14" onclick="showPOI('14')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">14</span>
+                                    Ražba mincí
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="15" onclick="showPOI('15')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">15</span>
+                                    Háj
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="16" onclick="showPOI('16')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">16</span>
+                                    Svatyně
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="17" onclick="showPOI('17')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">17</span>
+                                    Tavba a odlévání bronzu
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="22" onclick="showPOI('22')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">22</span>
+                                    Vstup
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="27" onclick="showPOI('27')">
+                                    <span class="w-6 h-6 bg-[#4A7C59] text-white text-xs flex items-center justify-center rounded font-bold">27</span>
+                                    Římský tábor
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Booths -->
+                        <div class="mb-6" id="list-booths">
+                            <h3 class="font-heading text-sm text-[#D4644A] mb-2 flex items-center gap-2">
+                                <span class="w-5 h-5 bg-[#D4644A] rounded text-white text-xs flex items-center justify-center">🏪</span>
+                                STÁNKY
+                            </h3>
+                            <ul class="space-y-1 text-sm font-body">
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="18" onclick="showPOI('18')">
+                                    <span class="w-6 h-6 bg-[#D4644A] text-white text-xs flex items-center justify-center rounded font-bold">18</span>
+                                    Textilní výroba
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="19" onclick="showPOI('19')">
+                                    <span class="w-6 h-6 bg-[#D4644A] text-white text-xs flex items-center justify-center rounded font-bold">19</span>
+                                    Tržiště
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="23" onclick="showPOI('23')">
+                                    <span class="w-6 h-6 bg-[#D4644A] text-white text-xs flex items-center justify-center rounded font-bold">23</span>
+                                    Keramika
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="24" onclick="showPOI('24')">
+                                    <span class="w-6 h-6 bg-[#D4644A] text-white text-xs flex items-center justify-center rounded font-bold">24</span>
+                                    Výroba obilné bohyně
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="food" onclick="showPOI('food')">
+                                    <span class="w-6 h-6 bg-[#D4644A] text-white text-xs flex items-center justify-center rounded">🍴</span>
+                                    Občerstvení
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="merch" onclick="showPOI('merch')">
+                                    <span class="w-6 h-6 bg-[#D4644A] text-white text-xs flex items-center justify-center rounded">🏠</span>
+                                    Festivalový merch
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Services -->
+                        <div id="list-services">
+                            <h3 class="font-heading text-sm text-[#5B7BB8] mb-2 flex items-center gap-2">
+                                <span class="w-5 h-5 bg-[#5B7BB8] rounded text-white text-xs flex items-center justify-center">🔧</span>
+                                SLUŽBY
+                            </h3>
+                            <ul class="space-y-1 text-sm font-body">
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="20" onclick="showPOI('20')">
+                                    <span class="w-6 h-6 bg-[#5B7BB8] text-white text-xs flex items-center justify-center rounded font-bold">20</span>
+                                    Skříňky
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="21" onclick="showPOI('21')">
+                                    <span class="w-6 h-6 bg-[#5B7BB8] text-white text-xs flex items-center justify-center rounded font-bold">21</span>
+                                    VIP zóna
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="25" onclick="showPOI('25')">
+                                    <span class="w-6 h-6 bg-[#5B7BB8] text-white text-xs flex items-center justify-center rounded font-bold">25</span>
+                                    Zdravotníci
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="26" onclick="showPOI('26')">
+                                    <span class="w-6 h-6 bg-[#5B7BB8] text-white text-xs flex items-center justify-center rounded font-bold">26</span>
+                                    Zázemí organizátorů
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="wc" onclick="showPOI('wc')">
+                                    <span class="w-6 h-6 bg-[#5B7BB8] text-white text-xs flex items-center justify-center rounded">WC</span>
+                                    Toalety
+                                </li>
+                                <li class="poi-list-item p-2 flex items-center gap-2 comic-border border-transparent hover:border-ink-black/20" data-id="water" onclick="showPOI('water')">
+                                    <span class="w-6 h-6 bg-[#5B7BB8] text-white text-xs flex items-center justify-center rounded">💧</span>
+                                    Pitná voda
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Legend -->
+            <div class="mt-8 max-w-2xl mx-auto">
+                <div class="comic-panel p-4">
+                    <h3 class="font-heading text-lg text-ink-black mb-3 text-center">LEGENDA</h3>
+                    <div class="flex flex-wrap justify-center gap-6 font-body text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 bg-[#4A7C59] rounded text-white text-xs flex items-center justify-center">1</span>
+                            <span>Stanoviště</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 bg-[#D4644A] rounded text-white text-xs flex items-center justify-center">18</span>
+                            <span>Stánky</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 bg-[#5B7BB8] rounded text-white text-xs flex items-center justify-center">WC</span>
+                            <span>Služby</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-ink-black text-white py-12 mt-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">O FESTIVALU</h4>
+                    <p class="font-body text-sm text-white/80 leading-relaxed">
+                        Lughnasad je mezinárodní festival keltské kultury organizovaný výhradně dobrovolníky. 
+                        Koná se každoročně v Nasavrkách.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">RYCHLÉ ODKAZY</h4>
+                    <ul class="font-body text-sm text-white/80 space-y-2">
+                        <li><a href="index.html" class="hover:text-gold transition">Domů</a></li>
+                        <li><a href="index.html#program" class="hover:text-gold transition">Program</a></li>
+                        <li><a href="info.html" class="hover:text-gold transition">Praktické info</a></li>
+                        <li><a href="mapa.html" class="hover:text-gold transition">Mapa areálu</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">KONTAKT</h4>
+                    <ul class="font-body text-sm text-white/80 space-y-2">
+                        <li class="flex items-center gap-2">
+                            <span>📧</span>
+                            <a href="mailto:info@lughnasad.cz" class="hover:text-gold transition">info@lughnasad.cz</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span>📍</span>
+                            <span>Nasavrky, Česká republika</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-gold text-xl mb-4">SLEDUJTE NÁS</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <span class="text-xl font-bold">f</span>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <span class="text-xl">📷</span>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <span class="text-xl">▶</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gold/30 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="font-body text-sm text-white/60">
+                        © 2026 Lughnasad. Všechna práva vyhrazena.
+                    </p>
+                    <div class="flex gap-6 font-body text-sm text-white/60">
+                        <a href="#" class="hover:text-gold transition">GDPR</a>
+                        <a href="#" class="hover:text-gold transition">Cookies</a>
+                        <a href="info.html#pravidla" class="hover:text-gold transition">Návštěvní řád</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // =====================
+        // POI DATA
+        // =====================
+        const poiData = {
+            '1': { title: 'Amfiteátr', desc: 'Hlavní prostor pro představení, koncerty a velké události. Kapacita až 500 diváků.', type: 'station' },
+            '2': { title: 'Dobová kuchyně', desc: 'Ochutnávka autentických keltských pokrmů připravovaných tradičními metodami.', type: 'station' },
+            '3': { title: 'Druidova družina', desc: 'Tábor druidů s ukázkami rituálů, léčitelství a keltské moudrosti.', type: 'station' },
+            '4': { title: 'Dětský koutek', desc: 'Hry a aktivity pro nejmenší návštěvníky. Bezpečný prostor s dozorem.', type: 'station' },
+            '5': { title: 'Náčelníkova rezidence', desc: 'Rekonstrukce obydlí keltského náčelníka s ukázkami každodenního života.', type: 'station' },
+            '6': { title: 'Fotokoutek', desc: 'Pořiďte si fotku v dobových kostýmech a rekvizitách!', type: 'station' },
+            '7': { title: 'Hlavní pódium', desc: 'Centrum festivalového dění – koncerty, ceremonie a hlavní program.', type: 'station' },
+            '8': { title: 'Hry', desc: 'Tradiční keltské hry a soutěže pro všechny věkové kategorie.', type: 'station' },
+            '9': { title: 'Keltský vojenský tábor', desc: 'Ukázky života keltských válečníků, výzbroje a vojenských taktik.', type: 'station' },
+            '10': { title: 'Kovárna', desc: 'Workshop kovářského řemesla. Vyzkoušejte si práci u výhně!', type: 'station' },
+            '11': { title: 'Malování na obličej', desc: 'Keltské bojové vzory a symboly pro děti i dospělé.', type: 'station' },
+            '12': { title: 'Obřadní místo', desc: 'Posvátný prostor pro keltské rituály a ceremonie.', type: 'station' },
+            '13': { title: 'Stan přednášek', desc: 'Přednášky historiků a archeologů o keltské kultuře.', type: 'station' },
+            '14': { title: 'Ražba mincí', desc: 'Vyražte si vlastní keltskou minci jako památku!', type: 'station' },
+            '15': { title: 'Háj', desc: 'Odpočinková zóna ve stínu stromů.', type: 'station' },
+            '16': { title: 'Svatyně', desc: 'Rekonstrukce keltské svatyně s výkladem o náboženství.', type: 'station' },
+            '17': { title: 'Tavba a odlévání bronzu', desc: 'Ukázky zpracování kovů metodami doby bronzové.', type: 'station' },
+            '18': { title: 'Textilní výroba', desc: 'Tkaní, barvení látek a výroba oděvů keltskými technikami.', type: 'booth' },
+            '19': { title: 'Tržiště', desc: 'Stánky s řemeslnými výrobky, šperky a suvenýry.', type: 'booth' },
+            '20': { title: 'Skříňky', desc: 'Uzamykatelné skříňky pro uschování cenností. Cena 50 Kč/den.', type: 'service' },
+            '21': { title: 'VIP zóna', desc: 'Exkluzivní prostor pro držitele VIP vstupenek.', type: 'service' },
+            '22': { title: 'Vstup', desc: 'Hlavní vstup do areálu. Kontrola vstupenek a bezpečnostní prohlídka.', type: 'station' },
+            '23': { title: 'Keramika', desc: 'Workshop výroby keramiky na hrnčířském kruhu.', type: 'booth' },
+            '24': { title: 'Výroba obilné bohyně', desc: 'Tradiční výroba obilných sošek bohyně úrody.', type: 'booth' },
+            '25': { title: 'Zdravotníci', desc: 'Zdravotnická služba. V případě potřeby vyhledejte tento stan.', type: 'service' },
+            '26': { title: 'Zázemí organizátorů', desc: 'Pouze pro organizátory a dobrovolníky.', type: 'service' },
+            '27': { title: 'Římský tábor', desc: 'Rekonstrukce římského vojenského tábora – soupeři Keltů.', type: 'station' },
+            'wc': { title: 'Toalety', desc: 'Mobilní toalety včetně bezbariérových.', type: 'service' },
+            'water': { title: 'Pitná voda', desc: 'Pítko s pitnou vodou zdarma. Přineste si vlastní láhev!', type: 'service' },
+            'food': { title: 'Občerstvení', desc: 'Stánky s jídlem a nápoji včetně medoviny.', type: 'booth' },
+            'merch': { title: 'Festivalový merch', desc: 'Oficiální festivalové zboží – trička, mikiny, suvenýry.', type: 'booth' }
+        };
+
+        let currentZoom = 1;
+        let activeMarker = null;
+
+        // =====================
+        // MOBILE MENU
+        // =====================
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const toggle = document.getElementById('menu-toggle');
+            const isHidden = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        }
+
+        // =====================
+        // POI FUNCTIONS
+        // =====================
+        function showPOI(id) {
+            const marker = document.querySelector(`.poi-marker[data-id="${id}"]`);
+            if (!marker) return;
+
+            // Hide previous tooltip
+            hideTooltip();
+
+            // Remove active from all markers and list items
+            document.querySelectorAll('.poi-marker').forEach(m => m.classList.remove('active'));
+            document.querySelectorAll('.poi-list-item').forEach(li => li.classList.remove('active'));
+
+            // Activate current marker
+            marker.classList.add('active');
+            activeMarker = marker;
+
+            // Activate list item
+            const listItem = document.querySelector(`.poi-list-item[data-id="${id}"]`);
+            if (listItem) {
+                listItem.classList.add('active');
+                listItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Show tooltip
+            const tooltip = document.getElementById('poi-tooltip');
+            const data = poiData[id];
+            
+            if (data) {
+                document.getElementById('tooltip-title').textContent = data.title;
+                document.getElementById('tooltip-desc').textContent = data.desc;
+                
+                // Position tooltip above marker
+                const markerRect = marker.getBoundingClientRect();
+                const containerRect = document.getElementById('map-container').getBoundingClientRect();
+                
+                const left = marker.offsetLeft - 80;
+                const top = marker.offsetTop - 90;
+                
+                tooltip.style.left = Math.max(10, Math.min(left, containerRect.width - 220)) + 'px';
+                tooltip.style.top = Math.max(10, top) + 'px';
+                tooltip.classList.add('visible');
+            }
+        }
+
+        function hideTooltip() {
+            const tooltip = document.getElementById('poi-tooltip');
+            tooltip.classList.remove('visible');
+            
+            if (activeMarker) {
+                activeMarker.classList.remove('active');
+                activeMarker = null;
+            }
+            
+            document.querySelectorAll('.poi-list-item').forEach(li => li.classList.remove('active'));
+        }
+
+        // =====================
+        // FILTER
+        // =====================
+        function filterPOI(type) {
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === type) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Filter markers
+            document.querySelectorAll('.poi-marker').forEach(marker => {
+                if (type === 'all' || marker.dataset.type === type) {
+                    marker.style.display = 'flex';
+                } else {
+                    marker.style.display = 'none';
+                }
+            });
+
+            // Filter list sections
+            const listStations = document.getElementById('list-stations');
+            const listBooths = document.getElementById('list-booths');
+            const listServices = document.getElementById('list-services');
+
+            if (type === 'all') {
+                listStations.style.display = 'block';
+                listBooths.style.display = 'block';
+                listServices.style.display = 'block';
+            } else {
+                listStations.style.display = type === 'station' ? 'block' : 'none';
+                listBooths.style.display = type === 'booth' ? 'block' : 'none';
+                listServices.style.display = type === 'service' ? 'block' : 'none';
+            }
+
+            hideTooltip();
+        }
+
+        // =====================
+        // ZOOM
+        // =====================
+        function zoomMap(factor) {
+            currentZoom *= factor;
+            currentZoom = Math.max(0.5, Math.min(currentZoom, 3));
+            
+            const img = document.getElementById('map-image');
+            img.style.transform = `scale(${currentZoom})`;
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            const img = document.getElementById('map-image');
+            img.style.transform = 'scale(1)';
+            hideTooltip();
+        }
+
+        // =====================
+        // MARKER CLICK HANDLERS
+        // =====================
+        document.querySelectorAll('.poi-marker').forEach(marker => {
+            marker.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showPOI(marker.dataset.id);
+            });
+        });
+
+        // Close tooltip when clicking outside
+        document.getElementById('map-container').addEventListener('click', (e) => {
+            if (!e.target.classList.contains('poi-marker') && !e.target.closest('.poi-tooltip')) {
+                hideTooltip();
+            }
+        });
+
+        // Close tooltip on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideTooltip();
+            }
+        });
+    </script>
+</body>
+</html>
+
