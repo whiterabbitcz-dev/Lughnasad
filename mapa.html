@@ -189,7 +189,7 @@
             padding: 12px 16px;
             min-width: 200px;
             max-width: 280px;
-            z-index: 100;
+            z-index: 30;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.2s ease, visibility 0.2s ease;
@@ -765,10 +765,23 @@
         // =====================
         // POI FUNCTIONS
         // =====================
-        function showPOI(id) {
+        function showPOI(id, scrollToMap = false) {
             const marker = document.querySelector(`.poi-marker[data-id="${id}"]`);
             if (!marker) return;
 
+            // If called from list, scroll to map first
+            if (scrollToMap) {
+                const mapSection = document.getElementById('map-container');
+                mapSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Delay showing tooltip to allow scroll to complete
+                setTimeout(() => displayTooltip(id, marker), 400);
+                return;
+            }
+            
+            displayTooltip(id, marker);
+        }
+        
+        function displayTooltip(id, marker) {
             // Hide previous tooltip
             hideTooltip();
 
@@ -954,6 +967,15 @@
             marker.addEventListener('click', (e) => {
                 e.stopPropagation();
                 showPOI(marker.dataset.id);
+            });
+        });
+        
+        // List item clicks - scroll to map first
+        document.querySelectorAll('.poi-list-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showPOI(item.dataset.id, true);
             });
         });
 
