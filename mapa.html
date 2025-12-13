@@ -97,12 +97,16 @@
             overflow: hidden;
             cursor: grab;
             touch-action: none;
-            max-height: 60vh;
+            max-height: 55vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F2EFE9;
         }
         
         @media (min-width: 768px) {
             .map-container {
-                max-height: 55vh;
+                max-height: 50vh;
             }
         }
         
@@ -114,6 +118,8 @@
             position: relative;
             transform-origin: center center;
             transition: transform 0.15s ease-out;
+            max-height: 100%;
+            max-width: 100%;
         }
         
         .map-wrapper.dragging {
@@ -122,8 +128,11 @@
         
         #map-image {
             display: block;
-            width: 100%;
+            max-width: 100%;
+            max-height: 50vh;
+            width: auto;
             height: auto;
+            object-fit: contain;
             pointer-events: none;
         }
         
@@ -820,7 +829,7 @@
                 }
             });
 
-            // Filter markers
+            // Filter markers on the map only (not the list below)
             document.querySelectorAll('.poi-marker').forEach(marker => {
                 if (type === 'all' || marker.dataset.type === type) {
                     marker.style.display = 'flex';
@@ -828,21 +837,6 @@
                     marker.style.display = 'none';
                 }
             });
-
-            // Filter list sections
-            const listStations = document.getElementById('list-stations');
-            const listBooths = document.getElementById('list-booths');
-            const listServices = document.getElementById('list-services');
-
-            if (type === 'all') {
-                listStations.style.display = 'block';
-                listBooths.style.display = 'block';
-                listServices.style.display = 'block';
-            } else {
-                listStations.style.display = type === 'station' ? 'block' : 'none';
-                listBooths.style.display = type === 'booth' ? 'block' : 'none';
-                listServices.style.display = type === 'service' ? 'block' : 'none';
-            }
 
             hideTooltip();
         }
