@@ -430,11 +430,6 @@
         
         <!-- Overlay Content - Vertically Balanced -->
         <div class="relative z-10 text-center px-4 -translate-y-8 md:-translate-y-12 lg:-translate-y-16">
-            <!-- LOGO - Centered Above Title -->
-            <div class="mb-8 flex justify-center">
-                <img src="images/logo.svg" alt="Lughnasad Logo" class="h-32 md:h-40 lg:h-48 w-auto">
-            </div>
-            
             <!-- H1: LUGHNASAD (Huge, Gold) -->
             <h1 class="text-7xl md:text-9xl lg:text-[12rem] font-heading text-gold mb-4" 
                 style="text-shadow: 4px 4px 0px #1A1512, 8px 8px 0px rgba(0, 0, 0, 0.5);">
@@ -1355,20 +1350,20 @@
         // HOMEPAGE "MY PROGRAM" DISPLAY
         // =====================
         
-        // Program data for homepage display
+        // Program data for homepage display (with details)
         const programData = {
-            'pa-1400': { day: 'Pátek', time: '14:00', title: 'Otevření brány', subtitle: 'Registrace příchozích' },
-            'pa-1600': { day: 'Pátek', time: '16:00', title: 'Slavnostní zahájení', subtitle: 'Rituál k Lughu' },
-            'pa-1800': { day: 'Pátek', time: '18:00', title: 'Bojové ukázky', subtitle: 'Kmen Bójů' },
-            'pa-2100': { day: 'Pátek', time: '21:00', title: 'Ohňová show', subtitle: 'Druidova Družina' },
-            'so-1000': { day: 'Sobota', time: '10:00', title: 'Workshopy řemesel', subtitle: 'Kovářství, hrnčířství, tkaní' },
-            'so-1400': { day: 'Sobota', time: '14:00', title: 'Turnaj Brothers at Arms', subtitle: 'Soutěž bojovníků' },
-            'so-1600': { day: 'Sobota', time: '16:00', title: 'Keltská hudba', subtitle: 'Daoine Ceilte' },
-            'so-2000': { day: 'Sobota', time: '20:00', title: 'Projekce komiksu BIATEC', subtitle: 'První prezentace' },
-            'ne-1100': { day: 'Neděle', time: '11:00', title: 'Ranní rituál', subtitle: 'Poděkování Matce Zemi' },
-            'ne-1300': { day: 'Neděle', time: '13:00', title: 'Dětský program', subtitle: 'Legendy o Biatecovi' },
-            'ne-1500': { day: 'Neděle', time: '15:00', title: 'Závěrečná bitva', subtitle: 'Germáni vs. Keltové' },
-            'ne-1800': { day: 'Neděle', time: '18:00', title: 'Slavnostní ukončení', subtitle: 'Rozloučení s festivalem' }
+            'pa-1400': { day: 'Pátek', time: '14:00', title: 'Otevření brány', subtitle: 'Registrace příchozích', detail: 'Vítejte na Lughnasadu! U brány obdržíte festivalový náramek a mapu areálu.' },
+            'pa-1600': { day: 'Pátek', time: '16:00', title: 'Slavnostní zahájení', subtitle: 'Rituál k Lughu', detail: 'Tradiční keltský rituál k uctění boha Lugha, patrona řemesel a umění.' },
+            'pa-1800': { day: 'Pátek', time: '18:00', title: 'Bojové ukázky', subtitle: 'Kmen Bójů', detail: 'Autentické rekonstrukce keltského boje s komentářem historika.' },
+            'pa-2100': { day: 'Pátek', time: '21:00', title: 'Ohňová show', subtitle: 'Druidova Družina', detail: 'Mystická ohňová performance pod nočním nebem.' },
+            'so-1000': { day: 'Sobota', time: '10:00', title: 'Workshopy řemesel', subtitle: 'Kovářství, hrnčířství, tkaní', detail: 'Vyzkoušejte si tradiční keltská řemesla pod vedením zkušených mistrů.' },
+            'so-1400': { day: 'Sobota', time: '14:00', title: 'Turnaj Brothers at Arms', subtitle: 'Soutěž bojovníků', detail: 'Mezinárodní turnaj v historickém šermu.' },
+            'so-1600': { day: 'Sobota', time: '16:00', title: 'Keltská hudba', subtitle: 'Daoine Ceilte', detail: 'Tradiční keltské melodie. Dudy, harfa, flétny a bubny.' },
+            'so-2000': { day: 'Sobota', time: '20:00', title: 'Projekce komiksu BIATEC', subtitle: 'První prezentace', detail: 'Exkluzivní první veřejná prezentace komiksu BIATEC.' },
+            'ne-1100': { day: 'Neděle', time: '11:00', title: 'Ranní rituál', subtitle: 'Poděkování Matce Zemi', detail: 'Klidný ranní rituál vděčnosti za úrodu a dary přírody.' },
+            'ne-1300': { day: 'Neděle', time: '13:00', title: 'Dětský program', subtitle: 'Legendy o Biatecovi', detail: 'Interaktivní program pro nejmenší návštěvníky.' },
+            'ne-1500': { day: 'Neděle', time: '15:00', title: 'Závěrečná bitva', subtitle: 'Germáni vs. Keltové', detail: 'Velkolepá rekonstrukce historické bitvy s desítkami bojovníků.' },
+            'ne-1800': { day: 'Neděle', time: '18:00', title: 'Slavnostní ukončení', subtitle: 'Rozloučení s festivalem', detail: 'Závěrečný ceremoniál s poděkováním všem účastníkům.' }
         };
         
         function updateHomeProgram() {
@@ -1408,17 +1403,32 @@
                         html += `<div class="bg-blood-red/10 p-2 px-4"><span class="font-heading text-blood-red text-sm">${item.day.toUpperCase()}</span></div>`;
                     }
                     html += `
-                        <div class="p-3 px-4 flex items-center gap-3 border-b border-ink-black/10 last:border-b-0">
-                            <span class="text-blood-red font-heading text-base min-w-[50px]">${item.time}</span>
-                            <div class="flex-1">
-                                <span class="font-heading text-sm text-ink-black">${item.title.toUpperCase()}</span>
-                                <span class="text-ink-black/50 text-xs ml-2">${item.subtitle}</span>
+                        <div class="home-program-item p-3 px-4 border-b border-ink-black/10 last:border-b-0 cursor-pointer hover:bg-gold/10" onclick="toggleHomeDetail(this)">
+                            <div class="flex items-start gap-3">
+                                <span class="text-blood-red font-heading text-base min-w-[50px]">${item.time}</span>
+                                <div class="flex-1">
+                                    <span class="font-heading text-sm text-ink-black">${item.title.toUpperCase()}</span>
+                                    <span class="text-ink-black/50 text-xs ml-2">${item.subtitle}</span>
+                                </div>
+                                <span class="text-gold text-sm transition-transform duration-200">▼</span>
+                            </div>
+                            <div class="home-program-detail hidden mt-2 pl-[62px] text-ink-black/70 font-body text-sm">
+                                ${item.detail}
                             </div>
                         </div>
                     `;
                 });
                 
                 if (listEl) listEl.innerHTML = html;
+            }
+        }
+        
+        function toggleHomeDetail(element) {
+            const detail = element.querySelector('.home-program-detail');
+            const arrow = element.querySelector('.text-gold');
+            if (detail && arrow) {
+                detail.classList.toggle('hidden');
+                arrow.style.transform = detail.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
             }
         }
         

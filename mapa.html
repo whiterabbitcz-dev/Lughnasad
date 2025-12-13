@@ -97,6 +97,13 @@
             overflow: hidden;
             cursor: grab;
             touch-action: none;
+            max-height: 60vh;
+        }
+        
+        @media (min-width: 768px) {
+            .map-container {
+                max-height: 55vh;
+            }
         }
         
         .map-container.dragging {
@@ -344,19 +351,19 @@
     <img src="images/flag.png" alt="Celtic Flag" class="flag-animation fixed -top-8 md:-top-12 left-4 md:left-10 h-48 md:h-64 w-auto z-30 pointer-events-none">
 
     <!-- PAGE HEADER -->
-    <section class="bg-ink-black py-12 md:py-16">
+    <section class="bg-ink-black py-6 md:py-8">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-heading text-gold mb-4" style="text-shadow: 3px 3px 0px rgba(0,0,0,0.5);">
+            <h1 class="text-3xl md:text-5xl font-heading text-gold mb-2" style="text-shadow: 3px 3px 0px rgba(0,0,0,0.5);">
                 MAPA AREÁLU
             </h1>
-            <p class="text-white/80 font-body text-lg max-w-2xl mx-auto">
-                Klikněte na bod na mapě nebo vyberte místo ze seznamu níže
+            <p class="text-white/80 font-body text-sm md:text-base max-w-2xl mx-auto">
+                Klikněte na značku na mapě nebo vyberte místo ze seznamu níže
             </p>
         </div>
     </section>
 
     <!-- MAIN CONTENT -->
-    <main id="main-content" class="py-8 md:py-12">
+    <main id="main-content" class="py-4 md:py-6">
         <div class="container mx-auto px-4">
             
             <!-- Category Filters -->
@@ -455,9 +462,6 @@
                             <span class="font-body text-sm">Služby</span>
                         </div>
                     </div>
-                    <p class="text-xs text-ink-black/50 font-body text-center mt-2">
-                        👆 Klikněte na značku • Použijte +/- pro zoom • Táhněte pro posun
-                    </p>
                 </div>
             </div>
             
@@ -765,11 +769,10 @@
             marker.classList.add('active');
             activeMarker = marker;
 
-            // Activate list item
+            // Activate list item (without scrolling)
             const listItem = document.querySelector(`.poi-list-item[data-id="${id}"]`);
             if (listItem) {
                 listItem.classList.add('active');
-                listItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
 
             // Show tooltip
