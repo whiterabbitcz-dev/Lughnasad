@@ -96,15 +96,28 @@
             position: relative;
             overflow: hidden;
             cursor: grab;
+            touch-action: none;
         }
         
-        .map-container:active {
+        .map-container.dragging {
             cursor: grabbing;
         }
         
-        .map-container img {
-            max-width: none;
-            transform-origin: 0 0;
+        .map-wrapper {
+            position: relative;
+            transform-origin: center center;
+            transition: transform 0.15s ease-out;
+        }
+        
+        .map-wrapper.dragging {
+            transition: none;
+        }
+        
+        #map-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            pointer-events: none;
         }
         
         /* POI Marker */
@@ -210,7 +223,7 @@
         /* Zoom Controls */
         .zoom-controls {
             position: absolute;
-            bottom: 16px;
+            bottom: 70px;
             right: 16px;
             z-index: 50;
         }
@@ -290,8 +303,8 @@
                     <a href="merch.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
                         Merch
                     </a>
-                    <a href="index.html#kontakt" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
-                        Kontakt
+                    <a href="index.html#faq" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                        FAQ
                     </a>
                 </nav>
                 
@@ -321,7 +334,7 @@
                     <a href="info.html" class="text-white hover:text-gold font-body text-sm uppercase">Info</a>
                     <a href="mapa.html" class="text-gold font-body text-sm uppercase">Mapa</a>
                     <a href="merch.html" class="text-white hover:text-gold font-body text-sm uppercase">Merch</a>
-                    <a href="index.html#kontakt" class="text-white hover:text-gold font-body text-sm uppercase">Kontakt</a>
+                    <a href="index.html#faq" class="text-white hover:text-gold font-body text-sm uppercase">FAQ</a>
                 </nav>
             </div>
         </div>
@@ -346,27 +359,6 @@
     <main id="main-content" class="py-8 md:py-12">
         <div class="container mx-auto px-4">
             
-            <!-- Legend - nad mapou -->
-            <div class="max-w-4xl mx-auto mb-6">
-                <div class="comic-panel p-4">
-                    <h3 class="font-heading text-lg text-ink-black mb-3 text-center">LEGENDA</h3>
-                    <div class="flex flex-wrap justify-center gap-6 font-body text-sm">
-                        <div class="flex items-center gap-2">
-                            <span class="w-6 h-6 bg-[#4A7C59] rounded text-white text-xs flex items-center justify-center">1</span>
-                            <span>Stanoviště</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="w-6 h-6 bg-[#D4644A] rounded text-white text-xs flex items-center justify-center">18</span>
-                            <span>Stánky</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="w-6 h-6 bg-[#5B7BB8] rounded text-white text-xs flex items-center justify-center">WC</span>
-                            <span>Služby</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
             <!-- Category Filters -->
             <div class="mb-6 flex flex-wrap justify-center gap-3">
                 <button class="filter-btn active px-4 py-2 font-heading text-sm comic-border bg-ink-black text-gold" onclick="filterPOI('all')" data-filter="all">
@@ -383,75 +375,91 @@
                 </button>
             </div>
 
-            <!-- Map Section - vycentrovaná -->
-            <div class="max-w-4xl mx-auto">
-                    <div class="comic-panel overflow-hidden">
-                        <div class="map-container relative" id="map-container" style="height: 500px;">
-                            <!-- Map Image -->
-                            <img src="images/mapa-arealu.png" alt="Mapa areálu festivalu Lughnasad" id="map-image" class="w-full h-full object-contain">
-                            
-                            <!-- POI Markers - positioned based on map layout -->
-                            <!-- Stations (green) - hlavní stanoviště -->
-                            <div class="poi-marker poi-station" data-id="1" data-type="station" style="left: 42%; top: 62%;">1</div>
-                            <div class="poi-marker poi-station" data-id="2" data-type="station" style="left: 32%; top: 28%;">2</div>
-                            <div class="poi-marker poi-station" data-id="3" data-type="station" style="left: 28%; top: 38%;">3</div>
-                            <div class="poi-marker poi-station" data-id="4" data-type="station" style="left: 58%; top: 32%;">4</div>
-                            <div class="poi-marker poi-station" data-id="5" data-type="station" style="left: 72%; top: 32%;">5</div>
-                            <div class="poi-marker poi-station" data-id="6" data-type="station" style="left: 45%; top: 30%;">6</div>
-                            <div class="poi-marker poi-station" data-id="7" data-type="station" style="left: 32%; top: 72%;">7</div>
-                            <div class="poi-marker poi-station" data-id="8" data-type="station" style="left: 25%; top: 48%;">8</div>
-                            <div class="poi-marker poi-station" data-id="9" data-type="station" style="left: 52%; top: 42%;">9</div>
-                            <div class="poi-marker poi-station" data-id="10" data-type="station" style="left: 35%; top: 35%;">10</div>
-                            <div class="poi-marker poi-station" data-id="11" data-type="station" style="left: 45%; top: 38%;">11</div>
-                            <div class="poi-marker poi-station" data-id="12" data-type="station" style="left: 45%; top: 52%;">12</div>
-                            <div class="poi-marker poi-station" data-id="13" data-type="station" style="left: 68%; top: 42%;">13</div>
-                            <div class="poi-marker poi-station" data-id="14" data-type="station" style="left: 42%; top: 28%;">14</div>
-                            <div class="poi-marker poi-station" data-id="15" data-type="station" style="left: 50%; top: 32%;">15</div>
-                            <div class="poi-marker poi-station" data-id="16" data-type="station" style="left: 55%; top: 38%;">16</div>
-                            <div class="poi-marker poi-station" data-id="17" data-type="station" style="left: 38%; top: 25%;">17</div>
-                            <div class="poi-marker poi-station" data-id="22" data-type="station" style="left: 28%; top: 65%;">22</div>
-                            <div class="poi-marker poi-station" data-id="27" data-type="station" style="left: 35%; top: 52%;">27</div>
-                            
-                            <!-- Booths (red/orange) - stánky -->
-                            <div class="poi-marker poi-booth" data-id="18" data-type="booth" style="left: 32%; top: 35%;">18</div>
-                            <div class="poi-marker poi-booth" data-id="19" data-type="booth" style="left: 8%; top: 58%;">19</div>
-                            <div class="poi-marker poi-booth" data-id="23" data-type="booth" style="left: 38%; top: 28%;">23</div>
-                            <div class="poi-marker poi-booth" data-id="24" data-type="booth" style="left: 75%; top: 35%;">24</div>
-                            
-                            <!-- Services (blue) - služby -->
-                            <div class="poi-marker poi-service" data-id="20" data-type="service" style="left: 18%; top: 75%;">20</div>
-                            <div class="poi-marker poi-service" data-id="21" data-type="service" style="left: 15%; top: 82%;">21</div>
-                            <div class="poi-marker poi-service" data-id="25" data-type="service" style="left: 25%; top: 72%;">25</div>
-                            <div class="poi-marker poi-service" data-id="26" data-type="service" style="left: 82%; top: 78%;">26</div>
-                            <div class="poi-marker poi-service" data-id="wc" data-type="service" style="left: 38%; top: 78%;">WC</div>
-                            <div class="poi-marker poi-service" data-id="water" data-type="service" style="left: 48%; top: 35%;">💧</div>
-                            <div class="poi-marker poi-booth" data-id="food" data-type="booth" style="left: 12%; top: 32%;">🍴</div>
-                            <div class="poi-marker poi-booth" data-id="merch" data-type="booth" style="left: 15%; top: 52%;">🏠</div>
-                            
-                            <!-- Tooltip -->
-                            <div class="poi-tooltip" id="poi-tooltip">
-                                <button class="absolute top-2 right-2 text-ink-black/50 hover:text-ink-black text-xl leading-none" onclick="hideTooltip()">×</button>
-                                <div class="pr-6">
-                                    <h3 class="font-heading text-lg text-blood-red" id="tooltip-title">Název místa</h3>
-                                    <p class="font-body text-sm text-ink-black/80 mt-1" id="tooltip-desc">Popis místa</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Zoom Controls -->
-                            <div class="zoom-controls flex flex-col gap-1">
-                                <button class="zoom-btn" onclick="zoomMap(1.2)" aria-label="Přiblížit">+</button>
-                                <button class="zoom-btn" onclick="zoomMap(0.8)" aria-label="Oddálit">−</button>
-                                <button class="zoom-btn text-sm" onclick="resetZoom()" aria-label="Reset">↺</button>
-                            </div>
-                        </div>
+            <!-- Map Section -->
+            <div class="comic-panel overflow-hidden">
+                <div class="map-container" id="map-container">
+                    <div class="map-wrapper" id="map-wrapper">
+                        <!-- Map Image -->
+                        <img src="images/mapa-arealu.png" alt="Mapa areálu festivalu Lughnasad" id="map-image">
                         
-                        <div class="p-3 bg-ink-black/5 border-t-2 border-ink-black/20 text-center">
-                            <p class="text-sm text-ink-black/60 font-body">
-                                👆 Klikněte na značku pro zobrazení informací
-                            </p>
+                        <!-- POI Markers - positioned based on map layout -->
+                        <!-- Stations (green) - hlavní stanoviště -->
+<div class="poi-marker poi-station" data-id="1" data-type="station" style="left: 42%; top: 62%;">1</div>
+                        <div class="poi-marker poi-station" data-id="2" data-type="station" style="left: 32%; top: 28%;">2</div>
+                        <div class="poi-marker poi-station" data-id="3" data-type="station" style="left: 28%; top: 38%;">3</div>
+                        <div class="poi-marker poi-station" data-id="4" data-type="station" style="left: 58%; top: 32%;">4</div>
+                        <div class="poi-marker poi-station" data-id="5" data-type="station" style="left: 72%; top: 32%;">5</div>
+                        <div class="poi-marker poi-station" data-id="6" data-type="station" style="left: 45%; top: 30%;">6</div>
+                        <div class="poi-marker poi-station" data-id="7" data-type="station" style="left: 32%; top: 72%;">7</div>
+                        <div class="poi-marker poi-station" data-id="8" data-type="station" style="left: 25%; top: 48%;">8</div>
+                        <div class="poi-marker poi-station" data-id="9" data-type="station" style="left: 52%; top: 42%;">9</div>
+                        <div class="poi-marker poi-station" data-id="10" data-type="station" style="left: 35%; top: 35%;">10</div>
+                        <div class="poi-marker poi-station" data-id="11" data-type="station" style="left: 45%; top: 38%;">11</div>
+                        <div class="poi-marker poi-station" data-id="12" data-type="station" style="left: 45%; top: 52%;">12</div>
+                        <div class="poi-marker poi-station" data-id="13" data-type="station" style="left: 68%; top: 42%;">13</div>
+                        <div class="poi-marker poi-station" data-id="14" data-type="station" style="left: 42%; top: 28%;">14</div>
+                        <div class="poi-marker poi-station" data-id="15" data-type="station" style="left: 50%; top: 32%;">15</div>
+                        <div class="poi-marker poi-station" data-id="16" data-type="station" style="left: 55%; top: 38%;">16</div>
+                        <div class="poi-marker poi-station" data-id="17" data-type="station" style="left: 38%; top: 25%;">17</div>
+                        <div class="poi-marker poi-station" data-id="22" data-type="station" style="left: 28%; top: 65%;">22</div>
+                        <div class="poi-marker poi-station" data-id="27" data-type="station" style="left: 35%; top: 52%;">27</div>
+                        
+                        <!-- Booths (red/orange) - stánky -->
+                        <div class="poi-marker poi-booth" data-id="18" data-type="booth" style="left: 32%; top: 35%;">18</div>
+                        <div class="poi-marker poi-booth" data-id="19" data-type="booth" style="left: 8%; top: 58%;">19</div>
+                        <div class="poi-marker poi-booth" data-id="23" data-type="booth" style="left: 38%; top: 28%;">23</div>
+                        <div class="poi-marker poi-booth" data-id="24" data-type="booth" style="left: 75%; top: 35%;">24</div>
+                        
+                        <!-- Services (blue) - služby -->
+                        <div class="poi-marker poi-service" data-id="20" data-type="service" style="left: 18%; top: 75%;">20</div>
+                        <div class="poi-marker poi-service" data-id="21" data-type="service" style="left: 15%; top: 82%;">21</div>
+                        <div class="poi-marker poi-service" data-id="25" data-type="service" style="left: 25%; top: 72%;">25</div>
+                        <div class="poi-marker poi-service" data-id="26" data-type="service" style="left: 82%; top: 78%;">26</div>
+                        <div class="poi-marker poi-service" data-id="wc" data-type="service" style="left: 38%; top: 78%;">WC</div>
+                        <div class="poi-marker poi-service" data-id="water" data-type="service" style="left: 48%; top: 35%;">💧</div>
+                        <div class="poi-marker poi-booth" data-id="food" data-type="booth" style="left: 12%; top: 32%;">🍴</div>
+                        <div class="poi-marker poi-booth" data-id="merch" data-type="booth" style="left: 15%; top: 52%;">🏠</div>
+                    </div>
+                    
+                    <!-- Tooltip - outside wrapper -->
+                    <div class="poi-tooltip" id="poi-tooltip">
+                        <button class="absolute top-2 right-2 text-ink-black/50 hover:text-ink-black text-xl leading-none" onclick="hideTooltip()">×</button>
+                        <div class="pr-6">
+                            <h3 class="font-heading text-lg text-blood-red" id="tooltip-title">Název místa</h3>
+                            <p class="font-body text-sm text-ink-black/80 mt-1" id="tooltip-desc">Popis místa</p>
                         </div>
                     </div>
+                    
+                    <!-- Zoom Controls - outside wrapper so they don't move -->
+                    <div class="zoom-controls flex flex-col gap-1">
+                        <button class="zoom-btn" onclick="zoomMap(1.25)" aria-label="Přiblížit">+</button>
+                        <button class="zoom-btn" onclick="zoomMap(0.8)" aria-label="Oddálit">−</button>
+                        <button class="zoom-btn text-sm" onclick="resetZoom()" aria-label="Reset">↺</button>
+                    </div>
                 </div>
+                        
+                <!-- Legend inside map panel -->
+                <div class="p-3 bg-ink-black/5 border-t-2 border-ink-black/20">
+                    <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8">
+                        <span class="font-heading text-sm text-ink-black">LEGENDA:</span>
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-[#4A7C59] rounded text-white text-xs flex items-center justify-center font-bold">1</span>
+                            <span class="font-body text-sm">Stanoviště</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-[#D4644A] rounded text-white text-xs flex items-center justify-center font-bold">18</span>
+                            <span class="font-body text-sm">Stánky</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-[#5B7BB8] rounded text-white text-xs flex items-center justify-center">WC</span>
+                            <span class="font-body text-sm">Služby</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-ink-black/50 font-body text-center mt-2">
+                        👆 Klikněte na značku • Použijte +/- pro zoom • Táhněte pro posun
+                    </p>
+                </div>
+            </div>
             
             <!-- POI List - pod mapou na celou šířku -->
             <div class="max-w-4xl mx-auto mt-8">
@@ -839,20 +847,106 @@
         // =====================
         // ZOOM
         // =====================
+        // Pan state
+        let isPanning = false;
+        let startX = 0;
+        let startY = 0;
+        let panX = 0;
+        let panY = 0;
+        
         function zoomMap(factor) {
+            const oldZoom = currentZoom;
             currentZoom *= factor;
-            currentZoom = Math.max(0.5, Math.min(currentZoom, 3));
+            currentZoom = Math.max(1, Math.min(currentZoom, 3)); // Min zoom = 1 (100%)
             
-            const img = document.getElementById('map-image');
-            img.style.transform = `scale(${currentZoom})`;
+            // If zooming out to 1, reset pan
+            if (currentZoom === 1) {
+                panX = 0;
+                panY = 0;
+            }
+            
+            updateMapTransform();
         }
 
         function resetZoom() {
             currentZoom = 1;
-            const img = document.getElementById('map-image');
-            img.style.transform = 'scale(1)';
+            panX = 0;
+            panY = 0;
+            updateMapTransform();
             hideTooltip();
         }
+        
+        function updateMapTransform() {
+            const wrapper = document.getElementById('map-wrapper');
+            wrapper.style.transform = `scale(${currentZoom}) translate(${panX}px, ${panY}px)`;
+        }
+        
+        // Pan functionality
+        const mapContainer = document.getElementById('map-container');
+        const mapWrapper = document.getElementById('map-wrapper');
+        
+        mapContainer.addEventListener('mousedown', (e) => {
+            if (currentZoom > 1 && !e.target.classList.contains('poi-marker') && !e.target.closest('.poi-tooltip') && !e.target.closest('.zoom-controls')) {
+                isPanning = true;
+                startX = e.clientX - panX * currentZoom;
+                startY = e.clientY - panY * currentZoom;
+                mapContainer.classList.add('dragging');
+                mapWrapper.classList.add('dragging');
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isPanning) {
+                panX = (e.clientX - startX) / currentZoom;
+                panY = (e.clientY - startY) / currentZoom;
+                
+                // Limit panning
+                const maxPan = (currentZoom - 1) * 150;
+                panX = Math.max(-maxPan, Math.min(maxPan, panX));
+                panY = Math.max(-maxPan, Math.min(maxPan, panY));
+                
+                updateMapTransform();
+            }
+        });
+        
+        document.addEventListener('mouseup', () => {
+            if (isPanning) {
+                isPanning = false;
+                mapContainer.classList.remove('dragging');
+                mapWrapper.classList.remove('dragging');
+            }
+        });
+        
+        // Touch support
+        mapContainer.addEventListener('touchstart', (e) => {
+            if (currentZoom > 1 && !e.target.classList.contains('poi-marker') && !e.target.closest('.poi-tooltip')) {
+                isPanning = true;
+                const touch = e.touches[0];
+                startX = touch.clientX - panX * currentZoom;
+                startY = touch.clientY - panY * currentZoom;
+                mapWrapper.classList.add('dragging');
+            }
+        }, { passive: true });
+        
+        mapContainer.addEventListener('touchmove', (e) => {
+            if (isPanning) {
+                const touch = e.touches[0];
+                panX = (touch.clientX - startX) / currentZoom;
+                panY = (touch.clientY - startY) / currentZoom;
+                
+                const maxPan = (currentZoom - 1) * 150;
+                panX = Math.max(-maxPan, Math.min(maxPan, panX));
+                panY = Math.max(-maxPan, Math.min(maxPan, panY));
+                
+                updateMapTransform();
+            }
+        }, { passive: true });
+        
+        mapContainer.addEventListener('touchend', () => {
+            isPanning = false;
+            mapWrapper.classList.remove('dragging');
+        });
 
         // =====================
         // MARKER CLICK HANDLERS

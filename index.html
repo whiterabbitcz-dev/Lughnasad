@@ -351,12 +351,18 @@
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="skip-link font-heading">Přeskočit na obsah</a>
 
-    <!-- STICKY HEADER - Solid Dark Brown (No Logo) -->
+    <!-- STICKY HEADER -->
     <header class="sticky top-0 z-40 bg-[#1A1512]">
         <div class="container mx-auto px-4 py-4">
-            <div class="relative flex items-center justify-center">
-                <!-- Navigation - Desktop (Centered in Viewport) -->
-                <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
+            <div class="relative flex items-center justify-between">
+                <!-- Logo/Home Link -->
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="images/logo.svg" alt="Lughnasad" class="h-10 w-auto">
+                    <span class="hidden md:block text-gold font-heading text-lg">LUGHNASAD</span>
+                </a>
+                
+                <!-- Navigation - Desktop -->
+                <nav class="hidden md:flex items-center space-x-6">
                     <a href="#o-festivalu" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
                         O Festivalu
                     </a>
@@ -377,15 +383,15 @@
                     </a>
                 </nav>
                 
-                <!-- CTA Button (Right - Absolute Position) -->
-                <div class="hidden md:flex absolute right-0">
+                <!-- CTA Button -->
+                <div class="hidden md:flex">
                     <a href="#vstupenky" class="bg-blood-red text-white px-6 py-2 font-heading text-sm comic-border comic-shadow comic-shadow-hover">
                         VSTUPENKY
                     </a>
                 </div>
                 
                 <!-- Mobile: CTA Button + Menu Toggle -->
-                <div class="md:hidden flex items-center space-x-4 w-full justify-end">
+                <div class="md:hidden flex items-center space-x-4">
                     <a href="#vstupenky" class="bg-blood-red text-white px-4 py-2 font-heading text-xs comic-border comic-shadow">
                         VSTUPENKY
                     </a>
@@ -1348,6 +1354,23 @@
         // =====================
         // HOMEPAGE "MY PROGRAM" DISPLAY
         // =====================
+        
+        // Program data for homepage display
+        const programData = {
+            'pa-1400': { day: 'Pátek', time: '14:00', title: 'Otevření brány', subtitle: 'Registrace příchozích' },
+            'pa-1600': { day: 'Pátek', time: '16:00', title: 'Slavnostní zahájení', subtitle: 'Rituál k Lughu' },
+            'pa-1800': { day: 'Pátek', time: '18:00', title: 'Bojové ukázky', subtitle: 'Kmen Bójů' },
+            'pa-2100': { day: 'Pátek', time: '21:00', title: 'Ohňová show', subtitle: 'Druidova Družina' },
+            'so-1000': { day: 'Sobota', time: '10:00', title: 'Workshopy řemesel', subtitle: 'Kovářství, hrnčířství, tkaní' },
+            'so-1400': { day: 'Sobota', time: '14:00', title: 'Turnaj Brothers at Arms', subtitle: 'Soutěž bojovníků' },
+            'so-1600': { day: 'Sobota', time: '16:00', title: 'Keltská hudba', subtitle: 'Daoine Ceilte' },
+            'so-2000': { day: 'Sobota', time: '20:00', title: 'Projekce komiksu BIATEC', subtitle: 'První prezentace' },
+            'ne-1100': { day: 'Neděle', time: '11:00', title: 'Ranní rituál', subtitle: 'Poděkování Matce Zemi' },
+            'ne-1300': { day: 'Neděle', time: '13:00', title: 'Dětský program', subtitle: 'Legendy o Biatecovi' },
+            'ne-1500': { day: 'Neděle', time: '15:00', title: 'Závěrečná bitva', subtitle: 'Germáni vs. Keltové' },
+            'ne-1800': { day: 'Neděle', time: '18:00', title: 'Slavnostní ukončení', subtitle: 'Rozloučení s festivalem' }
+        };
+        
         function updateHomeProgram() {
             const favorites = JSON.parse(localStorage.getItem('lughnasad-favorites') || '[]');
             const countEl = document.getElementById('home-favorites-count');
@@ -1366,15 +1389,36 @@
                 if (listEl) listEl.classList.remove('hidden');
                 if (footerEl) footerEl.classList.remove('hidden');
                 
-                // Show preview of favorites (we don't have full data on homepage, so just show count)
-                if (listEl) {
-                    listEl.innerHTML = `
-                        <div class="p-6 text-center">
-                            <p class="text-ink-black font-body text-lg mb-4">Máte <span class="font-bold text-blood-red">${favorites.length}</span> oblíbených akcí v programu.</p>
-                            <a href="program.html" class="inline-block bg-gold text-ink-black px-6 py-2 font-heading text-sm comic-border comic-shadow comic-shadow-hover">❤️ ZOBRAZIT MŮJ PROGRAM</a>
+                // Build list of favorite events
+                const dayOrder = { 'Pátek': 1, 'Sobota': 2, 'Neděle': 3 };
+                const items = favorites
+                    .filter(id => programData[id])
+                    .map(id => ({ id, ...programData[id] }))
+                    .sort((a, b) => {
+                        if (dayOrder[a.day] !== dayOrder[b.day]) return dayOrder[a.day] - dayOrder[b.day];
+                        return a.time.localeCompare(b.time);
+                    });
+                
+                let html = '';
+                let currentDay = '';
+                
+                items.forEach(item => {
+                    if (item.day !== currentDay) {
+                        currentDay = item.day;
+                        html += `<div class="bg-blood-red/10 p-2 px-4"><span class="font-heading text-blood-red text-sm">${item.day.toUpperCase()}</span></div>`;
+                    }
+                    html += `
+                        <div class="p-3 px-4 flex items-center gap-3 border-b border-ink-black/10 last:border-b-0">
+                            <span class="text-blood-red font-heading text-base min-w-[50px]">${item.time}</span>
+                            <div class="flex-1">
+                                <span class="font-heading text-sm text-ink-black">${item.title.toUpperCase()}</span>
+                                <span class="text-ink-black/50 text-xs ml-2">${item.subtitle}</span>
+                            </div>
                         </div>
                     `;
-                }
+                });
+                
+                if (listEl) listEl.innerHTML = html;
             }
         }
         
