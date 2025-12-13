@@ -278,7 +278,7 @@
                     <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
                         O Festivalu
                     </a>
-                    <a href="index.html#program" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
+                    <a href="program.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
                         Program
                     </a>
                     <a href="info.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
@@ -314,10 +314,10 @@
             </div>
             
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 bg-ink-black/90 comic-border p-4" role="navigation">
+            <div id="mobile-menu" class="hidden md:hidden mt-4 bg-ink-black/90 comic-border p-4 relative z-50" role="navigation">
                 <nav class="flex flex-col space-y-4">
                     <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body text-sm uppercase">O Festivalu</a>
-                    <a href="index.html#program" class="text-white hover:text-gold font-body text-sm uppercase">Program</a>
+                    <a href="program.html" class="text-white hover:text-gold font-body text-sm uppercase">Program</a>
                     <a href="info.html" class="text-white hover:text-gold font-body text-sm uppercase">Info</a>
                     <a href="mapa.html" class="text-gold font-body text-sm uppercase">Mapa</a>
                     <a href="merch.html" class="text-white hover:text-gold font-body text-sm uppercase">Merch</a>
@@ -328,7 +328,7 @@
     </header>
     
     <!-- Flag -->
-    <img src="images/flag.png" alt="Celtic Flag" class="flag-animation fixed -top-8 md:-top-12 left-4 md:left-10 h-48 md:h-64 w-auto z-50 pointer-events-none">
+    <img src="images/flag.png" alt="Celtic Flag" class="flag-animation fixed -top-8 md:-top-12 left-4 md:left-10 h-48 md:h-64 w-auto z-30 pointer-events-none">
 
     <!-- PAGE HEADER -->
     <section class="bg-ink-black py-12 md:py-16">
@@ -346,6 +346,27 @@
     <main id="main-content" class="py-8 md:py-12">
         <div class="container mx-auto px-4">
             
+            <!-- Legend - nad mapou -->
+            <div class="max-w-4xl mx-auto mb-6">
+                <div class="comic-panel p-4">
+                    <h3 class="font-heading text-lg text-ink-black mb-3 text-center">LEGENDA</h3>
+                    <div class="flex flex-wrap justify-center gap-6 font-body text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 bg-[#4A7C59] rounded text-white text-xs flex items-center justify-center">1</span>
+                            <span>Stanoviště</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 bg-[#D4644A] rounded text-white text-xs flex items-center justify-center">18</span>
+                            <span>Stánky</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 bg-[#5B7BB8] rounded text-white text-xs flex items-center justify-center">WC</span>
+                            <span>Služby</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Category Filters -->
             <div class="mb-6 flex flex-wrap justify-center gap-3">
                 <button class="filter-btn active px-4 py-2 font-heading text-sm comic-border bg-ink-black text-gold" onclick="filterPOI('all')" data-filter="all">
@@ -362,10 +383,8 @@
                 </button>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-6">
-                
-                <!-- Map Section -->
-                <div class="lg:col-span-2">
+            <!-- Map Section - vycentrovaná -->
+            <div class="max-w-4xl mx-auto">
                     <div class="comic-panel overflow-hidden">
                         <div class="map-container relative" id="map-container" style="height: 500px;">
                             <!-- Map Image -->
@@ -428,21 +447,22 @@
                         
                         <div class="p-3 bg-ink-black/5 border-t-2 border-ink-black/20 text-center">
                             <p class="text-sm text-ink-black/60 font-body">
-                                👆 Klikněte na značku pro zobrazení informací • Přetáhněte pro posun mapy
+                                👆 Klikněte na značku pro zobrazení informací
                             </p>
                         </div>
                     </div>
                 </div>
-                
-                <!-- POI List -->
-                <div class="lg:col-span-1">
-                    <div class="comic-panel p-4 max-h-[600px] overflow-y-auto">
-                        <h2 class="font-heading text-xl text-ink-black mb-4 sticky top-0 bg-white py-2 border-b-2 border-ink-black/20">
-                            MÍSTA V AREÁLU
-                        </h2>
-                        
+            
+            <!-- POI List - pod mapou na celou šířku -->
+            <div class="max-w-4xl mx-auto mt-8">
+                <div class="comic-panel p-4 md:p-6">
+                    <h2 class="font-heading text-2xl text-ink-black mb-6 text-center border-b-2 border-ink-black/20 pb-4">
+                        MÍSTA V AREÁLU
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
                         <!-- Stations -->
-                        <div class="mb-6" id="list-stations">
+                        <div id="list-stations">
                             <h3 class="font-heading text-sm text-[#4A7C59] mb-2 flex items-center gap-2">
                                 <span class="w-5 h-5 bg-[#4A7C59] rounded text-white text-xs flex items-center justify-center">📍</span>
                                 STANOVIŠTĚ
@@ -528,7 +548,7 @@
                         </div>
                         
                         <!-- Booths -->
-                        <div class="mb-6" id="list-booths">
+                        <div id="list-booths">
                             <h3 class="font-heading text-sm text-[#D4644A] mb-2 flex items-center gap-2">
                                 <span class="w-5 h-5 bg-[#D4644A] rounded text-white text-xs flex items-center justify-center">🏪</span>
                                 STÁNKY
@@ -562,7 +582,7 @@
                         </div>
                         
                         <!-- Services -->
-                        <div id="list-services">
+                        <div id="list-services" class="md:col-span-1">
                             <h3 class="font-heading text-sm text-[#5B7BB8] mb-2 flex items-center gap-2">
                                 <span class="w-5 h-5 bg-[#5B7BB8] rounded text-white text-xs flex items-center justify-center">🔧</span>
                                 SLUŽBY
@@ -597,27 +617,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Legend -->
-            <div class="mt-8 max-w-2xl mx-auto">
-                <div class="comic-panel p-4">
-                    <h3 class="font-heading text-lg text-ink-black mb-3 text-center">LEGENDA</h3>
-                    <div class="flex flex-wrap justify-center gap-6 font-body text-sm">
-                        <div class="flex items-center gap-2">
-                            <span class="w-6 h-6 bg-[#4A7C59] rounded text-white text-xs flex items-center justify-center">1</span>
-                            <span>Stanoviště</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="w-6 h-6 bg-[#D4644A] rounded text-white text-xs flex items-center justify-center">18</span>
-                            <span>Stánky</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="w-6 h-6 bg-[#5B7BB8] rounded text-white text-xs flex items-center justify-center">WC</span>
-                            <span>Služby</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -637,7 +636,7 @@
                     <h4 class="font-heading text-gold text-xl mb-4">RYCHLÉ ODKAZY</h4>
                     <ul class="font-body text-sm text-white/80 space-y-2">
                         <li><a href="index.html" class="hover:text-gold transition">Domů</a></li>
-                        <li><a href="index.html#program" class="hover:text-gold transition">Program</a></li>
+                        <li><a href="program.html" class="hover:text-gold transition">Program</a></li>
                         <li><a href="info.html" class="hover:text-gold transition">Praktické info</a></li>
                         <li><a href="mapa.html" class="hover:text-gold transition">Mapa areálu</a></li>
                     </ul>
