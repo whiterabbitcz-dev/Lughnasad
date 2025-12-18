@@ -24,9 +24,16 @@
     <meta name="twitter:description" content="Zažijte autentickou keltskou kulturu v Nasavrkách. 31. července - 2. srpna 2026.">
     <meta name="twitter:image" content="https://lughnasad.cz/images/hero_main.jpg">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
-    <link rel="apple-touch-icon" href="images/logo.svg">
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg?v=2">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Lughnasad">
+    <meta name="theme-color" content="#191919">
     
     <!-- Preload Critical Assets -->
     <link rel="preload" href="images/hero_main.jpg" as="image">
@@ -46,9 +53,10 @@
                 extend: {
                     colors: {
                         'paper': '#F2EFE9',
-                        'ink-black': '#1A1512',
-                        'blood-red': '#8B0000',
-                        'gold': '#EBC86E',
+                        'ink-black': '#191919',
+                        'blood-red': '#dc1200',
+                        'gold': '#f5bc33',
+                        'celtic-green': '#165637',
                     },
                     fontFamily: {
                         'heading': ['"Crimson Pro"', 'serif'],
@@ -79,16 +87,16 @@
         
         /* Hard Comic Border */
         .comic-border {
-            border: 2px solid #1A1512;
+            border: 2px solid #191919;
         }
         
         /* Hard Shadow Effect */
         .comic-shadow {
-            box-shadow: 5px 5px 0px #1A1512;
+            box-shadow: 5px 5px 0px #191919;
         }
         
         .comic-shadow-hover:hover {
-            box-shadow: 3px 3px 0px #1A1512;
+            box-shadow: 3px 3px 0px #191919;
             transform: translate(2px, 2px);
             transition: all 0.1s ease;
         }
@@ -96,21 +104,21 @@
         /* Comic Panel Box */
         .comic-panel {
             background: white;
-            border: 2px solid #1A1512;
-            box-shadow: 5px 5px 0px #1A1512;
+            border: 2px solid #191919;
+            box-shadow: 5px 5px 0px #191919;
         }
         
         /* Gold Marker Highlight */
         .gold-marker {
-            background: linear-gradient(180deg, transparent 50%, #EBC86E 50%);
+            background: linear-gradient(180deg, transparent 50%, #f5bc33 50%);
             padding: 0 4px;
         }
         
         /* Tarot Card Style */
         .tarot-card {
             background: white;
-            border: 2px solid #1A1512;
-            box-shadow: 5px 5px 0px #1A1512;
+            border: 2px solid #191919;
+            box-shadow: 5px 5px 0px #191919;
             transition: transform 0.2s ease;
         }
         
@@ -149,8 +157,8 @@
         
         /* Countdown Timer */
         .countdown-item {
-            background: #1A1512;
-            color: #EBC86E;
+            background: #191919;
+            color: #f5bc33;
             min-width: 80px;
         }
         
@@ -162,7 +170,7 @@
         
         /* FAQ Accordion */
         .faq-item {
-            border-bottom: 2px solid #1A1512;
+            border-bottom: 2px solid #191919;
         }
         
         .faq-question {
@@ -171,7 +179,7 @@
         }
         
         .faq-question:hover {
-            background-color: rgba(235, 200, 110, 0.1);
+            background-color: rgba(245, 188, 51, 0.1);
         }
         
         .faq-answer {
@@ -180,7 +188,7 @@
             transition: max-height 0.3s ease-out, padding 0.3s ease-out;
         }
         
-        .faq-answer.open {
+        .faq-item:hover .faq-answer {
             max-height: 500px;
             padding-bottom: 1rem;
         }
@@ -189,7 +197,7 @@
             transition: transform 0.3s ease;
         }
         
-        .faq-toggle.open {
+        .faq-item:hover .faq-toggle {
             transform: rotate(45deg);
         }
         
@@ -216,7 +224,7 @@
             top: -10px;
             left: 10px;
             font-size: 4rem;
-            color: #EBC86E;
+            color: #f5bc33;
             font-family: 'Crimson Pro', serif;
             line-height: 1;
             opacity: 0.5;
@@ -242,7 +250,7 @@
         }
         
         .program-tab.active {
-            background-color: #8B0000;
+            background-color: #dc1200;
             color: white;
         }
         
@@ -290,7 +298,7 @@
         }
         
         .favorite-btn.active {
-            color: #8B0000;
+            color: #dc1200;
             animation: heartbeat 0.3s ease;
         }
         
@@ -335,8 +343,8 @@
             position: absolute;
             top: -40px;
             left: 0;
-            background: #EBC86E;
-            color: #1A1512;
+            background: #f5bc33;
+            color: #191919;
             padding: 8px 16px;
             z-index: 100;
             transition: top 0.3s;
@@ -352,7 +360,7 @@
     <a href="#main-content" class="skip-link font-heading">Přeskočit na obsah</a>
 
     <!-- STICKY HEADER -->
-    <header class="sticky top-0 z-40 bg-[#1A1512]">
+    <header class="sticky top-0 z-40 bg-[#191919]">
         <div class="container mx-auto px-4 py-4">
             <div class="relative flex items-center justify-between">
                 <!-- Logo/Home Link -->
@@ -430,7 +438,7 @@
         <div class="relative z-10 text-center px-4 -translate-y-8 md:-translate-y-12 lg:-translate-y-16">
             <!-- H1: LUGHNASAD (Huge, Gold) -->
             <h1 class="text-7xl md:text-9xl lg:text-[12rem] font-heading text-gold mb-4" 
-                style="text-shadow: 4px 4px 0px #1A1512, 8px 8px 0px rgba(0, 0, 0, 0.5);">
+                style="text-shadow: 4px 4px 0px #191919, 8px 8px 0px rgba(0, 0, 0, 0.5);">
                 LUGHNASAD
             </h1>
             
@@ -444,15 +452,15 @@
             <div class="flex justify-center mb-8">
                 <div class="bg-paper/90 px-8 md:px-12 py-6 comic-border comic-shadow text-center">
                     <p class="text-2xl md:text-4xl font-heading text-ink-black">
-                        31. 7. – 2. 8. 2026 | NASAVRKY
+                        31. 7. – 1. 8. 2026 | ZEMĚ KELTŮ, NASAVRKY
                     </p>
                 </div>
             </div>
             
             <!-- Countdown Timer -->
             <div class="mt-4">
-                <p class="text-white font-heading text-lg md:text-xl mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
-                    DO FESTIVALU ZBÝVÁ
+                <p class="text-white font-heading text-base md:text-lg mb-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                    DO 20. ROČNÍKU FESTIVALU ZBÝVÁ
                 </p>
                 <div class="flex justify-center gap-2 md:gap-4" id="countdown">
                     <div class="countdown-item p-3 md:p-4 comic-border text-center">
@@ -510,10 +518,10 @@
                     
                     <div class="text-center mt-8">
                         <p class="text-lg md:text-xl font-bold text-blood-red">
-                            📅 31. července - 2. srpna 2026
+                            📅 31. července - 1. srpna 2026
                         </p>
                         <p class="text-lg md:text-xl font-bold text-blood-red">
-                            📍 Nasavrky, Česká republika
+                            📍 Země Keltů, Nasavrky
                         </p>
                     </div>
                 </div>
@@ -533,44 +541,84 @@
                 LUGHNASAD V ČÍSLECH
             </h2>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
                 <!-- Stat 1 -->
-                <div class="tarot-card p-6 text-center">
-                    <div class="text-6xl md:text-7xl font-heading text-blood-red mb-3">
-                        2594
+                <div class="tarot-card p-4 md:p-6 text-center">
+                    <div class="text-5xl md:text-6xl font-heading text-blood-red mb-2">
+                        22
                     </div>
-                    <div class="text-ink-black font-body text-sm md:text-base uppercase tracking-wide font-bold">
-                        Návštěvníků
+                    <div class="text-ink-black font-body text-xs md:text-sm uppercase tracking-wide font-bold">
+                        Odborných přednášek
                     </div>
                 </div>
                 
                 <!-- Stat 2 -->
-                <div class="tarot-card p-6 text-center">
-                    <div class="text-6xl md:text-7xl font-heading text-blood-red mb-3">
-                        269
+                <div class="tarot-card p-4 md:p-6 text-center">
+                    <div class="text-5xl md:text-6xl font-heading text-blood-red mb-2">
+                        7
                     </div>
-                    <div class="text-ink-black font-body text-sm md:text-base uppercase tracking-wide font-bold">
-                        Účinkujících
+                    <div class="text-ink-black font-body text-xs md:text-sm uppercase tracking-wide font-bold">
+                        Workshopů
                     </div>
                 </div>
                 
                 <!-- Stat 3 -->
-                <div class="tarot-card p-6 text-center">
-                    <div class="text-6xl md:text-7xl font-heading text-blood-red mb-3">
-                        59
+                <div class="tarot-card p-4 md:p-6 text-center">
+                    <div class="text-5xl md:text-6xl font-heading text-blood-red mb-2">
+                        4
                     </div>
-                    <div class="text-ink-black font-body text-sm md:text-base uppercase tracking-wide font-bold">
-                        Obyvatel
+                    <div class="text-ink-black font-body text-xs md:text-sm uppercase tracking-wide font-bold">
+                        Aktivity pro děti
                     </div>
                 </div>
                 
                 <!-- Stat 4 -->
-                <div class="tarot-card p-6 text-center">
-                    <div class="text-6xl md:text-7xl font-heading text-blood-red mb-3">
-                        22
+                <div class="tarot-card p-4 md:p-6 text-center">
+                    <div class="text-5xl md:text-6xl font-heading text-blood-red mb-2">
+                        10
                     </div>
-                    <div class="text-ink-black font-body text-sm md:text-base uppercase tracking-wide font-bold">
-                        Workshopů
+                    <div class="text-ink-black font-body text-xs md:text-sm uppercase tracking-wide font-bold">
+                        Kapel
+                    </div>
+                </div>
+                
+                <!-- Stat 5 -->
+                <div class="tarot-card p-4 md:p-6 text-center">
+                    <div class="text-5xl md:text-6xl font-heading text-blood-red mb-2">
+                        200
+                    </div>
+                    <div class="text-ink-black font-body text-xs md:text-sm uppercase tracking-wide font-bold">
+                        Reenactorů
+                    </div>
+                </div>
+                
+                <!-- Stat 6 -->
+                <div class="tarot-card p-4 md:p-6 text-center">
+                    <div class="text-5xl md:text-6xl font-heading text-blood-red mb-2">
+                        20+
+                    </div>
+                    <div class="text-ink-black font-body text-xs md:text-sm uppercase tracking-wide font-bold">
+                        Skupin
+                    </div>
+                </div>
+                
+                <!-- Stat 7 -->
+                <div class="tarot-card p-4 md:p-6 text-center">
+                    <div class="text-5xl md:text-6xl font-heading text-blood-red mb-2">
+                        100
+                    </div>
+                    <div class="text-ink-black font-body text-xs md:text-sm uppercase tracking-wide font-bold">
+                        Dobrovolníků
+                    </div>
+                </div>
+                
+                <!-- Stat 8 -->
+                <div class="tarot-card p-4 md:p-6 text-center">
+                    <div class="text-5xl md:text-6xl font-heading text-blood-red mb-2">
+                        269
+                    </div>
+                    <div class="text-ink-black font-body text-xs md:text-sm uppercase tracking-wide font-bold">
+                        Dětí ve hře
                     </div>
                 </div>
             </div>
@@ -932,7 +980,7 @@
             <div class="max-w-3xl mx-auto">
                 <!-- FAQ Item 1 -->
                 <div class="faq-item bg-paper mb-4 comic-border">
-                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" onclick="toggleFaq(this)">
+                    <div class="faq-question p-4 md:p-6 flex justify-between items-center">
                         <h3 class="font-heading text-lg md:text-xl text-ink-black pr-4">
                             KDE SE FESTIVAL KONÁ?
                         </h3>
@@ -945,7 +993,7 @@
                 
                 <!-- FAQ Item 2 -->
                 <div class="faq-item bg-paper mb-4 comic-border">
-                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" onclick="toggleFaq(this)">
+                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" >
                         <h3 class="font-heading text-lg md:text-xl text-ink-black pr-4">
                             KOLIK STOJÍ VSTUPNÉ?
                         </h3>
@@ -958,7 +1006,7 @@
                 
                 <!-- FAQ Item 3 -->
                 <div class="faq-item bg-paper mb-4 comic-border">
-                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" onclick="toggleFaq(this)">
+                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" >
                         <h3 class="font-heading text-lg md:text-xl text-ink-black pr-4">
                             JE FESTIVAL VHODNÝ PRO DĚTI?
                         </h3>
@@ -971,7 +1019,7 @@
                 
                 <!-- FAQ Item 4 -->
                 <div class="faq-item bg-paper mb-4 comic-border">
-                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" onclick="toggleFaq(this)">
+                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" >
                         <h3 class="font-heading text-lg md:text-xl text-ink-black pr-4">
                             MOHU NA FESTIVAL SE PSEM?
                         </h3>
@@ -984,7 +1032,7 @@
                 
                 <!-- FAQ Item 5 -->
                 <div class="faq-item bg-paper mb-4 comic-border">
-                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" onclick="toggleFaq(this)">
+                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" >
                         <h3 class="font-heading text-lg md:text-xl text-ink-black pr-4">
                             JAK SE MOHU STÁT DOBROVOLNÍKEM?
                         </h3>
@@ -997,7 +1045,7 @@
                 
                 <!-- FAQ Item 6 -->
                 <div class="faq-item bg-paper comic-border">
-                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" onclick="toggleFaq(this)">
+                    <div class="faq-question p-4 md:p-6 flex justify-between items-center" >
                         <h3 class="font-heading text-lg md:text-xl text-ink-black pr-4">
                             BUDE K DISPOZICI OBČERSTVENÍ?
                         </h3>
@@ -1020,10 +1068,10 @@
     <section id="vstupenky" class="py-16 md:py-24 bg-blood-red">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-5xl md:text-7xl font-heading text-white mb-8">
-                VSTUP DO KRONIKY
+                STAŇ SE SOUČÁSTÍ LEGENDY
             </h2>
             <p class="text-xl md:text-2xl font-body text-white/90 mb-12 max-w-3xl mx-auto">
-                Staň se součástí legendy. Vstupenky na Lughnasad 2026 budou v prodeji od ledna 2026.
+                Vstupenky na Lughnasad 2026 budou v prodeji od ledna 2026.
             </p>
             
             <a href="#kontakt" class="inline-block bg-gold text-ink-black px-12 py-4 font-heading text-xl md:text-2xl comic-border comic-shadow comic-shadow-hover">
@@ -1324,25 +1372,6 @@
         // Update countdown every second
         updateCountdown();
         setInterval(updateCountdown, 1000);
-        
-        // =====================
-        // FAQ ACCORDION
-        // =====================
-        function toggleFaq(element) {
-            const answer = element.nextElementSibling;
-            const toggle = element.querySelector('.faq-toggle');
-            
-            // Close all other FAQs
-            document.querySelectorAll('.faq-answer.open').forEach(item => {
-                if (item !== answer) {
-                    item.classList.remove('open');
-                    item.previousElementSibling.querySelector('.faq-toggle').classList.remove('open');
-                }
-            });
-            
-            answer.classList.toggle('open');
-            toggle.classList.toggle('open');
-        }
         
         // =====================
         // HOMEPAGE "MY PROGRAM" DISPLAY

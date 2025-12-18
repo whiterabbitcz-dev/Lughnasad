@@ -1,0 +1,18 @@
+{
+  "appId": "cz.lughnasad.app",
+  "appName": "Lughnasad",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https"
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "backgroundColor": "#1A1512"
+  },
+  "android": {
+    "backgroundColor": "#1A1512"
+  }
+}
+
+
+

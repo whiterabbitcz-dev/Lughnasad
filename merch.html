@@ -18,9 +18,14 @@
     <meta property="og:description" content="Oficiální festivalové zboží Lughnasad 2026.">
     <meta property="og:image" content="https://lughnasad.cz/images/hero_main.jpg">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
-    <link rel="apple-touch-icon" href="images/logo.svg">
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg?v=2">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Lughnasad">
+    <meta name="theme-color" content="#191919">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,9 +41,10 @@
                 extend: {
                     colors: {
                         'paper': '#F2EFE9',
-                        'ink-black': '#1A1512',
-                        'blood-red': '#8B0000',
-                        'gold': '#EBC86E',
+                        'ink-black': '#191919',
+                        'blood-red': '#dc1200',
+                        'gold': '#f5bc33',
+                        'celtic-green': '#165637',
                     },
                     fontFamily: {
                         'heading': ['"Crimson Pro"', 'serif'],
@@ -66,40 +72,40 @@
         }
         
         .comic-border {
-            border: 2px solid #1A1512;
+            border: 2px solid #191919;
         }
         
         .comic-shadow {
-            box-shadow: 5px 5px 0px #1A1512;
+            box-shadow: 5px 5px 0px #191919;
         }
         
         .comic-shadow-hover:hover {
-            box-shadow: 3px 3px 0px #1A1512;
+            box-shadow: 3px 3px 0px #191919;
             transform: translate(2px, 2px);
             transition: all 0.1s ease;
         }
         
         .comic-panel {
             background: white;
-            border: 2px solid #1A1512;
-            box-shadow: 5px 5px 0px #1A1512;
+            border: 2px solid #191919;
+            box-shadow: 5px 5px 0px #191919;
         }
         
         .gold-marker {
-            background: linear-gradient(180deg, transparent 50%, #EBC86E 50%);
+            background: linear-gradient(180deg, transparent 50%, #f5bc33 50%);
             padding: 0 4px;
         }
         
         .product-card {
             background: white;
-            border: 2px solid #1A1512;
-            box-shadow: 5px 5px 0px #1A1512;
+            border: 2px solid #191919;
+            box-shadow: 5px 5px 0px #191919;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         
         .product-card:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0px #1A1512;
+            box-shadow: 7px 7px 0px #191919;
         }
         
         /* Flag Flutter Animation */
@@ -120,8 +126,8 @@
             position: absolute;
             top: -40px;
             left: 0;
-            background: #EBC86E;
-            color: #1A1512;
+            background: #f5bc33;
+            color: #191919;
             padding: 8px 16px;
             z-index: 100;
             transition: top 0.3s;
@@ -136,7 +142,7 @@
         }
         
         .size-btn:hover, .size-btn.active {
-            background-color: #8B0000;
+            background-color: #dc1200;
             color: white;
         }
     </style>
@@ -146,7 +152,7 @@
     <a href="#main-content" class="skip-link font-heading">Přeskočit na obsah</a>
 
     <!-- STICKY HEADER -->
-    <header class="sticky top-0 z-40 bg-[#1A1512]">
+    <header class="sticky top-0 z-40 bg-[#191919]">
         <div class="container mx-auto px-4 py-4">
             <div class="relative flex items-center justify-between">
                 <!-- Logo/Home Link -->
