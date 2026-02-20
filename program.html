@@ -121,38 +121,39 @@
     <header class="sticky top-0 z-40 bg-celtic-green">
         <div class="container mx-auto px-4 py-4">
             <div class="relative flex items-center justify-between">
-                <a href="index.html" class="flex items-center gap-3">
-                    <img src="images/logo.svg?v=2" alt="Lughnasad" class="h-10 w-auto">
-                    <span class="hidden md:block text-gold font-heading text-lg">LUGHNASAD</span>
+                <a href="index.html" class="flex items-center">
+                    <img src="images/LughnasadCZ_logo_hlavni.png" alt="Lughnasad - Mezinárodní festival keltské kultury" class="h-10 md:h-12 w-auto brightness-0 invert">
                 </a>
                 
                 <nav class="hidden md:flex items-center space-x-6">
-                    <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">O Festivalu</a>
+                    <a href="o-festivalu.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">O Festivalu</a>
                     <a href="program.html" class="text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">Program</a>
-                    <a href="info.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">Info</a>
-                    <a href="mapa.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">Mapa</a>
+                    <a href="vstupenky.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">Vstupenky</a>
                     <a href="merch.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">Merch</a>
+                    <a href="mapa.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">Mapa</a>
                     <a href="index.html#faq" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">FAQ</a>
+                    <a href="info.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">Info</a>
                 </nav>
                 
                 <div class="hidden md:flex">
-                    <a href="index.html#vstupenky" class="bg-blood-red text-white px-6 py-2 font-heading text-sm comic-border comic-shadow comic-shadow-hover">VSTUPENKY</a>
+                    <a href="vstupenky.html" class="bg-blood-red text-white px-6 py-2 font-heading text-sm comic-border comic-shadow comic-shadow-hover">VSTUPENKY</a>
                 </div>
                 
                 <div class="md:hidden flex items-center space-x-4">
-                    <a href="index.html#vstupenky" class="bg-blood-red text-white px-4 py-2 font-heading text-xs comic-border comic-shadow">VSTUPENKY</a>
+                    <a href="vstupenky.html" class="bg-blood-red text-white px-4 py-2 font-heading text-xs comic-border comic-shadow">VSTUPENKY</a>
                     <button class="text-white text-2xl" onclick="toggleMobileMenu()" aria-label="Otevřít menu" id="menu-toggle">☰</button>
                 </div>
             </div>
             
             <div id="mobile-menu" class="hidden md:hidden mt-4 bg-celtic-green/95 comic-border p-4 relative z-50">
                 <nav class="flex flex-col space-y-4">
-                    <a href="index.html#o-festivalu" class="text-white hover:text-gold font-body text-sm uppercase">O Festivalu</a>
+                    <a href="o-festivalu.html" class="text-white hover:text-gold font-body text-sm uppercase">O Festivalu</a>
                     <a href="program.html" class="text-gold font-body text-sm uppercase">Program</a>
-                    <a href="info.html" class="text-white hover:text-gold font-body text-sm uppercase">Info</a>
-                    <a href="mapa.html" class="text-white hover:text-gold font-body text-sm uppercase">Mapa</a>
+                    <a href="vstupenky.html" class="text-white hover:text-gold font-body text-sm uppercase">Vstupenky</a>
                     <a href="merch.html" class="text-white hover:text-gold font-body text-sm uppercase">Merch</a>
+                    <a href="mapa.html" class="text-white hover:text-gold font-body text-sm uppercase">Mapa</a>
                     <a href="index.html#faq" class="text-white hover:text-gold font-body text-sm uppercase">FAQ</a>
+                    <a href="info.html" class="text-white hover:text-gold font-body text-sm uppercase">Info</a>
                 </nav>
             </div>
         </div>
@@ -178,12 +179,24 @@
                 </div>
             </div>
             
+            <!-- Filters -->
+            <div class="max-w-4xl mx-auto mb-6">
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button class="filter-type-btn active px-4 py-2 font-heading text-xs comic-border bg-ink-black text-gold" data-type="all" onclick="filterProgram('all')">VŠE</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="ceremony" onclick="filterProgram('ceremony')">OBŘADY</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="battle" onclick="filterProgram('battle')">BITVY</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="workshop" onclick="filterProgram('workshop')">WORKSHOPY</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="music" onclick="filterProgram('music')">HUDBA</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="lecture" onclick="filterProgram('lecture')">PŘEDNÁŠKY</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="kids" onclick="filterProgram('kids')">PRO DĚTI</button>
+                </div>
+            </div>
+
             <!-- Day Tabs -->
             <div id="day-tabs" class="max-w-4xl mx-auto mb-8">
                 <div class="flex flex-wrap justify-center gap-2 md:gap-4">
                     <button class="program-tab active px-4 md:px-8 py-3 font-heading text-sm md:text-lg comic-border bg-paper text-ink-black" onclick="switchProgramDay('patek')">PÁTEK 31.7.</button>
                     <button class="program-tab px-4 md:px-8 py-3 font-heading text-sm md:text-lg comic-border bg-paper text-ink-black" onclick="switchProgramDay('sobota')">SOBOTA 1.8.</button>
-                    <button class="program-tab px-4 md:px-8 py-3 font-heading text-sm md:text-lg comic-border bg-paper text-ink-black" onclick="switchProgramDay('nedele')">NEDĚLE 2.8.</button>
                 </div>
             </div>
             
@@ -195,13 +208,17 @@
                             <h3 class="text-2xl md:text-3xl font-heading text-white text-center">PÁTEK 31. ČERVENCE 2026</h3>
                         </div>
                         <div class="divide-y-2 divide-ink-black/20">
-                            <div class="program-item p-4 md:p-6" data-event-id="pa-1400" data-day="patek" data-time="14:00" data-title="Otevření brány" data-subtitle="Registrace příchozích">
+                            <div class="program-item p-4 md:p-6" data-event-id="pa-1400" data-day="patek" data-time="14:00" data-title="Otevření brány" data-subtitle="Registrace příchozích" data-type="ceremony" data-location="Vstup">
                                 <div class="flex items-start gap-4">
                                     <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-1400')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">14:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">OTEVŘENÍ BRÁNY</h4>
                                         <p class="text-ink-black/60 text-sm">Registrace příchozích</p>
+                                        <div class="flex flex-wrap gap-2 mt-1">
+                                            <span class="text-xs bg-celtic-green/10 text-celtic-green px-2 py-0.5 rounded">📍 Vstup</span>
+                                            <span class="text-xs bg-gold/20 text-ink-black px-2 py-0.5 rounded">Obřad</span>
+                                        </div>
                                     </div>
                                     <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
@@ -209,13 +226,17 @@
                                     <p>Vítejte na Lughnasadu! U brány obdržíte festivalový náramek a mapu areálu.</p>
                                 </div>
                             </div>
-                            <div class="program-item p-4 md:p-6" data-event-id="pa-1600" data-day="patek" data-time="16:00" data-title="Slavnostní zahájení" data-subtitle="Rituál k Lughu">
+                            <div class="program-item p-4 md:p-6" data-event-id="pa-1600" data-day="patek" data-time="16:00" data-title="Slavnostní zahájení" data-subtitle="Rituál k Lughu" data-type="ceremony" data-location="Obřadní místo">
                                 <div class="flex items-start gap-4">
                                     <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-1600')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">16:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">SLAVNOSTNÍ ZAHÁJENÍ</h4>
                                         <p class="text-ink-black/60 text-sm">Rituál k Lughu</p>
+                                        <div class="flex flex-wrap gap-2 mt-1">
+                                            <span class="text-xs bg-celtic-green/10 text-celtic-green px-2 py-0.5 rounded">📍 Obřadní místo</span>
+                                            <span class="text-xs bg-gold/20 text-ink-black px-2 py-0.5 rounded">Obřad</span>
+                                        </div>
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
@@ -223,13 +244,17 @@
                                     <p>Tradiční keltský rituál k uctění boha Lugha, patrona řemesel a umění.</p>
                                 </div>
                             </div>
-                            <div class="program-item p-4 md:p-6" data-event-id="pa-1800" data-day="patek" data-time="18:00" data-title="Bojové ukázky" data-subtitle="Kmen Bójů">
+                            <div class="program-item p-4 md:p-6" data-event-id="pa-1800" data-day="patek" data-time="18:00" data-title="Bojové ukázky" data-subtitle="Kmen Bójů" data-type="battle" data-location="Amfiteátr">
                                 <div class="flex items-start gap-4">
                                     <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-1800')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">18:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">BOJOVÉ UKÁZKY</h4>
                                         <p class="text-ink-black/60 text-sm">Kmen Bójů</p>
+                                        <div class="flex flex-wrap gap-2 mt-1">
+                                            <span class="text-xs bg-celtic-green/10 text-celtic-green px-2 py-0.5 rounded">📍 Amfiteátr</span>
+                                            <span class="text-xs bg-blood-red/10 text-blood-red px-2 py-0.5 rounded">Bitva</span>
+                                        </div>
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
@@ -237,13 +262,17 @@
                                     <p>Autentické rekonstrukce keltského boje s komentářem historika.</p>
                                 </div>
                             </div>
-                            <div class="program-item p-4 md:p-6" data-event-id="pa-2100" data-day="patek" data-time="21:00" data-title="Ohňová show" data-subtitle="Druidova Družina">
+                            <div class="program-item p-4 md:p-6" data-event-id="pa-2100" data-day="patek" data-time="21:00" data-title="Ohňová show" data-subtitle="Druidova Družina" data-type="music" data-location="Hlavní pódium">
                                 <div class="flex items-start gap-4">
                                     <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-2100')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">21:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">OHŇOVÁ SHOW</h4>
                                         <p class="text-ink-black/60 text-sm">Druidova Družina</p>
+                                        <div class="flex flex-wrap gap-2 mt-1">
+                                            <span class="text-xs bg-celtic-green/10 text-celtic-green px-2 py-0.5 rounded">📍 Hlavní pódium</span>
+                                            <span class="text-xs bg-gold/20 text-ink-black px-2 py-0.5 rounded">Hudba</span>
+                                        </div>
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
@@ -262,13 +291,17 @@
                             <h3 class="text-2xl md:text-3xl font-heading text-white text-center">SOBOTA 1. SRPNA 2026</h3>
                         </div>
                         <div class="divide-y-2 divide-ink-black/20">
-                            <div class="program-item p-4 md:p-6" data-event-id="so-1000" data-day="sobota" data-time="10:00" data-title="Workshopy řemesel" data-subtitle="Kovářství, hrnčířství, tkaní">
+                            <div class="program-item p-4 md:p-6" data-event-id="so-1000" data-day="sobota" data-time="10:00" data-title="Workshopy řemesel" data-subtitle="Kovářství, hrnčířství, tkaní" data-type="workshop" data-location="Kovárna">
                                 <div class="flex items-start gap-4">
                                     <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-1000')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">10:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">WORKSHOPY ŘEMESEL</h4>
                                         <p class="text-ink-black/60 text-sm">Kovářství, hrnčířství, tkaní</p>
+                                        <div class="flex flex-wrap gap-2 mt-1">
+                                            <span class="text-xs bg-celtic-green/10 text-celtic-green px-2 py-0.5 rounded">📍 Kovárna</span>
+                                            <span class="text-xs bg-gold/20 text-ink-black px-2 py-0.5 rounded">Workshop</span>
+                                        </div>
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
@@ -276,13 +309,17 @@
                                     <p>Vyzkoušejte si tradiční keltská řemesla pod vedením zkušených mistrů.</p>
                                 </div>
                             </div>
-                            <div class="program-item p-4 md:p-6" data-event-id="so-1400" data-day="sobota" data-time="14:00" data-title="Turnaj Brothers at Arms" data-subtitle="Soutěž bojovníků">
+                            <div class="program-item p-4 md:p-6" data-event-id="so-1400" data-day="sobota" data-time="14:00" data-title="Turnaj Brothers at Arms" data-subtitle="Soutěž bojovníků" data-type="battle" data-location="Amfiteátr">
                                 <div class="flex items-start gap-4">
                                     <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-1400')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">14:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">TURNAJ BROTHERS AT ARMS</h4>
                                         <p class="text-ink-black/60 text-sm">Soutěž bojovníků</p>
+                                        <div class="flex flex-wrap gap-2 mt-1">
+                                            <span class="text-xs bg-celtic-green/10 text-celtic-green px-2 py-0.5 rounded">📍 Amfiteátr</span>
+                                            <span class="text-xs bg-blood-red/10 text-blood-red px-2 py-0.5 rounded">Bitva</span>
+                                        </div>
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
@@ -290,13 +327,17 @@
                                     <p>Mezinárodní turnaj v historickém šermu.</p>
                                 </div>
                             </div>
-                            <div class="program-item p-4 md:p-6" data-event-id="so-1600" data-day="sobota" data-time="16:00" data-title="Keltská hudba" data-subtitle="Daoine Ceilte">
+                            <div class="program-item p-4 md:p-6" data-event-id="so-1600" data-day="sobota" data-time="16:00" data-title="Keltská hudba" data-subtitle="Daoine Ceilte" data-type="music" data-location="Hlavní pódium">
                                 <div class="flex items-start gap-4">
                                     <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-1600')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">16:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">KELTSKÁ HUDBA</h4>
                                         <p class="text-ink-black/60 text-sm">Daoine Ceilte</p>
+                                        <div class="flex flex-wrap gap-2 mt-1">
+                                            <span class="text-xs bg-celtic-green/10 text-celtic-green px-2 py-0.5 rounded">📍 Hlavní pódium</span>
+                                            <span class="text-xs bg-gold/20 text-ink-black px-2 py-0.5 rounded">Hudba</span>
+                                        </div>
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
@@ -304,13 +345,17 @@
                                     <p>Tradiční keltské melodie. Dudy, harfa, flétny a bubny.</p>
                                 </div>
                             </div>
-                            <div class="program-item p-4 md:p-6" data-event-id="so-2000" data-day="sobota" data-time="20:00" data-title="Projekce komiksu BIATEC" data-subtitle="První prezentace">
+                            <div class="program-item p-4 md:p-6" data-event-id="so-2000" data-day="sobota" data-time="20:00" data-title="Projekce komiksu BIATEC" data-subtitle="První prezentace" data-type="lecture" data-location="Stan přednášek">
                                 <div class="flex items-start gap-4">
                                     <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-2000')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">20:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">PROJEKCE KOMIKSU BIATEC</h4>
                                         <p class="text-ink-black/60 text-sm">První prezentace</p>
+                                        <div class="flex flex-wrap gap-2 mt-1">
+                                            <span class="text-xs bg-celtic-green/10 text-celtic-green px-2 py-0.5 rounded">📍 Stan přednášek</span>
+                                            <span class="text-xs bg-gold/20 text-ink-black px-2 py-0.5 rounded">Přednáška</span>
+                                        </div>
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
@@ -322,72 +367,6 @@
                     </div>
                 </div>
                 
-                <!-- NEDĚLE -->
-                <div id="program-nedele" class="program-day">
-                    <div class="comic-panel overflow-hidden">
-                        <div class="bg-blood-red p-4">
-                            <h3 class="text-2xl md:text-3xl font-heading text-white text-center">NEDĚLE 2. SRPNA 2026</h3>
-                        </div>
-                        <div class="divide-y-2 divide-ink-black/20">
-                            <div class="program-item p-4 md:p-6" data-event-id="ne-1100" data-day="nedele" data-time="11:00" data-title="Ranní rituál" data-subtitle="Poděkování Matce Zemi">
-                                <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'ne-1100')">♡</button>
-                                    <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">11:00</span>
-                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
-                                        <h4 class="font-heading text-lg md:text-xl text-ink-black">RANNÍ RITUÁL</h4>
-                                        <p class="text-ink-black/60 text-sm">Poděkování Matce Zemi</p>
-                                    </div>
-                                    <span class="text-gold text-xl">▼</span>
-                                </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
-                                    <p>Klidný ranní rituál vděčnosti za úrodu a dary přírody.</p>
-                                </div>
-                            </div>
-                            <div class="program-item p-4 md:p-6" data-event-id="ne-1300" data-day="nedele" data-time="13:00" data-title="Dětský program" data-subtitle="Legendy o Biatecovi">
-                                <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'ne-1300')">♡</button>
-                                    <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">13:00</span>
-                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
-                                        <h4 class="font-heading text-lg md:text-xl text-ink-black">DĚTSKÝ PROGRAM</h4>
-                                        <p class="text-ink-black/60 text-sm">Legendy o Biatecovi</p>
-                                    </div>
-                                    <span class="text-gold text-xl">▼</span>
-                                </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
-                                    <p>Interaktivní program pro nejmenší návštěvníky.</p>
-                                </div>
-                            </div>
-                            <div class="program-item p-4 md:p-6" data-event-id="ne-1500" data-day="nedele" data-time="15:00" data-title="Závěrečná bitva" data-subtitle="Germáni vs. Keltové">
-                                <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'ne-1500')">♡</button>
-                                    <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">15:00</span>
-                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
-                                        <h4 class="font-heading text-lg md:text-xl text-ink-black">ZÁVĚREČNÁ BITVA</h4>
-                                        <p class="text-ink-black/60 text-sm">Germáni vs. Keltové</p>
-                                    </div>
-                                    <span class="text-gold text-xl">▼</span>
-                                </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
-                                    <p>Velkolepá rekonstrukce historické bitvy s desítkami bojovníků.</p>
-                                </div>
-                            </div>
-                            <div class="program-item p-4 md:p-6" data-event-id="ne-1800" data-day="nedele" data-time="18:00" data-title="Slavnostní ukončení" data-subtitle="Rozloučení s festivalem">
-                                <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'ne-1800')">♡</button>
-                                    <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">18:00</span>
-                                    <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
-                                        <h4 class="font-heading text-lg md:text-xl text-ink-black">SLAVNOSTNÍ UKONČENÍ</h4>
-                                        <p class="text-ink-black/60 text-sm">Rozloučení s festivalem</p>
-                                    </div>
-                                    <span class="text-gold text-xl">▼</span>
-                                </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
-                                    <p>Závěrečný ceremoniál s poděkováním všem účastníkům.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 
                 <!-- MŮJ PROGRAM -->
                 <div id="my-program-panel" class="hidden">
@@ -428,7 +407,7 @@
                     <h4 class="font-heading text-gold text-xl mb-4">KONTAKT</h4>
                     <ul class="font-body text-sm text-white/80 space-y-2">
                         <li>📧 <a href="mailto:info@lughnasad.cz" class="hover:text-gold transition">info@lughnasad.cz</a></li>
-                        <li>📍 Nasavrky, Česká republika</li>
+                        <li>📍 Země Keltů, Nasavrky</li>
                     </ul>
                 </div>
                 <div>
@@ -440,8 +419,18 @@
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gold/30 pt-6 text-center">
-                <p class="font-body text-sm text-white/60">© 2026 Lughnasad. Všechna práva vyhrazena.</p>
+            <div class="border-t border-gold/30 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="font-body text-sm text-white/60">© 2026 Lughnasad. Všechna práva vyhrazena.</p>
+                    <div class="flex flex-wrap justify-center gap-4 md:gap-6 font-body text-sm text-white/60">
+                        <a href="#" class="hover:text-gold transition">GDPR</a>
+                        <a href="index.html#kontakt" class="hover:text-gold transition">Kontakty</a>
+                        <a href="o-festivalu.html" class="hover:text-gold transition">O nás</a>
+                        <a href="#" class="hover:text-gold transition">Média</a>
+                        <a href="galerie.html" class="hover:text-gold transition">Galerie</a>
+                        <a href="partneri.html" class="hover:text-gold transition">Partneři</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -566,6 +555,28 @@
         }
         
         updateFavoritesUI();
+        
+        function filterProgram(type) {
+            document.querySelectorAll('.filter-type-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.remove('bg-ink-black', 'text-gold');
+                btn.classList.add('bg-paper', 'text-ink-black');
+            });
+            const activeBtn = document.querySelector(`.filter-type-btn[data-type="${type}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.classList.remove('bg-paper', 'text-ink-black');
+                activeBtn.classList.add('bg-ink-black', 'text-gold');
+            }
+            
+            document.querySelectorAll('.program-item').forEach(item => {
+                if (type === 'all' || item.dataset.type === type) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>
