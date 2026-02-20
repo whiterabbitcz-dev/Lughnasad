@@ -104,7 +104,15 @@
                     <a href="info.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">Info</a>
                 </nav>
                 
-                <div class="hidden md:flex">
+                <div class="hidden md:flex items-center gap-3">
+                    <div class="flex items-center gap-1">
+                        <a href="#" class="lang-flag active" title="Čeština">
+                            <svg width="24" height="16" viewBox="0 0 24 16" class="rounded-sm border border-white/30"><rect width="24" height="8" fill="white"/><rect y="8" width="24" height="8" fill="#D7141A"/><polygon points="0,0 12,8 0,16" fill="#11457E"/></svg>
+                        </a>
+                        <a href="#" class="lang-flag opacity-40 cursor-default" title="English (coming soon)">
+                            <svg width="24" height="16" viewBox="0 0 60 30" class="rounded-sm border border-white/30"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="white" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2"/><path d="M30,0 V30 M0,15 H60" stroke="white" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg>
+                        </a>
+                    </div>
                     <a href="#vstupenky" class="bg-blood-red text-white px-6 py-2 font-heading text-sm comic-border comic-shadow comic-shadow-hover">VSTUPENKY</a>
                 </div>
                 
@@ -124,6 +132,15 @@
                     <a href="index.html#faq" class="text-white hover:text-gold font-body text-sm uppercase">FAQ</a>
                     <a href="info.html" class="text-white hover:text-gold font-body text-sm uppercase">Info</a>
                 </nav>
+                <div class="flex items-center gap-3 pt-4 mt-4 border-t border-white/20">
+                    <a href="#" class="lang-flag active" title="Čeština">
+                        <svg width="28" height="18" viewBox="0 0 24 16" class="rounded-sm border border-white/30"><rect width="24" height="8" fill="white"/><rect y="8" width="24" height="8" fill="#D7141A"/><polygon points="0,0 12,8 0,16" fill="#11457E"/></svg>
+                    </a>
+                    <a href="#" class="lang-flag opacity-40 cursor-default" title="English (coming soon)">
+                        <svg width="28" height="18" viewBox="0 0 60 30" class="rounded-sm border border-white/30"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="white" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2"/><path d="M30,0 V30 M0,15 H60" stroke="white" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg>
+                    </a>
+                    <span class="text-white/40 text-xs font-body">EN coming soon</span>
+                </div>
             </div>
         </div>
     </header>
@@ -139,28 +156,59 @@
     <!-- MAIN CONTENT -->
     <main id="main-content" class="py-12 md:py-16">
         <div class="container mx-auto px-4">
-            
-            <!-- Ticket Purchase Section -->
-            <section id="vstupenky" class="max-w-4xl mx-auto mb-12">
+            <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- Nákup vstupenek -->
+            <section id="vstupenky">
                 <div class="comic-panel p-6 md:p-8">
                     <h2 class="text-2xl md:text-3xl font-heading text-blood-red mb-4">NÁKUP VSTUPENEK</h2>
-                    <p class="font-body text-ink-black mb-6">Pro nákup vstupenek využijte následující formulář nebo přímý odkaz: <a href="https://www.smsticket.cz" target="_blank" rel="noopener noreferrer" class="text-blood-red hover:underline font-bold">Smsticket.cz</a></p>
-                    <div class="comic-border overflow-hidden" style="min-height: 600px;">
-                        <iframe src="https://www.smsticket.cz/vstupenky/lughnasad" width="100%" height="800" frameborder="0" style="border: none;" title="Nákup vstupenek Lughnasad"></iframe>
+                    <p class="font-body text-ink-black mb-6">Pro nákup využijte přímý odkaz na prodejní portál Smsticket.cz:</p>
+                    <div class="text-center mb-6">
+                        <a href="https://www.smsticket.cz/vstupenky/64282-mezinarodni-festival-keltske-kultury-lughnasad-2026-zeme-keltu-nasavrky" target="_blank" rel="noopener noreferrer" class="inline-block bg-blood-red text-white px-10 py-4 font-heading text-lg md:text-xl comic-border comic-shadow comic-shadow-hover">
+                            KOUPIT VSTUPENKY NA SMSTICKET.CZ
+                        </a>
+                    </div>
+
+                    <div class="font-body text-ink-black space-y-4">
+                        <div class="bg-gold/10 p-4 comic-border">
+                            <p><strong>Zvýhodněná vstupenka</strong> se vztahuje na děti od 7 do 15 let, studenty do 26 let, důchodce nad 65 let, ZTP a ZTP/P.</p>
+                            <p class="mt-2">Děti do 6 let (včetně) mají na festival vstup <strong>ZDARMA</strong>.</p>
+                            <p>ZTP a ZTP/P mají vstupenku pro svůj doprovod <strong>ZDARMA</strong>.</p>
+                        </div>
+                        <p class="text-blood-red font-bold">Zvýhodněná cena v předprodeji pro všechny typy vstupenek pro rok 2026 platí do 23:59 10.7.2026.</p>
+                        <div class="bg-blood-red/10 p-4 comic-border">
+                            <p class="font-bold text-blood-red">POZOR! Abychom mohli udržet standard pohodlí a bezpečí, na který jste zvyklí, zavádíme pro nadcházející ročník omezený počet vstupenek. Ale žádný strach, i na tento ročník se vejdou všichni poutníci z roku 2025 a ještě další navíc.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Ticket Pricing Info -->
-            <section class="max-w-4xl mx-auto">
+            <!-- Předprodej vs na místě -->
+            <section>
                 <div class="comic-panel p-6 md:p-8">
-                    <h2 class="text-2xl md:text-3xl font-heading text-blood-red mb-4">CENÍK VSTUPENEK 2026</h2>
-                    
-                    <div class="font-body text-ink-black mb-6 space-y-2">
-                        <p><strong>Zvýhodněná cena</strong> platí pro: děti 7–15 let, studenty do 26 let, seniory 65+, držitele průkazu ZTP/P.</p>
-                        <p>Děti do 6 let mají vstup zdarma. Průvodce ZTP/P má vstup zdarma.</p>
-                        <p class="text-blood-red font-bold">Zvýhodněná cena v předprodeji pro všechny typy vstupenek pro rok 2026 platí do 23:59 10.7.2026</p>
+                    <h2 class="text-2xl md:text-3xl font-heading text-ink-black mb-4">NÁKUP V PŘEDPRODEJI VS PRODEJ NA MÍSTĚ</h2>
+                    <div class="font-body text-ink-black space-y-4">
+                        <p>Vstupenky je možné zakoupit v předprodeji přes portál Smsticket a během festivalových dní přímo na místě u vstupního stánku. Nabídka vstupenek se může lišit dle specifik jednotlivých typů.</p>
+                        <p>V předprodeji lze do předem stanoveného termínu koupit vstupenku za zvýhodněnou cenu a k tomu se vztahuje i benefit se slevou na nákup trička s aktuálním motivem festivalu. Těsně před festivalem se cena za vstupenky v předprodeji a cena za vstupenky na místě shoduje. Důležité je ale upozornit, že vstupenka zakoupená online šetří váš čas, jakmile dorazíte poprvé k branám festivalu.</p>
+                        <div class="grid md:grid-cols-2 gap-4 mt-2">
+                            <div class="bg-gold/10 p-4 comic-border">
+                                <h4 class="font-heading text-base text-blood-red mb-2">POUZE NA MÍSTĚ</h4>
+                                <p class="text-sm">Historický program (oddělené vstupenky pro pátek a sobotu)</p>
+                            </div>
+                            <div class="bg-gold/10 p-4 comic-border">
+                                <h4 class="font-heading text-base text-blood-red mb-2">POUZE V PŘEDPRODEJI</h4>
+                                <p class="text-sm">VIP vstupenka (do ukončení zvýhodněné ceny), dvoudenní rodinná vstupenka, Kelt tělem i duší</p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Ceník – běžné ceny -->
+            <section>
+                <div class="comic-panel p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-heading text-blood-red mb-2">BĚŽNÉ CENY</h2>
+                    <p class="font-body text-ink-black/60 text-sm mb-6">Na místě i online* (po ukončení prodeje za zvýhodněnou cenu)</p>
                     
                     <div class="overflow-x-auto">
                         <table class="w-full font-body text-ink-black comic-border">
@@ -172,30 +220,83 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="border-t-2 border-ink-black">
-                                    <td class="p-3 md:p-4 font-bold">Dvoudenní (pátek + sobota)</td>
+                                <tr class="border-t-2 border-ink-black bg-white">
+                                    <td class="p-3 md:p-4 font-bold">Dvoudenní – pátek a sobota</td>
                                     <td class="p-3 md:p-4 text-right">1 140 Kč</td>
                                     <td class="p-3 md:p-4 text-right">860 Kč</td>
                                 </tr>
-                                <tr class="border-t-2 border-ink-black">
-                                    <td class="p-3 md:p-4 font-bold">Jednodenní sobota</td>
+                                <tr class="border-t-2 border-ink-black bg-ink-black/5">
+                                    <td class="p-3 md:p-4 font-bold">Jednodenní – sobota</td>
                                     <td class="p-3 md:p-4 text-right">750 Kč</td>
                                     <td class="p-3 md:p-4 text-right">560 Kč</td>
                                 </tr>
-                                <tr class="border-t-2 border-ink-black">
-                                    <td class="p-3 md:p-4 font-bold">Jednodenní pátek</td>
+                                <tr class="border-t-2 border-ink-black bg-white">
+                                    <td class="p-3 md:p-4 font-bold">Jednodenní – pátek</td>
                                     <td class="p-3 md:p-4 text-right">675 Kč</td>
                                     <td class="p-3 md:p-4 text-right">510 Kč</td>
                                 </tr>
-                                <tr class="border-t-2 border-ink-black">
-                                    <td class="p-3 md:p-4 font-bold">Kelt tělem i duší</td>
-                                    <td class="p-3 md:p-4 text-right" colspan="2">1 400 Kč</td>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Kelt tělem i duší -->
+                    <div class="mt-8 bg-gold/10 p-4 md:p-6 comic-border">
+                        <h3 class="text-xl font-heading text-blood-red mb-2">KELT TĚLEM I DUŠÍ!</h3>
+                        <p class="font-body text-ink-black text-sm mb-3">Speciální vstupenka pro nadšené fanoušky festivalu Lughnasad, kteří chtějí akci maximálně podpořit. Vstupenka zahrnuje vstupné na oba festivalové dny.</p>
+                        <span class="font-heading text-2xl text-blood-red">1 400 Kč</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Historický program -->
+            <section>
+                <div class="comic-panel p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-heading text-ink-black mb-2">HISTORICKÝ PROGRAM</h2>
+                    <p class="font-body text-ink-black/60 text-sm mb-6">Prodej pouze na místě. Vstupenka určená pouze pro ty, kteří přijedou na denní program do uzavření bran oppida (viz <a href="program.html" class="text-blood-red hover:underline">Program</a>).</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full font-body text-ink-black comic-border">
+                            <thead>
+                                <tr class="bg-ink-black text-white">
+                                    <th class="p-3 md:p-4 text-left font-heading"></th>
+                                    <th class="p-3 md:p-4 text-right font-heading">PÁTEK</th>
+                                    <th class="p-3 md:p-4 text-right font-heading">SOBOTA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-t-2 border-ink-black bg-white">
+                                    <td class="p-3 md:p-4 font-bold">Základní</td>
+                                    <td class="p-3 md:p-4 text-right">410 Kč</td>
+                                    <td class="p-3 md:p-4 text-right">450 Kč</td>
+                                </tr>
+                                <tr class="border-t-2 border-ink-black bg-ink-black/5">
+                                    <td class="p-3 md:p-4 font-bold">Zvýhodněná</td>
+                                    <td class="p-3 md:p-4 text-right">300 Kč</td>
+                                    <td class="p-3 md:p-4 text-right">340 Kč</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </section>
+
+            <!-- Podpora + obchodní podmínky -->
+            <section>
+                <div class="bg-celtic-green comic-border p-6 md:p-8 text-center">
+                    <p class="font-heading text-xl md:text-2xl text-gold mb-4">KOUPÍ VSTUPENKY PODPORUJETE SAMOTNÉ KONÁNÍ FESTIVALU A JEHO ROZMANITÝ PROGRAM.</p>
+                    <a href="https://www.smsticket.cz/vstupenky/64282-mezinarodni-festival-keltske-kultury-lughnasad-2026-zeme-keltu-nasavrky" target="_blank" rel="noopener noreferrer" class="inline-block bg-blood-red text-white px-8 py-3 font-heading text-sm comic-border comic-shadow comic-shadow-hover mt-2">
+                        KOUPIT VSTUPENKY
+                    </a>
+                </div>
+            </section>
+
+            <section>
+                <p class="font-body text-ink-black/50 text-sm text-center">
+                    Obchodní podmínky portálu Smsticket najdete zde: <a href="https://www.smsticket.cz/obchodni-podminky" target="_blank" rel="noopener noreferrer" class="text-blood-red hover:underline">www.smsticket.cz/obchodni-podminky</a>
+                </p>
+            </section>
+
+            </div>
         </div>
     </main>
 
