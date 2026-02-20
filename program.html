@@ -99,13 +99,6 @@
         .program-detail { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
         .program-detail.open { max-height: 200px; }
         
-        .favorite-btn { cursor: pointer; transition: transform 0.2s ease, color 0.2s ease; user-select: none; }
-        .favorite-btn:hover { transform: scale(1.2); }
-        .favorite-btn.active { color: #dc1200; animation: heartbeat 0.3s ease; }
-        @keyframes heartbeat { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
-        
-        .my-program-item { transition: background-color 0.2s ease; }
-        .my-program-item:hover { background-color: rgba(235, 200, 110, 0.1); }
         
         .skip-link {
             position: absolute; top: -40px; left: 0; background: #f5bc33; color: #191919;
@@ -180,7 +173,7 @@
     <section class="bg-ink-black py-12 md:py-16">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl md:text-6xl font-heading text-gold mb-4" style="text-shadow: 3px 3px 0px rgba(0,0,0,0.5);">PROGRAM FESTIVALU</h1>
-            <p class="text-white/80 font-body text-lg max-w-2xl mx-auto">Klikněte na aktivitu pro více informací • Srdíčkem si přidejte do svého programu</p>
+            <p class="text-white/80 font-body text-lg max-w-2xl mx-auto">Klikněte na aktivitu pro více informací</p>
         </div>
     </section>
 
@@ -188,24 +181,31 @@
     <main id="main-content" class="py-8 md:py-12">
         <div class="container mx-auto px-4">
             
-            <!-- My Program Toggle -->
-            <div class="max-w-4xl mx-auto mb-6">
-                <div class="flex flex-wrap justify-center gap-4">
-                    <button id="show-all-program" class="px-6 py-2 font-heading text-sm comic-border bg-gold text-ink-black" onclick="showAllProgram()">📅 CELÝ PROGRAM</button>
-                    <button id="show-my-program" class="px-6 py-2 font-heading text-sm comic-border bg-paper text-ink-black" onclick="showMyProgram()">❤️ MŮJ PROGRAM <span id="favorites-count" class="ml-1 bg-blood-red text-white px-2 py-0.5 rounded-full text-xs">0</span></button>
+            <!-- Filters: Type -->
+            <div class="max-w-4xl mx-auto mb-4">
+                <p class="text-center font-heading text-sm text-ink-black/60 mb-2">DRUH AKTIVITY</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button class="filter-type-btn active px-4 py-2 font-heading text-xs comic-border bg-ink-black text-gold" data-type="all" onclick="filterProgram('type', 'all')">VŠE</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="ceremony" onclick="filterProgram('type', 'ceremony')">OBŘADY</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="battle" onclick="filterProgram('type', 'battle')">BITVY</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="workshop" onclick="filterProgram('type', 'workshop')">WORKSHOPY</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="music" onclick="filterProgram('type', 'music')">HUDBA</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="lecture" onclick="filterProgram('type', 'lecture')">PŘEDNÁŠKY</button>
+                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="kids" onclick="filterProgram('type', 'kids')">PRO DĚTI</button>
                 </div>
             </div>
             
-            <!-- Filters -->
+            <!-- Filters: Location -->
             <div class="max-w-4xl mx-auto mb-6">
+                <p class="text-center font-heading text-sm text-ink-black/60 mb-2">MÍSTO</p>
                 <div class="flex flex-wrap justify-center gap-2">
-                    <button class="filter-type-btn active px-4 py-2 font-heading text-xs comic-border bg-ink-black text-gold" data-type="all" onclick="filterProgram('all')">VŠE</button>
-                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="ceremony" onclick="filterProgram('ceremony')">OBŘADY</button>
-                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="battle" onclick="filterProgram('battle')">BITVY</button>
-                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="workshop" onclick="filterProgram('workshop')">WORKSHOPY</button>
-                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="music" onclick="filterProgram('music')">HUDBA</button>
-                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="lecture" onclick="filterProgram('lecture')">PŘEDNÁŠKY</button>
-                    <button class="filter-type-btn px-4 py-2 font-heading text-xs comic-border bg-paper text-ink-black" data-type="kids" onclick="filterProgram('kids')">PRO DĚTI</button>
+                    <button class="filter-loc-btn active px-3 py-1.5 font-heading text-xs comic-border bg-celtic-green text-white" data-location="all" onclick="filterProgram('location', 'all')">VŠE</button>
+                    <button class="filter-loc-btn px-3 py-1.5 font-heading text-xs comic-border bg-paper text-ink-black" data-location="Vstup" onclick="filterProgram('location', 'Vstup')">VSTUP</button>
+                    <button class="filter-loc-btn px-3 py-1.5 font-heading text-xs comic-border bg-paper text-ink-black" data-location="Amfiteátr" onclick="filterProgram('location', 'Amfiteátr')">AMFITEÁTR</button>
+                    <button class="filter-loc-btn px-3 py-1.5 font-heading text-xs comic-border bg-paper text-ink-black" data-location="Hlavní pódium" onclick="filterProgram('location', 'Hlavní pódium')">HLAVNÍ PÓDIUM</button>
+                    <button class="filter-loc-btn px-3 py-1.5 font-heading text-xs comic-border bg-paper text-ink-black" data-location="Obřadní místo" onclick="filterProgram('location', 'Obřadní místo')">OBŘADNÍ MÍSTO</button>
+                    <button class="filter-loc-btn px-3 py-1.5 font-heading text-xs comic-border bg-paper text-ink-black" data-location="Kovárna" onclick="filterProgram('location', 'Kovárna')">KOVÁRNA</button>
+                    <button class="filter-loc-btn px-3 py-1.5 font-heading text-xs comic-border bg-paper text-ink-black" data-location="Stan přednášek" onclick="filterProgram('location', 'Stan přednášek')">STAN PŘEDNÁŠEK</button>
                 </div>
             </div>
 
@@ -227,7 +227,6 @@
                         <div class="divide-y-2 divide-ink-black/20">
                             <div class="program-item p-4 md:p-6" data-event-id="pa-1400" data-day="patek" data-time="14:00" data-title="Otevření brány" data-subtitle="Registrace příchozích" data-type="ceremony" data-location="Vstup">
                                 <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-1400')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">14:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">OTEVŘENÍ BRÁNY</h4>
@@ -239,13 +238,12 @@
                                     </div>
                                     <span class="text-gold text-xl" onclick="toggleProgramDetail(this.parentElement.parentElement)">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[80px] md:pl-[96px] text-ink-black/80 font-body mt-2">
                                     <p>Vítejte na Lughnasadu! U brány obdržíte festivalový náramek a mapu areálu.</p>
                                 </div>
                             </div>
                             <div class="program-item p-4 md:p-6" data-event-id="pa-1600" data-day="patek" data-time="16:00" data-title="Slavnostní zahájení" data-subtitle="Rituál k Lughu" data-type="ceremony" data-location="Obřadní místo">
                                 <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-1600')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">16:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">SLAVNOSTNÍ ZAHÁJENÍ</h4>
@@ -257,13 +255,12 @@
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[80px] md:pl-[96px] text-ink-black/80 font-body mt-2">
                                     <p>Tradiční keltský rituál k uctění boha Lugha, patrona řemesel a umění.</p>
                                 </div>
                             </div>
                             <div class="program-item p-4 md:p-6" data-event-id="pa-1800" data-day="patek" data-time="18:00" data-title="Bojové ukázky" data-subtitle="Kmen Bójů" data-type="battle" data-location="Amfiteátr">
                                 <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-1800')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">18:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">BOJOVÉ UKÁZKY</h4>
@@ -275,13 +272,12 @@
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[80px] md:pl-[96px] text-ink-black/80 font-body mt-2">
                                     <p>Autentické rekonstrukce keltského boje s komentářem historika.</p>
                                 </div>
                             </div>
                             <div class="program-item p-4 md:p-6" data-event-id="pa-2100" data-day="patek" data-time="21:00" data-title="Ohňová show" data-subtitle="Druidova Družina" data-type="music" data-location="Hlavní pódium">
                                 <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'pa-2100')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">21:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">OHŇOVÁ SHOW</h4>
@@ -293,7 +289,7 @@
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[80px] md:pl-[96px] text-ink-black/80 font-body mt-2">
                                     <p>Mystická ohňová performance pod nočním nebem.</p>
                                 </div>
                             </div>
@@ -310,7 +306,6 @@
                         <div class="divide-y-2 divide-ink-black/20">
                             <div class="program-item p-4 md:p-6" data-event-id="so-1000" data-day="sobota" data-time="10:00" data-title="Workshopy řemesel" data-subtitle="Kovářství, hrnčířství, tkaní" data-type="workshop" data-location="Kovárna">
                                 <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-1000')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">10:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">WORKSHOPY ŘEMESEL</h4>
@@ -322,13 +317,12 @@
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[80px] md:pl-[96px] text-ink-black/80 font-body mt-2">
                                     <p>Vyzkoušejte si tradiční keltská řemesla pod vedením zkušených mistrů.</p>
                                 </div>
                             </div>
                             <div class="program-item p-4 md:p-6" data-event-id="so-1400" data-day="sobota" data-time="14:00" data-title="Turnaj Brothers at Arms" data-subtitle="Soutěž bojovníků" data-type="battle" data-location="Amfiteátr">
                                 <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-1400')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">14:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">TURNAJ BROTHERS AT ARMS</h4>
@@ -340,13 +334,12 @@
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[80px] md:pl-[96px] text-ink-black/80 font-body mt-2">
                                     <p>Mezinárodní turnaj v historickém šermu.</p>
                                 </div>
                             </div>
                             <div class="program-item p-4 md:p-6" data-event-id="so-1600" data-day="sobota" data-time="16:00" data-title="Keltská hudba" data-subtitle="Daoine Ceilte" data-type="music" data-location="Hlavní pódium">
                                 <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-1600')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">16:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">KELTSKÁ HUDBA</h4>
@@ -358,13 +351,12 @@
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[80px] md:pl-[96px] text-ink-black/80 font-body mt-2">
                                     <p>Tradiční keltské melodie. Dudy, harfa, flétny a bubny.</p>
                                 </div>
                             </div>
                             <div class="program-item p-4 md:p-6" data-event-id="so-2000" data-day="sobota" data-time="20:00" data-title="Projekce komiksu BIATEC" data-subtitle="První prezentace" data-type="lecture" data-location="Stan přednášek">
                                 <div class="flex items-start gap-4">
-                                    <button class="favorite-btn text-2xl text-ink-black/30" onclick="toggleFavorite(event, 'so-2000')">♡</button>
                                     <span class="text-blood-red font-heading text-xl md:text-2xl min-w-[80px]">20:00</span>
                                     <div class="flex-1" onclick="toggleProgramDetail(this.parentElement.parentElement)">
                                         <h4 class="font-heading text-lg md:text-xl text-ink-black">PROJEKCE KOMIKSU BIATEC</h4>
@@ -376,7 +368,7 @@
                                     </div>
                                     <span class="text-gold text-xl">▼</span>
                                 </div>
-                                <div class="program-detail pl-[96px] md:pl-[112px] text-ink-black/80 font-body mt-2">
+                                <div class="program-detail pl-[80px] md:pl-[96px] text-ink-black/80 font-body mt-2">
                                     <p>Exkluzivní první veřejná prezentace komiksu BIATEC.</p>
                                 </div>
                             </div>
@@ -385,20 +377,6 @@
                 </div>
                 
                 
-                <!-- MŮJ PROGRAM -->
-                <div id="my-program-panel" class="hidden">
-                    <div class="comic-panel overflow-hidden">
-                        <div class="bg-gold p-4">
-                            <h3 class="text-2xl md:text-3xl font-heading text-ink-black text-center">❤️ MŮJ PROGRAM</h3>
-                        </div>
-                        <div id="my-program-list" class="divide-y-2 divide-ink-black/20">
-                            <div class="my-program-empty p-8 text-center">
-                                <p class="text-ink-black/50 font-body text-lg">Zatím nemáte žádné oblíbené akce.</p>
-                                <p class="text-ink-black/40 font-body text-sm mt-2">Klikněte na srdíčko ♡ u akce pro přidání do programu.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
@@ -458,10 +436,7 @@
             menu.classList.toggle('hidden');
         }
         
-        let isShowingMyProgram = false;
-        
         function switchProgramDay(day) {
-            if (isShowingMyProgram) showAllProgram();
             document.querySelectorAll('.program-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.program-day').forEach(d => d.classList.remove('active'));
             event.target.classList.add('active');
@@ -477,124 +452,97 @@
             }
         }
         
-        let favorites = JSON.parse(localStorage.getItem('lughnasad-favorites') || '[]');
+        let activeTypeFilter = 'all';
+        let activeLocFilter = 'all';
         
-        function updateFavoritesUI() {
-            document.getElementById('favorites-count').textContent = favorites.length;
-            document.querySelectorAll('.favorite-btn').forEach(btn => {
-                const eventId = btn.closest('.program-item')?.dataset.eventId;
-                if (eventId && favorites.includes(eventId)) {
-                    btn.classList.add('active');
-                    btn.textContent = '♥';
-                } else {
-                    btn.classList.remove('active');
-                    btn.textContent = '♡';
+        function filterProgram(filterKind, value) {
+            if (filterKind === 'type') {
+                activeTypeFilter = value;
+                document.querySelectorAll('.filter-type-btn').forEach(btn => {
+                    btn.classList.remove('active', 'bg-ink-black', 'text-gold');
+                    btn.classList.add('bg-paper', 'text-ink-black');
+                });
+                const activeBtn = document.querySelector(`.filter-type-btn[data-type="${value}"]`);
+                if (activeBtn) {
+                    activeBtn.classList.add('active');
+                    activeBtn.classList.remove('bg-paper', 'text-ink-black');
+                    activeBtn.classList.add('bg-ink-black', 'text-gold');
                 }
-            });
-            updateMyProgramList();
-        }
-        
-        function toggleFavorite(event, eventId) {
-            event.stopPropagation();
-            const btn = event.target;
-            if (favorites.includes(eventId)) {
-                favorites = favorites.filter(id => id !== eventId);
-                btn.classList.remove('active');
-                btn.textContent = '♡';
-            } else {
-                favorites.push(eventId);
-                btn.classList.add('active');
-                btn.textContent = '♥';
-            }
-            localStorage.setItem('lughnasad-favorites', JSON.stringify(favorites));
-            document.getElementById('favorites-count').textContent = favorites.length;
-            if (isShowingMyProgram) updateMyProgramList();
-        }
-        
-        function showAllProgram() {
-            isShowingMyProgram = false;
-            document.getElementById('show-all-program').classList.remove('bg-paper');
-            document.getElementById('show-all-program').classList.add('bg-gold');
-            document.getElementById('show-my-program').classList.remove('bg-gold');
-            document.getElementById('show-my-program').classList.add('bg-paper');
-            document.getElementById('day-tabs').classList.remove('hidden');
-            document.querySelectorAll('.program-day').forEach(day => day.classList.remove('hidden'));
-            document.getElementById('my-program-panel').classList.add('hidden');
-            document.querySelectorAll('.program-day').forEach(d => d.classList.remove('active'));
-            document.getElementById('program-patek').classList.add('active');
-            document.querySelectorAll('.program-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelector('.program-tab').classList.add('active');
-        }
-        
-        function showMyProgram() {
-            isShowingMyProgram = true;
-            document.getElementById('show-my-program').classList.remove('bg-paper');
-            document.getElementById('show-my-program').classList.add('bg-gold');
-            document.getElementById('show-all-program').classList.remove('bg-gold');
-            document.getElementById('show-all-program').classList.add('bg-paper');
-            document.getElementById('day-tabs').classList.add('hidden');
-            document.querySelectorAll('.program-day').forEach(day => day.classList.add('hidden'));
-            document.getElementById('my-program-panel').classList.remove('hidden');
-            updateMyProgramList();
-        }
-        
-        function updateMyProgramList() {
-            const listEl = document.getElementById('my-program-list');
-            if (favorites.length === 0) {
-                listEl.innerHTML = '<div class="my-program-empty p-8 text-center"><p class="text-ink-black/50 font-body text-lg">Zatím nemáte žádné oblíbené akce.</p><p class="text-ink-black/40 font-body text-sm mt-2">Klikněte na srdíčko ♡ u akce pro přidání.</p></div>';
-                return;
-            }
-            const dayOrder = { 'patek': 1, 'sobota': 2, 'nedele': 3 };
-            const dayNames = { 'patek': 'Pátek', 'sobota': 'Sobota', 'nedele': 'Neděle' };
-            const items = [];
-            favorites.forEach(eventId => {
-                const item = document.querySelector(`.program-item[data-event-id="${eventId}"]`);
-                if (item) items.push({ id: eventId, day: item.dataset.day, time: item.dataset.time, title: item.dataset.title, subtitle: item.dataset.subtitle });
-            });
-            items.sort((a, b) => (dayOrder[a.day] !== dayOrder[b.day]) ? dayOrder[a.day] - dayOrder[b.day] : a.time.localeCompare(b.time));
-            let html = '', currentDay = '';
-            items.forEach(item => {
-                if (item.day !== currentDay) {
-                    currentDay = item.day;
-                    html += `<div class="bg-blood-red/10 p-3"><h4 class="font-heading text-blood-red text-sm uppercase">${dayNames[item.day]}</h4></div>`;
+            } else if (filterKind === 'location') {
+                activeLocFilter = value;
+                document.querySelectorAll('.filter-loc-btn').forEach(btn => {
+                    btn.classList.remove('active', 'bg-celtic-green', 'text-white');
+                    btn.classList.add('bg-paper', 'text-ink-black');
+                });
+                const activeBtn = document.querySelector(`.filter-loc-btn[data-location="${value}"]`);
+                if (activeBtn) {
+                    activeBtn.classList.add('active');
+                    activeBtn.classList.remove('bg-paper', 'text-ink-black');
+                    activeBtn.classList.add('bg-celtic-green', 'text-white');
                 }
-                html += `<div class="my-program-item p-4 flex items-center gap-4"><button class="favorite-btn active text-2xl text-blood-red" onclick="removeFavorite(event, '${item.id}')">♥</button><span class="text-blood-red font-heading text-lg min-w-[60px]">${item.time}</span><div class="flex-1"><h4 class="font-heading text-base text-ink-black">${item.title.toUpperCase()}</h4><p class="text-ink-black/60 text-xs">${item.subtitle}</p></div></div>`;
-            });
-            listEl.innerHTML = html;
-        }
-        
-        function removeFavorite(event, eventId) {
-            event.stopPropagation();
-            favorites = favorites.filter(id => id !== eventId);
-            localStorage.setItem('lughnasad-favorites', JSON.stringify(favorites));
-            document.getElementById('favorites-count').textContent = favorites.length;
-            updateFavoritesUI();
-        }
-        
-        updateFavoritesUI();
-        
-        function filterProgram(type) {
-            document.querySelectorAll('.filter-type-btn').forEach(btn => {
-                btn.classList.remove('active');
-                btn.classList.remove('bg-ink-black', 'text-gold');
-                btn.classList.add('bg-paper', 'text-ink-black');
-            });
-            const activeBtn = document.querySelector(`.filter-type-btn[data-type="${type}"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-                activeBtn.classList.remove('bg-paper', 'text-ink-black');
-                activeBtn.classList.add('bg-ink-black', 'text-gold');
             }
             
             document.querySelectorAll('.program-item').forEach(item => {
-                if (type === 'all' || item.dataset.type === type) {
-                    item.style.display = '';
-                } else {
-                    item.style.display = 'none';
-                }
+                const typeMatch = activeTypeFilter === 'all' || item.dataset.type === activeTypeFilter;
+                const locMatch = activeLocFilter === 'all' || item.dataset.location === activeLocFilter;
+                item.style.display = (typeMatch && locMatch) ? '' : 'none';
             });
         }
     </script>
+
+    <!-- FLOATING VSTUPENKY POPUP -->
+    <a href="vstupenky.html" class="floating-tickets" aria-label="Koupit vstupenky">
+        <svg viewBox="0 0 200 200" width="120" height="120" class="floating-tickets-burst">
+            <polygon points="100,0 120,70 200,60 140,110 170,190 100,140 30,190 60,110 0,60 80,70" fill="#191919" stroke="#191919" stroke-width="2"/>
+            <polygon points="100,15 116,72 185,64 135,108 160,178 100,138 40,178 65,108 15,64 84,72" fill="#f5bc33"/>
+        </svg>
+        <span class="floating-tickets-text">VSTUPENKY</span>
+    </a>
+    <style>
+        .floating-tickets {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 90;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 120px;
+            transform: rotate(-12deg);
+            transition: transform 0.2s ease;
+            text-decoration: none;
+        }
+        .floating-tickets:hover {
+            transform: rotate(-6deg) scale(1.1);
+        }
+        .floating-tickets-burst {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .floating-tickets-text {
+            position: relative;
+            z-index: 2;
+            font-family: 'Crimson Pro', serif;
+            font-weight: 800;
+            font-size: 15px;
+            color: #191919;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: rotate(12deg);
+        }
+        @media (max-width: 640px) {
+            .floating-tickets {
+                width: 90px;
+                height: 90px;
+                bottom: 16px;
+                right: 16px;
+            }
+            .floating-tickets-burst { width: 90px; height: 90px; }
+            .floating-tickets-text { font-size: 11px; }
+        }
+    </style>
 </body>
 </html>
 

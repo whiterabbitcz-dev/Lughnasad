@@ -185,6 +185,14 @@
     <!-- MAIN CONTENT -->
     <main id="main-content" class="py-12 md:py-16">
         <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto mb-10">
+                <div class="comic-panel p-6 md:p-8">
+                    <div class="font-body text-ink-black leading-relaxed space-y-4">
+                        <p>Poutníku! Nasaj atmosféru z naší oslavy svátku úrody a sklizně! Stal se i pro tebe Mezinárodní festival keltské kultury Lughnasad cílem tvé letní poutě? Chceš si některé okamžiky připomenout a zavzpomínat na odpolední koncerty či tematickou bitku? A nebo jsi tu nováčkem a hledáš přiblížení programu, našeho areálu a mnohého dalšího?</p>
+                        <p>Pak jsi tu správně! Díky našemu dvornímu fotografovi "Zajdovi" a dalším můžeš na načerpat z fotek energii, která proudila festivalem během obou dvou dní.</p>
+                    </div>
+                </div>
+            </div>
             <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <div class="gallery-item comic-border aspect-square bg-ink-black/10 flex items-center justify-center">
                     <span class="text-ink-black/40 font-heading">Foto 1</span>
@@ -313,5 +321,59 @@
             });
         });
     </script>
+
+    <!-- FLOATING VSTUPENKY POPUP -->
+    <a href="vstupenky.html" class="floating-tickets" aria-label="Koupit vstupenky">
+        <svg viewBox="0 0 200 200" width="120" height="120" class="floating-tickets-burst">
+            <polygon points="100,0 120,70 200,60 140,110 170,190 100,140 30,190 60,110 0,60 80,70" fill="#191919" stroke="#191919" stroke-width="2"/>
+            <polygon points="100,15 116,72 185,64 135,108 160,178 100,138 40,178 65,108 15,64 84,72" fill="#f5bc33"/>
+        </svg>
+        <span class="floating-tickets-text">VSTUPENKY</span>
+    </a>
+    <style>
+        .floating-tickets {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 90;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 120px;
+            transform: rotate(-12deg);
+            transition: transform 0.2s ease;
+            text-decoration: none;
+        }
+        .floating-tickets:hover {
+            transform: rotate(-6deg) scale(1.1);
+        }
+        .floating-tickets-burst {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .floating-tickets-text {
+            position: relative;
+            z-index: 2;
+            font-family: 'Crimson Pro', serif;
+            font-weight: 800;
+            font-size: 15px;
+            color: #191919;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: rotate(12deg);
+        }
+        @media (max-width: 640px) {
+            .floating-tickets {
+                width: 90px;
+                height: 90px;
+                bottom: 16px;
+                right: 16px;
+            }
+            .floating-tickets-burst { width: 90px; height: 90px; }
+            .floating-tickets-text { font-size: 11px; }
+        }
+    </style>
 </body>
 </html>
