@@ -131,6 +131,50 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);
         }
         
+        /* Photo Carousel */
+        .carousel-track-wrapper {
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        }
+        .carousel-track {
+            display: flex;
+            gap: 1rem;
+            animation: carousel-scroll 50s linear infinite;
+            width: max-content;
+        }
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+        .carousel-slide {
+            flex-shrink: 0;
+            width: 280px;
+            height: 200px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 3px solid rgba(212, 175, 55, 0.4);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        .carousel-slide:hover {
+            border-color: rgba(212, 175, 55, 0.8);
+            transform: scale(1.03);
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @media (min-width: 768px) {
+            .carousel-slide {
+                width: 360px;
+                height: 240px;
+            }
+        }
+        @keyframes carousel-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
         /* Flag Flutter Animation - STRONGER */
         @keyframes flutter {
             0% {
@@ -501,6 +545,49 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- PHOTO CAROUSEL -->
+    <section class="bg-ink-black py-10 md:py-14 overflow-hidden">
+        <div class="container mx-auto px-4 mb-8">
+            <h2 class="text-2xl md:text-3xl font-heading text-gold text-center" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.5);">
+                Načerpej atmosféru z oslavy svátku úrody a sklizně
+            </h2>
+        </div>
+        <div class="carousel-track-wrapper">
+            <div class="carousel-track">
+                <div class="carousel-slide"><img src="images/foto/lughnasad-01-ritual.jpg" alt="Festivalový rituál" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-08-rekonstrukce-bitvy.jpg" alt="Rekonstrukce bitvy" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-03-detsky-program.jpg" alt="Dětský program" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-07-kapela.jpg" alt="Kapela" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-14-festivalovy-ritual.jpg" alt="Festivalový rituál" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-05-staroveke-klani.jpg" alt="Starověké klání" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-15-koncert-tomas-kocko.jpg" alt="Koncert Tomáš Kočko" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-02-remesla.jpg" alt="Řemesla" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-16-riman-na-koni.jpg" alt="Říman na koni" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-12-festival.jpg" alt="Festival" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-04-detsky-program-2.jpg" alt="Dětský program" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-18-workshop-bubny.jpg" alt="Workshop bubny" loading="lazy"></div>
+                <!-- Duplicated for seamless loop -->
+                <div class="carousel-slide"><img src="images/foto/lughnasad-01-ritual.jpg" alt="Festivalový rituál" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-08-rekonstrukce-bitvy.jpg" alt="Rekonstrukce bitvy" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-03-detsky-program.jpg" alt="Dětský program" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-07-kapela.jpg" alt="Kapela" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-14-festivalovy-ritual.jpg" alt="Festivalový rituál" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-05-staroveke-klani.jpg" alt="Starověké klání" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-15-koncert-tomas-kocko.jpg" alt="Koncert Tomáš Kočko" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-02-remesla.jpg" alt="Řemesla" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-16-riman-na-koni.jpg" alt="Říman na koni" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-12-festival.jpg" alt="Festival" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-04-detsky-program-2.jpg" alt="Dětský program" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/foto/lughnasad-18-workshop-bubny.jpg" alt="Workshop bubny" loading="lazy"></div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-6 text-center">
+            <a href="galerie.html" class="inline-block text-gold hover:text-white font-body text-sm md:text-base transition-colors duration-300 border-b border-gold/40 hover:border-white/60 pb-0.5">
+                Zobrazit celou galerii →
+            </a>
         </div>
     </section>
     
