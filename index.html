@@ -168,6 +168,11 @@
             }
         }
         
+        /* Scroll offset for anchor links under sticky header */
+        #faq, #kontakt, #o-festivalu, #program {
+            scroll-margin-top: 80px;
+        }
+        
         /* FAQ Accordion */
         .faq-item {
             border-bottom: 2px solid #191919;
@@ -383,7 +388,7 @@
                         Merch
                     </a>
                     <a href="mapa.html" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
-                        Mapa
+                        Areál
                     </a>
                     <a href="#faq" class="text-white hover:text-gold font-body font-bold text-sm uppercase tracking-wide transition-colors">
                         FAQ
@@ -426,7 +431,7 @@
                     <a href="program.html" class="text-white hover:text-gold font-body text-sm uppercase">Program</a>
                     <a href="vstupenky.html" class="text-white hover:text-gold font-body text-sm uppercase">Vstupenky</a>
                     <a href="merch.html" class="text-white hover:text-gold font-body text-sm uppercase">Merch</a>
-                    <a href="mapa.html" class="text-white hover:text-gold font-body text-sm uppercase">Mapa</a>
+                    <a href="mapa.html" class="text-white hover:text-gold font-body text-sm uppercase">Areál</a>
                     <a href="#faq" class="text-white hover:text-gold font-body text-sm uppercase">FAQ</a>
                     <a href="info.html" class="text-white hover:text-gold font-body text-sm uppercase">Info</a>
                 </nav>
@@ -458,7 +463,7 @@
         <div class="relative z-10 text-center px-4 -translate-y-8 md:-translate-y-12 lg:-translate-y-16">
             <!-- Main Logo -->
             <div class="flex justify-center mb-8">
-                <img src="images/LughnasadCZ_logo_hlavni.png" alt="Lughnasad - Mezinárodní festival keltské kultury" class="w-72 md:w-96 lg:w-[500px] h-auto brightness-0 invert drop-shadow-2xl" style="filter: brightness(0) invert(1) drop-shadow(8px 8px 0px rgba(0, 0, 0, 0.5));">
+                <img src="images/LughnasadCZ_logo_hlavni.png" alt="Lughnasad - Mezinárodní festival keltské kultury" class="w-80 md:w-[28rem] lg:w-[560px] h-auto brightness-0 invert drop-shadow-2xl" style="filter: brightness(0) invert(1) drop-shadow(8px 8px 0px rgba(0, 0, 0, 0.5));">
             </div>
             
             <!-- Date & Location Block -->
@@ -520,13 +525,13 @@
                     
                     <p>
                         Nasaj atmosféru z naší oslavy svátku úrody, kde se prolíná minulost s přítomností. 
-                        Lughnasad je víc než festival – je to <span class="gold-marker font-bold">živá kronika</span> keltské kultury.
+                        Lughnasad je víc než festival – je to <strong>živá kronika</strong> keltské kultury.
                     </p>
                     
                     <p>
-                        Přidej se k nám na <span class="gold-marker font-bold">dvoudenní pouť</span> plnou 
+                        Přidej se k nám na <strong>dvoudenní pouť</strong> plnou 
                         starověkých rituálů, řemesel, hudby a příběhů legend. 
-                        Staň se součástí <span class="gold-marker font-bold">kmene</span>, který čítá tisíce duší.
+                        Staň se součástí <strong>kmene</strong>, který čítá tisíce duší.
                     </p>
                     
                     <div class="text-center mt-8">
@@ -741,8 +746,8 @@
                     </div>
                 </div>
                 
-                <!-- FAQ Item 4 -->
-                <div class="faq-item bg-paper mb-4 comic-border">
+                <!-- FAQ Item 4 (hidden by default) -->
+                <div class="faq-item faq-extra bg-paper mb-4 comic-border" style="display:none;">
                     <div class="faq-question p-4 md:p-6 flex justify-between items-center" >
                         <h3 class="font-heading text-lg md:text-xl text-ink-black pr-4">
                             MOHU NA FESTIVAL SE PSEM?
@@ -754,8 +759,8 @@
                     </div>
                 </div>
                 
-                <!-- FAQ Item 5 -->
-                <div class="faq-item bg-paper mb-4 comic-border">
+                <!-- FAQ Item 5 (hidden by default) -->
+                <div class="faq-item faq-extra bg-paper mb-4 comic-border" style="display:none;">
                     <div class="faq-question p-4 md:p-6 flex justify-between items-center" >
                         <h3 class="font-heading text-lg md:text-xl text-ink-black pr-4">
                             JAK SE MOHU STÁT DOBROVOLNÍKEM?
@@ -767,8 +772,8 @@
                     </div>
                 </div>
                 
-                <!-- FAQ Item 6 -->
-                <div class="faq-item bg-paper comic-border">
+                <!-- FAQ Item 6 (hidden by default) -->
+                <div class="faq-item faq-extra bg-paper comic-border" style="display:none;">
                     <div class="faq-question p-4 md:p-6 flex justify-between items-center" >
                         <h3 class="font-heading text-lg md:text-xl text-ink-black pr-4">
                             BUDE K DISPOZICI OBČERSTVENÍ?
@@ -778,6 +783,13 @@
                     <div class="faq-answer px-4 md:px-6 text-ink-black/80 font-body">
                         <p>Na festivalu najdete širokou nabídku občerstvení včetně tradičních keltských pokrmů, medoviny a dalších nápojů. Stánky budou rozmístěny po celém areálu.</p>
                     </div>
+                </div>
+                
+                <!-- Show more / FAQ link -->
+                <div class="text-center mt-6" id="faq-more-wrapper">
+                    <button onclick="document.querySelectorAll('.faq-extra').forEach(el=>el.style.display='');this.parentElement.style.display='none';" class="inline-block bg-gold text-ink-black px-8 py-3 font-heading text-lg comic-border comic-shadow comic-shadow-hover">
+                        VÍCE ČASTÝCH DOTAZŮ
+                    </button>
                 </div>
             </div>
         </div>
@@ -837,26 +849,36 @@
                     <!-- Quick Contacts -->
                     <div class="comic-panel p-6">
                         <h3 class="font-heading text-xl text-ink-black mb-4">PŘÍMÉ KONTAKTY</h3>
-                        <ul class="space-y-3 font-body text-ink-black">
+                        <ul class="space-y-3 font-body text-ink-black text-sm">
                             <li class="flex items-start gap-3">
-                                <span class="text-blood-red">📧</span>
+                                <span class="text-blood-red">🎭</span>
                                 <div>
-                                    <p class="font-bold">Obecné dotazy</p>
-                                    <a href="mailto:info@lughnasad.cz" class="text-blood-red hover:underline">info@lughnasad.cz</a>
+                                    <p class="font-bold">Pro účinkující</p>
+                                    <a href="mailto:dramaturgie@lughnasad.cz" class="text-blood-red hover:underline">dramaturgie@lughnasad.cz</a>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="text-blood-red">🎤</span>
+                                <span class="text-blood-red">🏪</span>
                                 <div>
-                                    <p class="font-bold">Pro média</p>
-                                    <a href="mailto:media@lughnasad.cz" class="text-blood-red hover:underline">media@lughnasad.cz</a>
+                                    <p class="font-bold">Řemeslné stánky a občerstvení</p>
+                                    <a href="mailto:stankari@lughnasad.cz" class="text-blood-red hover:underline">stankari@lughnasad.cz</a>
+                                    <p class="text-ink-black/60 text-xs mt-1">Kateřina Szakos Říhová, Jiří Antoš<br>+420 724 175 386, +420 775 301 000</p>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="text-blood-red">🤝</span>
                                 <div>
-                                    <p class="font-bold">Spolupráce a partnerství</p>
-                                    <a href="mailto:partneri@lughnasad.cz" class="text-blood-red hover:underline">partneri@lughnasad.cz</a>
+                                    <p class="font-bold">Dobrovolnictví</p>
+                                    <a href="mailto:dobrovolnici@lughnasad.cz" class="text-blood-red hover:underline">dobrovolnici@lughnasad.cz</a>
+                                    <p class="text-ink-black/60 text-xs mt-1">Marcela Hájková, Kristýna Prokůpková</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blood-red">📢</span>
+                                <div>
+                                    <p class="font-bold">Propagace a marketing</p>
+                                    <a href="mailto:marketing@lughnasad.cz" class="text-blood-red hover:underline">marketing@lughnasad.cz</a>
+                                    <p class="text-ink-black/60 text-xs mt-1">Jana Palounek</p>
                                 </div>
                             </li>
                         </ul>
@@ -901,7 +923,7 @@
         <div class="container mx-auto px-4">
             <!-- Partner Logos in Footer -->
             <div class="mb-12 pb-8 border-b border-gold/20">
-                <p class="text-center text-gold/60 font-body text-sm uppercase tracking-wide mb-6">S podporou</p>
+                <p class="text-center text-gold/60 font-body text-sm uppercase tracking-wide mb-6">Naši partneři</p>
                 <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
                     <a href="https://www.pardubickykraj.cz" target="_blank" rel="noopener noreferrer">
                         <img src="images/Loga partnerů/Pardubický kraj/znak_barevný_text_pod.jpg" 
@@ -935,7 +957,7 @@
                         <li><a href="program.html" class="hover:text-gold transition">Program</a></li>
                         <li><a href="vstupenky.html" class="hover:text-gold transition">Vstupenky</a></li>
                         <li><a href="merch.html" class="hover:text-gold transition">Merch</a></li>
-                        <li><a href="mapa.html" class="hover:text-gold transition">Mapa areálu</a></li>
+                        <li><a href="mapa.html" class="hover:text-gold transition">Areál</a></li>
                         <li><a href="#faq" class="hover:text-gold transition">FAQ</a></li>
                         <li><a href="info.html" class="hover:text-gold transition">Praktické info</a></li>
                     </ul>
@@ -945,11 +967,35 @@
                 <div>
                     <h4 class="font-heading text-gold text-xl mb-4">KONTAKT</h4>
                     <ul class="font-body text-sm text-white/80 space-y-2">
-                        <li class="flex items-center gap-2">
-                            <span>📧</span>
-                            <a href="mailto:info@lughnasad.cz" class="hover:text-gold transition">info@lughnasad.cz</a>
+                        <li class="flex items-start gap-2">
+                            <span>🎭</span>
+                            <div>
+                                <span class="font-bold">Pro účinkující</span><br>
+                                <a href="mailto:dramaturgie@lughnasad.cz" class="hover:text-gold transition">dramaturgie@lughnasad.cz</a>
+                            </div>
                         </li>
-                        <li class="flex items-center gap-2">
+                        <li class="flex items-start gap-2">
+                            <span>🏪</span>
+                            <div>
+                                <span class="font-bold">Stánky a občerstvení</span><br>
+                                <a href="mailto:stankari@lughnasad.cz" class="hover:text-gold transition">stankari@lughnasad.cz</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span>🤝</span>
+                            <div>
+                                <span class="font-bold">Dobrovolnictví</span><br>
+                                <a href="mailto:dobrovolnici@lughnasad.cz" class="hover:text-gold transition">dobrovolnici@lughnasad.cz</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span>📢</span>
+                            <div>
+                                <span class="font-bold">Marketing a média</span><br>
+                                <a href="mailto:marketing@lughnasad.cz" class="hover:text-gold transition">marketing@lughnasad.cz</a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-2 mt-2">
                             <span>📍</span>
                             <span>Země Keltů, Nasavrky</span>
                         </li>
@@ -960,14 +1006,14 @@
                 <div>
                     <h4 class="font-heading text-gold text-xl mb-4">SLEDUJTE NÁS</h4>
                     <div class="flex space-x-4">
-                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
-                            <span class="text-xl font-bold">f</span>
+                        <a href="https://www.facebook.com/festival.lughnasad" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
-                            <span class="text-xl">📷</span>
+                        <a href="https://www.instagram.com/lughnasad_cz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
-                            <span class="text-xl">▶</span>
+                        <a href="https://www.youtube.com/@lughnasadnasavrky3145" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="bg-gold text-ink-black w-12 h-12 flex items-center justify-center comic-border comic-shadow-hover">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -980,19 +1026,17 @@
             
             <!-- Footer submenu (Comic-Con style) -->
             <div class="border-t border-gold/30 pt-6">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p class="font-body text-sm text-white/60">
-                        © 2026 Lughnasad. Všechna práva vyhrazena.
-                    </p>
-                    <div class="flex flex-wrap justify-center gap-4 md:gap-6 font-body text-sm text-white/60">
-                        <a href="#" class="hover:text-gold transition">GDPR</a>
-                        <a href="#kontakt" class="hover:text-gold transition">Kontakty</a>
-                        <a href="o-festivalu.html" class="hover:text-gold transition">O nás</a>
-                        <a href="#" class="hover:text-gold transition">Média</a>
-                        <a href="galerie.html" class="hover:text-gold transition">Galerie</a>
-                        <a href="partneri.html" class="hover:text-gold transition">Partneři</a>
-                    </div>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8 font-heading text-base md:text-lg text-white/70 mb-6">
+                    <a href="#" class="hover:text-gold transition">GDPR</a>
+                    <a href="#kontakt" class="hover:text-gold transition">Kontakty</a>
+                    <a href="o-festivalu.html" class="hover:text-gold transition">O nás</a>
+                    <a href="#" class="hover:text-gold transition">Média</a>
+                    <a href="galerie.html" class="hover:text-gold transition">Galerie</a>
+                    <a href="partneri.html" class="hover:text-gold transition">Partneři</a>
                 </div>
+                <p class="font-body text-sm text-white/40 text-center">
+                    © 2026 Lughnasad. Všechna práva vyhrazena.
+                </p>
             </div>
         </div>
     </footer>
@@ -1155,11 +1199,16 @@
             text-decoration: none;
             border: 2px solid #191919;
             box-shadow: 5px 5px 0px #191919;
-            transition: all 0.15s ease;
+            transition: all 0.2s ease;
         }
         .floating-tickets-btn:hover {
             box-shadow: 3px 3px 0px #191919;
             transform: translate(2px, 2px);
+        }
+        .floating-tickets-btn.hidden-by-footer {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
         }
         @media (max-width: 640px) {
             .floating-tickets-btn {
@@ -1170,6 +1219,19 @@
             }
         }
     </style>
+    <script>
+        (function() {
+            const btn = document.querySelector('.floating-tickets-btn');
+            const footer = document.querySelector('footer');
+            if (!btn || !footer) return;
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    btn.classList.toggle('hidden-by-footer', entry.isIntersecting);
+                });
+            }, { threshold: 0.05 });
+            observer.observe(footer);
+        })();
+    </script>
 
 </body>
 </html>
