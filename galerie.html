@@ -84,18 +84,28 @@
             box-shadow: 5px 5px 0px #191919;
         }
         
+        .gallery-masonry {
+            columns: 2;
+            column-gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .gallery-masonry {
+                columns: 3;
+            }
+        }
+        
         .gallery-item {
             overflow: hidden;
             cursor: pointer;
-            aspect-ratio: 4/3;
-        }
-        
-        .gallery-item.md\:col-span-2.md\:row-span-2 {
-            aspect-ratio: auto;
+            break-inside: avoid;
+            margin-bottom: 1rem;
         }
         
         .gallery-item img {
             transition: transform 0.3s ease;
+            display: block;
+            width: 100%;
+            height: auto;
         }
         
         .gallery-item:hover img {
@@ -228,60 +238,60 @@
                     </div>
                 </div>
             </div>
-            <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="gallery-item comic-border overflow-hidden md:col-span-2 md:row-span-2">
-                    <img src="images/foto/lughnasad-01-ritual.jpg" alt="Festivalový rituál" class="w-full h-full object-cover" loading="lazy">
+            <div class="max-w-6xl mx-auto gallery-masonry">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-01-ritual.jpg" alt="Festivalový rituál" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-02-remesla.jpg" alt="Řemesla" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-02-remesla.jpg" alt="Řemesla" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-03-detsky-program.jpg" alt="Dětský program" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-03-detsky-program.jpg" alt="Dětský program" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-04-detsky-program-2.jpg" alt="Dětský program" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-04-detsky-program-2.jpg" alt="Dětský program" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-05-staroveke-klani.jpg" alt="Starověké klání" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-05-staroveke-klani.jpg" alt="Starověké klání" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden md:col-span-2 md:row-span-2">
-                    <img src="images/foto/lughnasad-08-rekonstrukce-bitvy.jpg" alt="Rekonstrukce bitvy" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-06-trh.jpg" alt="Tržiště" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-06-trh.jpg" alt="Tržiště" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-07-kapela.jpg" alt="Kapela" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-07-kapela.jpg" alt="Kapela" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-08-rekonstrukce-bitvy.jpg" alt="Rekonstrukce bitvy" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-09-dobrovolnici.jpg" alt="Dobrovolníci" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-09-dobrovolnici.jpg" alt="Dobrovolníci" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-10-zvirata.jpg" alt="Zvířata" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-10-zvirata.jpg" alt="Zvířata" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-11-svatyne.jpg" alt="Svatyně" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-11-svatyne.jpg" alt="Svatyně" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden md:col-span-2 md:row-span-2">
-                    <img src="images/foto/lughnasad-14-festivalovy-ritual.jpg" alt="Festivalový rituál 2025" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-12-festival.jpg" alt="Festival Lughnasad" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-12-festival.jpg" alt="Festival Lughnasad" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-13-detska-minibitva.jpg" alt="Dětská minibitva 2025" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-13-detska-minibitva.jpg" alt="Dětská minibitva 2025" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-14-festivalovy-ritual.jpg" alt="Festivalový rituál 2025" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-15-koncert-tomas-kocko.jpg" alt="Koncert Tomáš Kočko 2025" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-15-koncert-tomas-kocko.jpg" alt="Koncert Tomáš Kočko 2025" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-16-riman-na-koni.jpg" alt="Říman na koni 2025" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-16-riman-na-koni.jpg" alt="Říman na koni 2025" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-17-svatyne.jpg" alt="Svatyně 2025" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-17-svatyne.jpg" alt="Svatyně 2025" loading="lazy">
                 </div>
-                <div class="gallery-item comic-border overflow-hidden">
-                    <img src="images/foto/lughnasad-18-workshop-bubny.jpg" alt="Workshop bubny 2025" class="w-full h-full object-cover" loading="lazy">
+                <div class="gallery-item comic-border">
+                    <img src="images/foto/lughnasad-18-workshop-bubny.jpg" alt="Workshop bubny 2025" loading="lazy">
                 </div>
             </div>
         </div>
