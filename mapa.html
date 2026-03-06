@@ -795,7 +795,7 @@
             'merch': { title: 'Festivalový merch', desc: 'Oficiální festivalové zboží – trička, mikiny, suvenýry.', type: 'booth' }
         };
 
-        let currentZoom = 1;
+        let currentZoom = 2.4;
         let activeMarker = null;
 
         // =====================
@@ -1076,6 +1076,9 @@
                 hideTooltip();
             }
         });
+
+        // Apply initial zoom on load
+        updateMapTransform();
     </script>
 
     <!-- FLOATING VSTUPENKY POPUP -->
