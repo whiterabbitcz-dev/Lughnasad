@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lughnasad 2026 — Přehled designových variant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;900&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&subset=latin,latin-ext&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #FBF4E3;
+            --color-red: #C8342C;
+            --color-red-deep: #A82820;
+            --color-gold: #D4A017;
+            --color-text: #1F1815;
+            --color-text-muted: #5A4D3F;
+            --border-subtle: #D4C4A0;
+            --font-heading: "Roboto Slab", "Merriweather", Georgia, serif;
+            --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-italic: "Cormorant Garamond", "Crimson Text", Georgia, serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            line-height: 1.6;
+            background:
+                radial-gradient(ellipse 900px 600px at 15% 20%, rgba(247, 215, 180, 0.5), transparent 60%),
+                radial-gradient(ellipse 700px 800px at 85% 70%, rgba(245, 200, 165, 0.4), transparent 60%),
+                radial-gradient(ellipse 500px 400px at 85% 15%, rgba(247, 215, 180, 0.55), transparent 55%),
+                var(--bg-page);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 64px 24px;
+        }
+        .kicker {
+            font-family: var(--font-heading);
+            font-size: 13px;
+            letter-spacing: 0.15em;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: clamp(40px, 8vw, 72px);
+            line-height: 1;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+        .accent-red { color: var(--color-red); }
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: var(--color-red);
+            margin: 32px auto;
+            border: none;
+        }
+        .intro {
+            font-family: var(--font-italic);
+            font-style: italic;
+            font-size: 22px;
+            color: var(--color-red);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .round {
+            margin-bottom: 64px;
+        }
+        .round-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--color-gold);
+        }
+        .round-title .num {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--color-red);
+            color: #fff;
+            font-size: 14px;
+            line-height: 36px;
+            text-align: center;
+            margin-right: 12px;
+            font-weight: 900;
+            vertical-align: middle;
+        }
+        .round-title .num-text {
+            vertical-align: middle;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .card {
+            display: block;
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s;
+        }
+        .card:hover {
+            border-color: var(--color-red);
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+        .card-label {
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-bottom: 6px;
+        }
+        .card-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+        .card-desc {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+        }
+        .status {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+        .status-approved { background: #2F7A3E; color: #fff; }
+        .status-rejected { background: #888; color: #fff; }
+        .status-new { background: var(--color-red); color: #fff; }
+
+        .main-card {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 32px;
+            background: var(--color-text);
+            color: #fff;
+            border-color: var(--color-text);
+        }
+        .main-card:hover {
+            background: var(--color-red);
+            color: #fff;
+            border-color: var(--color-red);
+        }
+        .main-card .card-label { color: rgba(255,255,255,0.6); }
+        .main-card .card-title { color: #fff; font-size: 24px; }
+        .main-card .card-desc { color: rgba(255,255,255,0.8); }
+
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            color: var(--color-text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 32px;
+        }
+        footer a { color: var(--color-red); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <p class="kicker">Mezinárodní festival keltské kultury</p>
+        <h1><span class="accent-red">LUGHNASAD</span> 2026</h1>
+        <hr class="divider">
+        <p class="intro">Přehled všech designových variant</p>
+
+        <!-- Main -->
+        <div class="round">
+            <h2 class="round-title"><span class="num-text">⚑ Hlavní verze</span></h2>
+            <div class="grid">
+                <a href="/Lughnasad/" class="card main-card">
+                    <div class="card-label">Aktuálně nasazeno</div>
+                    <div class="card-title">Lughnasad 2026 — Homepage</div>
+                    <div class="card-desc">Původní verze webu, žluté hero + komiksový styl</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Round 1: Designové varianty -->
+        <div class="round">
+            <h2 class="round-title"><span class="num">1</span><span class="num-text">Designové varianty</span></h2>
+            <div class="grid">
+                <a href="/Lughnasad/variants/v1-kviff/" class="card">
+                    <div class="card-label">Varianta V1</div>
+                    <div class="card-title">KVIFF / Minimalismus</div>
+                    <div class="card-desc">Čistá moderní estetika, dashed rámečky, mizející červená linka</div>
+                </a>
+                <a href="/Lughnasad/variants/v2-bohyne/" class="card">
+                    <div class="card-label">Varianta V2</div>
+                    <div class="card-title">Bohyně / Keltská mystika</div>
+                    <div class="card-desc">Teplé krémové pozadí, voskové pečeti, Cormorant Garamond</div>
+                </a>
+                <a href="/Lughnasad/variants/v3-editorial/" class="card">
+                    <div class="card-label">Varianta V3</div>
+                    <div class="card-title">Editorial / Magazín</div>
+                    <div class="card-desc">Highlightery, drop caps, informační bubliny, Playfair Display</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Round 2: Tonální varianty -->
+        <div class="round">
+            <h2 class="round-title"><span class="num">2</span><span class="num-text">Tonální <span class="accent-red">varianty</span></span></h2>
+            <div class="grid">
+                <a href="/Lughnasad/variants/tonal-a-ohnivy-vecer/" class="card">
+                    <div class="card-label">Varianta A <span class="status status-approved">Schváleno</span></div>
+                    <div class="card-title">🔥 Ohnivý večer</div>
+                    <div class="card-desc">Tmavá atmosférická, fire-lit hero, oranžové akcenty</div>
+                </a>
+                <a href="/Lughnasad/variants/tonal-b-zlata-sklizen/" class="card">
+                    <div class="card-label">Varianta B <span class="status status-rejected">Neschváleno</span></div>
+                    <div class="card-title">🌾 Zlatá sklizeň</div>
+                    <div class="card-desc">Krémová split hero, rezavé CTA, hořčicové akcenty</div>
+                </a>
+                <a href="/Lughnasad/variants/tonal-c-zeleny-haj/" class="card">
+                    <div class="card-label">Varianta C <span class="status status-rejected">Neschváleno</span></div>
+                    <div class="card-title">🌿 Zelený háj</div>
+                    <div class="card-desc">Keltský les, zelený duotone, měděno-červená CTA</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Round 3: S klientskými assety -->
+        <div class="round">
+            <h2 class="round-title"><span class="num">3</span><span class="num-text">S <span class="accent-red">klientskými</span> assety</span></h2>
+            <div class="grid">
+                <a href="/Lughnasad/variants/tonal-b-pergamen-cedule/" class="card">
+                    <div class="card-label">Varianta B</div>
+                    <div class="card-title">📜 Pergamen cedule</div>
+                    <div class="card-desc">Zlatý keltský pás nahoře + dole, serifová typografie</div>
+                </a>
+                <a href="/Lughnasad/variants/tonal-c-zluty-letacek/" class="card">
+                    <div class="card-label">Varianta C</div>
+                    <div class="card-title">🌾 Žlutý letáček</div>
+                    <div class="card-desc">Sonnentor styl, červené bubliny, polaroidové fotky</div>
+                </a>
+                <a href="/Lughnasad/variants/tonal-d-hlavni-motiv/" class="card">
+                    <div class="card-label">Varianta D</div>
+                    <div class="card-title">🌄 Hlavní motiv 2026</div>
+                    <div class="card-desc">Full-bleed hořící starověké město, zelený separator</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Round 4: Cedule -->
+        <div class="round">
+            <h2 class="round-title"><span class="num">4</span><span class="num-text">Cedulový <span class="accent-red">systém</span></span></h2>
+            <div class="grid">
+                <a href="/Lughnasad/variants/cedule/" class="card">
+                    <div class="card-label">Nejnovější <span class="status status-new">Nové</span></div>
+                    <div class="card-title">📜 Cedule</div>
+                    <div class="card-desc">1:1 replika klientových tištěných cedulí — akvarelové pozadí, zlaté krucánky, červené kruhové rámečky</div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Lughnasad 2026 — <a href="https://github.com/whiterabbitcz-dev/Lughnasad">whiterabbitcz-dev / Lughnasad</a></p>
+    </footer>
+</body>
+</html>
