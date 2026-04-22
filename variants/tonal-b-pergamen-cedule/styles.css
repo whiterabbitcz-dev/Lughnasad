@@ -719,21 +719,6 @@ section h2 {
     margin-top: 2px;
 }
 
-/* === BOTTOM BAND (flipped) === */
-.bottom-band {
-    width: 100%;
-    overflow: hidden;
-    background: var(--bg-page);
-    line-height: 0;
-    margin-top: 48px;
-}
-.bottom-band img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transform: scaleY(-1) scaleX(-1);
-}
-
 /* === FOOTER === */
 footer {
     background: var(--color-text);
