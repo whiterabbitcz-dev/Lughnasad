@@ -149,40 +149,6 @@ strong { font-weight: 700; }
   .celtic-band { height: 48px; }
 }
 
-/* Side bands — desktop only */
-.celtic-band--left,
-.celtic-band--right {
-  display: none;
-}
-@media (min-width: 1200px) {
-  .celtic-band--left,
-  .celtic-band--right {
-    display: block;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 88px;
-    background-repeat: repeat-y;
-    background-size: 100% auto;
-    pointer-events: none;
-    z-index: 40;
-  }
-  .celtic-band--left {
-    left: 0;
-    background-image: url('assets/krucanky_levy.png');
-    background-position: top left;
-  }
-  .celtic-band--right {
-    right: 0;
-    background-image: url('assets/krucanky_pravy.png');
-    background-position: top right;
-  }
-  body {
-    padding-left: 88px;
-    padding-right: 88px;
-  }
-}
-
 /* === DIVIDERS === */
 .divider {
   width: 80px;
