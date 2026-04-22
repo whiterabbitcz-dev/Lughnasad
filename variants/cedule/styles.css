@@ -46,14 +46,23 @@ body {
   font-weight: 400;
   color: var(--color-text);
   line-height: 1.65;
-  background:
-    radial-gradient(ellipse 900px 600px at 15% 20%, rgba(247, 215, 180, 0.5), transparent 60%),
-    radial-gradient(ellipse 700px 800px at 85% 70%, rgba(245, 200, 165, 0.4), transparent 60%),
-    radial-gradient(ellipse 600px 500px at 50% 95%, rgba(240, 210, 180, 0.3), transparent 60%),
-    radial-gradient(ellipse 500px 400px at 85% 15%, rgba(247, 215, 180, 0.55), transparent 55%),
-    #FBF4E3;
+  background-color: var(--bg-page);
+  background-image: url('assets/background.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
+}
+@media (min-aspect-ratio: 1/1) {
+  body {
+    background-image: url('assets/background-landscape.png');
+  }
+}
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -119,18 +128,59 @@ strong { font-weight: 700; }
 /* === CELTIC ORNAMENT BANDS === */
 .celtic-band {
   width: 100%;
-  height: 100px;
-  background-image: url('assets/celtic-border-top.svg');
+  height: 88px;
   background-repeat: repeat-x;
   background-size: auto 100%;
+  background-position: left center;
   position: relative;
-  z-index: 2;
+  z-index: 10;
+  pointer-events: none;
+}
+.celtic-band--top {
+  background-image: url('assets/krucanky_horni.png');
 }
 .celtic-band--bottom {
-  transform: scaleY(-1);
+  background-image: url('assets/krucanky_spodni.png');
+}
+@media (max-width: 1199px) {
+  .celtic-band { height: 64px; }
 }
 @media (max-width: 768px) {
-  .celtic-band { height: 70px; }
+  .celtic-band { height: 48px; }
+}
+
+/* Side bands — desktop only */
+.celtic-band--left,
+.celtic-band--right {
+  display: none;
+}
+@media (min-width: 1200px) {
+  .celtic-band--left,
+  .celtic-band--right {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 88px;
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    pointer-events: none;
+    z-index: 40;
+  }
+  .celtic-band--left {
+    left: 0;
+    background-image: url('assets/krucanky_levy.png');
+    background-position: top left;
+  }
+  .celtic-band--right {
+    right: 0;
+    background-image: url('assets/krucanky_pravy.png');
+    background-position: top right;
+  }
+  body {
+    padding-left: 88px;
+    padding-right: 88px;
+  }
 }
 
 /* === DIVIDERS === */
@@ -142,24 +192,18 @@ strong { font-weight: 700; }
   border: none;
 }
 .divider-ornate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin: 48px auto;
-}
-.divider-ornate::before,
-.divider-ornate::after {
-  content: "";
   display: block;
-  width: 60px;
-  height: 2px;
-  background: var(--color-red);
+  width: 439px;
+  max-width: 80%;
+  height: 8px;
+  margin: 48px auto;
+  background-image: url('assets/rozdelovnik.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 .divider-ornate > span {
-  color: var(--color-red);
-  font-size: 10px;
-  line-height: 1;
+  display: none;
 }
 
 /* === HEADER === */
@@ -572,8 +616,10 @@ section { padding: 72px 0; }
   top: 10px;
   width: 34px;
   height: 34px;
-  border-radius: 50%;
-  background: var(--color-red);
+  background-image: url('assets/podklad_cislo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   color: #fff;
   font-family: var(--font-heading);
   font-weight: 700;
