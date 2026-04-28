@@ -163,10 +163,10 @@
     </section>
 
 
-    <!-- PHOTO CAROUSEL (zachováno z v1) -->
-    <section class="py-10 md:py-14 overflow-hidden" style="background-color: #3d0c0e;">
+    <!-- PHOTO CAROUSEL — světlé pozadí z v1 -->
+    <section class="py-10 md:py-14 overflow-hidden">
         <div class="container mx-auto px-4 mb-8">
-            <h2 class="text-2xl md:text-3xl font-heading text-gold text-center" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.5);">
+            <h2 class="text-2xl md:text-3xl font-heading text-blood-red text-center">
                 Načerpej atmosféru z oslavy svátku úrody a sklizně
             </h2>
         </div>
@@ -200,7 +200,7 @@
             </div>
         </div>
         <div class="container mx-auto px-4 mt-6 text-center">
-            <a href="/Lughnasad/galerie.html" class="inline-block text-gold hover:text-white font-body text-sm md:text-base transition-colors duration-300 border-b border-gold/40 hover:border-white/60 pb-0.5">
+            <a href="/Lughnasad/galerie.html" class="inline-block text-blood-red hover:text-ink-black font-body text-sm md:text-base transition-colors duration-300 border-b border-blood-red/40 hover:border-ink-black/60 pb-0.5">
                 Zobrazit celou galerii →
             </a>
         </div>
@@ -266,15 +266,15 @@
     <img src="assets/rozdelovnik.png" alt="" class="section-divider" loading="lazy">
 
 
-    <!-- PROGRAM CTA — vzdušná verze (žádný inner panel) -->
-    <section id="program" class="py-14 md:py-20" style="background-color: #7a1518;">
+    <!-- PROGRAM CTA — vzdušná verze, paleta z v1 -->
+    <section id="program" class="py-14 md:py-20">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-6xl font-heading text-gold mb-4">PROGRAM FESTIVALU</h2>
-            <p class="text-white/75 font-body mb-8 text-lg max-w-2xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-heading text-blood-red mb-4">PROGRAM FESTIVALU</h2>
+            <p class="text-ink-black/70 font-body mb-8 text-lg max-w-2xl mx-auto">
                 Prohlédněte si kompletní program festivalu Lughnasad 2026 – přednášky, workshopy, koncerty, bojové ukázky a mnoho dalšího.
             </p>
             <a href="/Lughnasad/program.html"
-               class="inline-block bg-gold text-ink-black px-12 py-4 font-heading text-xl md:text-2xl comic-border comic-shadow comic-shadow-hover">
+               class="inline-block bg-blood-red text-white px-12 py-4 font-heading text-xl md:text-2xl comic-border comic-shadow comic-shadow-hover">
                 ZOBRAZIT PROGRAM
             </a>
         </div>
@@ -310,11 +310,11 @@
     </section>
 
 
-    <!-- FAQ — hairline místo výrazných boxů, bez panelu -->
-    <section id="faq" class="py-12 md:py-16" style="background-color: #7a1518;">
+    <!-- FAQ — hairline na světlém pozadí, paleta v1 -->
+    <section id="faq" class="py-12 md:py-16">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl md:text-6xl font-heading text-gold mb-4 text-center">ČASTÉ DOTAZY</h2>
-            <p class="text-center text-white/70 font-body mb-12 text-lg">Vše, co potřebujete vědět</p>
+            <h2 class="text-4xl md:text-6xl font-heading text-blood-red mb-4 text-center">ČASTÉ DOTAZY</h2>
+            <p class="text-center text-ink-black/70 font-body mb-12 text-lg">Vše, co potřebujete vědět</p>
 
             <div class="faq-airy">
                 <div class="faq-item">
@@ -362,7 +362,7 @@
 
                 <div class="text-center mt-8" id="faq-more-wrapper">
                     <button onclick="document.querySelectorAll('.faq-extra').forEach(el=>el.style.display='');this.parentElement.style.display='none';"
-                            class="inline-block bg-gold text-ink-black px-8 py-3 font-heading text-lg comic-border comic-shadow comic-shadow-hover">
+                            class="inline-block bg-blood-red text-white px-8 py-3 font-heading text-lg comic-border comic-shadow comic-shadow-hover">
                         VÍCE ČASTÝCH DOTAZŮ
                     </button>
                 </div>
@@ -615,8 +615,8 @@
                 <p>🍪 Tento web používá cookies pro zlepšení vašeho zážitku. <a href="#" class="text-gold underline">Více informací</a></p>
             </div>
             <div class="flex gap-3">
-                <button onclick="acceptCookies()" class="bg-gold text-ink-black px-6 py-2 font-heading text-sm comic-border comic-shadow-hover">PŘIJMOUT</button>
-                <button onclick="declineCookies()" class="bg-transparent text-white px-6 py-2 font-heading text-sm comic-border border-white/50 hover:border-white transition">ODMÍTNOUT</button>
+                <button onclick="acceptCookies()" class="cookie-btn cookie-btn--primary">PŘIJMOUT</button>
+                <button onclick="declineCookies()" class="cookie-btn cookie-btn--secondary">ODMÍTNOUT</button>
             </div>
         </div>
     </div>
