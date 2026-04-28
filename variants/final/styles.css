@@ -1,0 +1,609 @@
+/* ==========================================================================
+   LUGHNASAD 2026 — FINAL (sloučení v1 + v2 hlavička + v3 zaoblené rohy + v5 vzdušnost)
+   - Základ: produkční v1 (typografie, krémové pozadí, palety, comic-* utility)
+   - Hero: festivalová fotka jako podklad, bílé písmo, žluté zaoblené rámečky
+   - Rozdělovník: žlutá linka (rozdelovnik.png) namísto triskelionu
+   - Vzdušné sekce v5 stylu — rámečky jen tam, kde mají vizuální funkci
+   - Zaoblené rohy ~20 px na všech zachovaných rámečcích
+   ========================================================================== */
+
+
+/* ===== Globální základ (z v1) ===== */
+body {
+    background-color: #F2EFE9;
+    background-image: url('/Lughnasad/images/bg-paper.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: 'Inter', sans-serif;
+    color: #191919;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+
+/* ===== Comic design system (z v1) — se zaoblenými rohy z v3 ===== */
+.comic-border {
+    border: 2px solid #b8282e;
+    border-radius: 20px;
+}
+
+.comic-shadow {
+    box-shadow: 4px 4px 12px rgba(139, 30, 30, 0.25);
+}
+
+.comic-shadow-hover {
+    transition: all 0.15s ease;
+}
+.comic-shadow-hover:hover {
+    box-shadow: 2px 2px 8px rgba(139, 30, 30, 0.3);
+    transform: translate(1px, 1px);
+}
+
+.comic-panel {
+    background: white;
+    border: 2px solid #b8282e;
+    border-radius: 20px;
+    box-shadow: 4px 4px 12px rgba(139, 30, 30, 0.18);
+}
+
+/* App-promo varianta — jemnější rámeček (brief: „smí zůstat, ale dolaď jemně") */
+.comic-panel--soft {
+    background: #ffffff;
+    border: 1px solid rgba(184, 40, 46, 0.35);
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(184, 40, 46, 0.08);
+}
+
+.tarot-card {
+    background: white;
+    border: 2px solid #b8282e;
+    border-radius: 20px;
+    box-shadow: 4px 4px 12px rgba(139, 30, 30, 0.2);
+    transition: transform 0.2s ease;
+}
+.tarot-card:hover {
+    transform: scale(1.03);
+}
+
+
+/* ===== HERO — fotka, bílé písmo, žluté zaoblené rámečky ===== */
+.hero-final {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #1a0d0e;
+}
+.hero-final__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+.hero-final__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.45) 60%,
+        rgba(0, 0, 0, 0.65) 100%
+    );
+    z-index: 1;
+}
+.hero-final__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 1rem;
+    color: #ffffff;
+}
+.hero-final__content,
+.hero-final__content h1,
+.hero-final__content p,
+.hero-final__content span,
+.hero-final__content strong,
+.hero-final__content label {
+    color: #ffffff;
+}
+
+/* Logo v hero — pouze jedno, barevné */
+.hero-final__logo {
+    width: 100%;
+    height: auto;
+    max-width: min(1000px, 90vw);
+    margin: 0 auto;
+}
+
+/* Žlutý rámeček v hero — datum, countdown, případně další box */
+.hero-final__box {
+    border: 2px solid #F5C518;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.hero-final__date {
+    padding: 1rem 1.5rem;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    font-size: clamp(1.25rem, 3vw, 2.25rem);
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .hero-final__date {
+        padding: 1.25rem 2.5rem;
+    }
+}
+
+.hero-final__countdown-label {
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+}
+@media (min-width: 768px) {
+    .hero-final__countdown-label { font-size: 1.125rem; }
+}
+
+.hero-final__countdown {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+@media (min-width: 768px) {
+    .hero-final__countdown { gap: 1rem; }
+}
+
+.hero-final__countdown-item {
+    flex: 1 1 0;
+    min-width: 64px;
+    max-width: 110px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    border: 2px solid #F5C518;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.30);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+@media (min-width: 768px) {
+    .hero-final__countdown-item {
+        padding: 1rem 0.75rem;
+        min-width: 90px;
+    }
+}
+.hero-final__countdown-item .num {
+    display: block;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    font-size: 1.875rem;
+    line-height: 1;
+}
+@media (min-width: 768px) {
+    .hero-final__countdown-item .num { font-size: 3rem; }
+}
+.hero-final__countdown-item .label {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.92;
+}
+@media (min-width: 768px) {
+    .hero-final__countdown-item .label { font-size: 0.8rem; }
+}
+
+
+/* ===== Rozdělovník (z v5 cedule) — namísto triskelionu ===== */
+.section-divider {
+    display: block;
+    width: 280px;
+    max-width: 70%;
+    height: auto;
+    margin: 32px auto;
+    opacity: 0.95;
+}
+@media (min-width: 768px) {
+    .section-divider {
+        width: 360px;
+        margin: 40px auto;
+    }
+}
+
+
+/* ===== Vzdušné sekce — text bez obalujících rámečků ===== */
+.section-airy {
+    text-align: center;
+}
+.section-airy__heading {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    color: #191919;
+    margin-bottom: 1.5rem;
+}
+.section-airy__body {
+    max-width: 760px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    text-transform: none;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #191919;
+}
+.section-airy__body p {
+    margin-bottom: 1rem;
+}
+.section-airy__body p:last-child {
+    margin-bottom: 0;
+}
+.section-airy__lead {
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #b8282e;
+    text-transform: uppercase;
+}
+.section-airy__meta {
+    margin-top: 1.5rem;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    color: #b8282e;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+}
+
+
+/* ===== „V ČÍSLECH" — bez rámečků kolem každého čísla ===== */
+.stats-airy {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+}
+@media (min-width: 768px) {
+    .stats-airy {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem 1rem;
+    }
+}
+.stat-airy {
+    text-align: center;
+    padding: 0.5rem;
+}
+.stat-airy__num {
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    color: #b8282e;
+    font-size: 3rem;
+    line-height: 1;
+}
+@media (min-width: 768px) {
+    .stat-airy__num { font-size: 4rem; }
+}
+.stat-airy__label {
+    margin-top: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #191919;
+}
+@media (min-width: 768px) {
+    .stat-airy__label { font-size: 0.875rem; }
+}
+
+
+/* ===== FAQ — hairline místo výrazných boxů ===== */
+.faq-airy {
+    max-width: 760px;
+    margin: 0 auto;
+}
+.faq-airy .faq-item {
+    background: transparent;
+    border: none;
+    border-top: 1px solid rgba(245, 197, 24, 0.35);
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+}
+.faq-airy .faq-item:last-of-type {
+    border-bottom: 1px solid rgba(245, 197, 24, 0.35);
+}
+.faq-airy .faq-question {
+    cursor: pointer;
+    padding: 1.25rem 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.15s ease;
+}
+.faq-airy .faq-question:hover {
+    color: #f5bc33;
+}
+.faq-airy .faq-question h3 {
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    font-size: 1.125rem;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+@media (min-width: 768px) {
+    .faq-airy .faq-question h3 { font-size: 1.25rem; }
+}
+.faq-airy .faq-toggle {
+    color: #f5bc33;
+    font-size: 1.5rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+.faq-airy .faq-item.open .faq-toggle {
+    transform: rotate(45deg);
+}
+.faq-airy .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    color: rgba(255, 255, 255, 0.82);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    padding: 0 0.25rem;
+}
+.faq-airy .faq-item.open .faq-answer {
+    max-height: 600px;
+    padding: 0 0.25rem 1.5rem;
+}
+.faq-airy .faq-answer p {
+    margin: 0;
+}
+
+
+/* ===== KONTAKT — vzdušná verze ===== */
+.contact-airy {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+@media (min-width: 768px) {
+    .contact-airy {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+.contact-form-airy {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.contact-form-airy h3 {
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #191919;
+    margin-bottom: 0.5rem;
+}
+.contact-form-airy label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: #191919;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.contact-form-airy input,
+.contact-form-airy select,
+.contact-form-airy textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+    border: 1px solid rgba(184, 40, 46, 0.30);
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #191919;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.contact-form-airy input:focus,
+.contact-form-airy select:focus,
+.contact-form-airy textarea:focus {
+    outline: none;
+    border-color: #f5bc33;
+    box-shadow: 0 0 0 3px rgba(245, 188, 51, 0.25);
+}
+.contact-form-airy textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+.contact-form-airy button {
+    margin-top: 0.5rem;
+    padding: 0.875rem 1rem;
+    background: #dc1200;
+    color: #ffffff;
+    border: 2px solid #b8282e;
+    border-radius: 16px;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 4px 4px 12px rgba(139, 30, 30, 0.25);
+    transition: all 0.15s ease;
+}
+.contact-form-airy button:hover {
+    box-shadow: 2px 2px 8px rgba(139, 30, 30, 0.3);
+    transform: translate(1px, 1px);
+}
+
+.contact-info-airy {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.contact-info-airy__block h3 {
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #191919;
+    margin: 0 0 0.875rem;
+}
+.contact-info-airy ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.contact-info-airy li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #191919;
+}
+.contact-info-airy .icon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    color: #b8282e;
+    font-size: 1.125rem;
+    line-height: 1.2;
+}
+.contact-info-airy strong {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+}
+.contact-info-airy a {
+    color: #b8282e;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+.contact-info-airy a:hover {
+    color: #dc1200;
+    text-decoration: underline;
+}
+.contact-info-airy small {
+    display: block;
+    color: rgba(25, 25, 25, 0.6);
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+
+/* ===== Photo carousel (z v1) ===== */
+.carousel-track-wrapper {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+.carousel-track {
+    display: flex;
+    gap: 1rem;
+    animation: carousel-scroll 50s linear infinite;
+    width: max-content;
+}
+.carousel-track:hover { animation-play-state: paused; }
+.carousel-slide {
+    flex-shrink: 0;
+    width: 280px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid rgba(184, 40, 46, 0.4);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.carousel-slide:hover {
+    border-color: rgba(184, 40, 46, 0.8);
+    transform: scale(1.03);
+}
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@media (min-width: 768px) {
+    .carousel-slide { width: 360px; height: 240px; }
+}
+@keyframes carousel-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+
+/* ===== Cookie banner (z v1) ===== */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+.cookie-banner.show { transform: translateY(0); }
+
+
+/* ===== Skip link a11y ===== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #f5bc33;
+    color: #191919;
+    padding: 8px 16px;
+    z-index: 200;
+    transition: top 0.3s;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.skip-link:focus { top: 0; }
+
+
+/* ===== Scroll offset pro sticky header ===== */
+#faq, #kontakt, #o-festivalu, #program {
+    scroll-margin-top: 80px;
+}
+
+
+/* ===== Partner logos — jemné šedé v patičce, plné při hoveru ===== */
+.partner-logo {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+.partner-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
